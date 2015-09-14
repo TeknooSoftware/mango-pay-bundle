@@ -7,7 +7,8 @@
         processIsolation="false"
         stopOnFailure="false"
         syntaxCheck="true"
-        colors="true">
+        colors="true"
+        bootstrap = "app/tests.bootstrap.php">
 
     <php>
         <server name="KERNEL_DIR" value="app" />
