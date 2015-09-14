@@ -11,3 +11,5 @@
 *.done
 composer.lock
 /vendor/*
+/app/cache
+/app/logs

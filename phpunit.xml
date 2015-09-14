@@ -8,6 +8,11 @@
         stopOnFailure="false"
         syntaxCheck="true"
         colors="true">
+
+    <php>
+        <server name="KERNEL_DIR" value="app" />
+    </php>
+
     <testsuites>
         <testsuite>
             <directory>tests/</directory>

@@ -1,0 +1,3 @@
+_unialteri_mango:
+    resource: "@UniAlteriMangoPayBundle/Resources/config/routing.yml"
+    prefix:   /
