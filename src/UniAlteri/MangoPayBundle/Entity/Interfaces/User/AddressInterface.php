@@ -18,6 +18,7 @@
  * @license     http://teknoo.it/license/mit         MIT License
  * @author      Richard Déloge <r.deloge@uni-alteri.com>
  */
+
 namespace UniAlteri\MangoPayBundle\Entity\Interfaces\User;
 
 /**
