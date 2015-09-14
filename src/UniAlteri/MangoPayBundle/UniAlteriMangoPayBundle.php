@@ -16,7 +16,6 @@
  * @link        http://teknoo.it/mangopay-bundle Project website
  *
  * @license     http://teknoo.it/license/mit         MIT License
- * @license     http://teknoo.it/license/gpl-3.0     GPL v3 License
  * @author      Richard Déloge <r.deloge@uni-alteri.com>
  */
 
@@ -25,15 +24,13 @@ namespace UniAlteri\MangoPayBundle;
 use Symfony\Component\HttpKernel\Bundle\Bundle;
 
 /**
- * Class UniAlteriMangoPayBundle
- * @package UniAlteri\MangoPayBundle
+ * Class UniAlteriMangoPayBundle.
  *
  * @copyright   Copyright (c) 2009-2015 Uni Alteri (http://uni-alteri.com)
  *
  * @link        http://teknoo.it/mangopay-bundle Project website
  *
  * @license     http://teknoo.it/license/mit         MIT License
- * @license     http://teknoo.it/license/gpl-3.0     GPL v3 License
  * @author      Richard Déloge <r.deloge@uni-alteri.com>
  */
 class UniAlteriMangoPayBundle extends Bundle

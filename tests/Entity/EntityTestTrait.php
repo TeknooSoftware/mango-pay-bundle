@@ -1,14 +1,37 @@
 <?php
 
-namespace UniAlteri\MangoPayBundle\Tests\Entity;
+/**
+ * MangoPayBundle.
+ *
+ * LICENSE
+ *
+ * This source file is subject to the MIT license and the version 3 of the GPL3
+ * license that are bundled with this package in the folder licences
+ * If you did not receive a copy of the license and are unable to
+ * obtain it through the world-wide-web, please send an email
+ * to contact@uni-alteri.com so we can send you a copy immediately.
+ *
+ * @copyright   Copyright (c) 2009-2015 Uni Alteri (http://uni-alteri.com)
+ *
+ * @link        http://teknoo.it/mangopay-bundle Project website
+ *
+ * @license     http://teknoo.it/license/mit         MIT License
+ * @author      Richard Déloge <r.deloge@uni-alteri.com>
+ */
 
-use Doctrine\Common\Collections\ArrayCollection;
-use UniAlteri\States\Proxy\Object;
+namespace UniAlteri\MangoPayBundle\Tests\Entity;
 
 /**
  * Trait EntityTestTrait
- * Trait to test an entity
- * @package UniAlteri\MangoPayBundle\Tests\Entity
+ *
+ * @copyright   Copyright (c) 2009-2015 Uni Alteri (http://uni-alteri.com)
+ *
+ * @link        http://teknoo.it/mangopay-bundle Project website
+ *
+ * @license     http://teknoo.it/license/mit         MIT License
+ * @author      Richard Déloge <r.deloge@uni-alteri.com>
+ *
+ * Trait to test an entity.
  */
 trait EntityTestTrait
 {
@@ -23,13 +46,14 @@ trait EntityTestTrait
     protected $testedEntity;
 
     /**
-     * Return the canonical class name of the tested entity
+     * Return the canonical class name of the tested entity.
+     *
      * @return string
      */
     abstract protected function getEntityClassName();
 
     /**
-     * Reflection class instance about tested entity
+     * Reflection class instance about tested entity.
      *
      * @return \ReflectionClass
      */
@@ -43,12 +67,13 @@ trait EntityTestTrait
     }
 
     /**
-     * Return an instance of the tested entity
+     * Return an instance of the tested entity.
      *
      * @param array $properties
+     *
      * @return object
      */
-    protected function buildEntity(array $properties=array())
+    protected function buildEntity(array $properties = array())
     {
         $this->testedEntity = null;
 
@@ -61,7 +86,7 @@ trait EntityTestTrait
             $reflectionClassObject = $this->getReflectionClass();
 
             //Populate arguments
-            foreach ($properties as $propertyName=>&$value) {
+            foreach ($properties as $propertyName => &$value) {
                 if ($reflectionClassObject->hasProperty($propertyName)) {
                     $propertyObject = $reflectionClassObject->getProperty($propertyName);
                     $propertyObject->setAccessible(true);
@@ -76,15 +101,15 @@ trait EntityTestTrait
     }
 
     /**
-     * Method to check a getter behavior of the entity class
+     * Method to check a getter behavior of the entity class.
      *
-     * @param string $propertyName
-     * @param mixed $testValue
+     * @param string      $propertyName
+     * @param mixed       $testValue
      * @param string|null $getterName
      *
      * @return $this
      */
-    protected function checkGetter($propertyName, $testValue, $getterName=null)
+    protected function checkGetter($propertyName, $testValue, $getterName = null)
     {
         //Get Reflection
         $entityClassName = $this->getEntityClassName();
@@ -94,11 +119,11 @@ trait EntityTestTrait
         if ($reflectionClassObject->hasProperty($propertyName)) {
             $propertyObject = $reflectionClassObject->getProperty($propertyName);
             if (empty($getterName)) {
-                $getterName = 'get' . ucfirst($propertyName);
+                $getterName = 'get'.ucfirst($propertyName);
             }
 
             //Test with a tested value
-            $entityInstance = $this->buildEntity([$propertyName=>$testValue]);
+            $entityInstance = $this->buildEntity([$propertyName => $testValue]);
             $this->assertEquals($testValue, $entityInstance->{$getterName}());
         } else {
             $this->fail(sprintf('Error, property %s is not available for %s', $propertyName, $entityClassName));
@@ -108,15 +133,15 @@ trait EntityTestTrait
     }
 
     /**
-     * Method to check a setter behavior of the entity class
+     * Method to check a setter behavior of the entity class.
      *
-     * @param string $propertyName
-     * @param string $testValue
+     * @param string      $propertyName
+     * @param string      $testValue
      * @param string|null $setterName
      *
      * @return $this
      */
-    protected function checkSetter($propertyName, $testValue, $setterName=null)
+    protected function checkSetter($propertyName, $testValue, $setterName = null)
     {
         //Get Reflection
         $entityClassName = $this->getEntityClassName();
@@ -126,7 +151,7 @@ trait EntityTestTrait
         if ($reflectionClassObject->hasProperty($propertyName)) {
             $propertyObject = $reflectionClassObject->getProperty($propertyName);
             if (empty($setterName)) {
-                $setterName = 'set' . ucfirst($propertyName);
+                $setterName = 'set'.ucfirst($propertyName);
             }
 
             //Test with a tested value

@@ -1,5 +1,24 @@
 <?php
 
+/**
+ * MangoPayBundle.
+ *
+ * LICENSE
+ *
+ * This source file is subject to the MIT license and the version 3 of the GPL3
+ * license that are bundled with this package in the folder licences
+ * If you did not receive a copy of the license and are unable to
+ * obtain it through the world-wide-web, please send an email
+ * to contact@uni-alteri.com so we can send you a copy immediately.
+ *
+ * @copyright   Copyright (c) 2009-2015 Uni Alteri (http://uni-alteri.com)
+ *
+ * @link        http://teknoo.it/mangopay-bundle Project website
+ *
+ * @license     http://teknoo.it/license/mit         MIT License
+ * @author      Richard Déloge <r.deloge@uni-alteri.com>
+ */
+
 namespace UniAlteri\MangoPayBundle\Tests\Service;
 
 use MangoPay\ApiCardRegistrations;
@@ -13,8 +32,15 @@ use UniAlteri\MangoPayBundle\Service\CardRegistrationService;
 use UniAlteri\MangoPayBundle\Service\Interfaces\StorageServiceInterface;
 
 /**
- * Class MangoApiServiceTest
- * @package UniAlteri\MangoPayBundle\Tests\Service
+ * Class MangoApiServiceTest.
+ *
+ * @copyright   Copyright (c) 2009-2015 Uni Alteri (http://uni-alteri.com)
+ *
+ * @link        http://teknoo.it/mangopay-bundle Project website
+ *
+ * @license     http://teknoo.it/license/mit         MIT License
+ * @author      Richard Déloge <r.deloge@uni-alteri.com>
+ *
  * @covers UniAlteri\MangoPayBundle\Service\CardRegistrationService
  */
 class CardRegistrationServiceTest extends \PHPUnit_Framework_TestCase
@@ -89,6 +115,7 @@ class CardRegistrationServiceTest extends \PHPUnit_Framework_TestCase
 
     /**
      * @param string $routerName
+     *
      * @return CardRegistrationService
      */
     public function buildService($routerName)
@@ -121,7 +148,6 @@ class CardRegistrationServiceTest extends \PHPUnit_Framework_TestCase
             ->with('MANGO_CARD_REGISTRATION1234')
             ->willReturn(true);
 
-
         $this->getStorageServiceInterfaceMock()
             ->expects($this->once())
             ->method('get')
@@ -152,7 +178,6 @@ class CardRegistrationServiceTest extends \PHPUnit_Framework_TestCase
             ->with(1234)
             ->willReturn($cardRegistrationMock);
 
-
         $this->assertEquals(
             $cardRegistrationMock,
             $this->buildService('routerValueName')->getCardRegistrationFromMango(1234)
@@ -178,7 +203,7 @@ class CardRegistrationServiceTest extends \PHPUnit_Framework_TestCase
         $userMock->expects($this->atLeastOnce())->method('getMangoPayId')->willReturn(9876);
 
         /**
-         * @var CardRegistration $cardRegistrationMock
+         * @var CardRegistration
          */
         $cardRegistrationMock = $this->getMock('MangoPay\CardRegistration');
         $cardRegistrationMock->Id = 1234;

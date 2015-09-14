@@ -1,5 +1,24 @@
 <?php
 
+/**
+ * MangoPayBundle.
+ *
+ * LICENSE
+ *
+ * This source file is subject to the MIT license and the version 3 of the GPL3
+ * license that are bundled with this package in the folder licences
+ * If you did not receive a copy of the license and are unable to
+ * obtain it through the world-wide-web, please send an email
+ * to contact@uni-alteri.com so we can send you a copy immediately.
+ *
+ * @copyright   Copyright (c) 2009-2015 Uni Alteri (http://uni-alteri.com)
+ *
+ * @link        http://teknoo.it/mangopay-bundle Project website
+ *
+ * @license     http://teknoo.it/license/mit         MIT License
+ * @author      Richard Déloge <r.deloge@uni-alteri.com>
+ */
+
 namespace UniAlteri\MangoPayBundle\Tests\Service;
 
 use MangoPay\ApiPayIns;
@@ -14,8 +33,15 @@ use UniAlteri\MangoPayBundle\Service\Interfaces\StorageServiceInterface;
 use UniAlteri\MangoPayBundle\Service\SecureFlowService;
 
 /**
- * Class SecureFlowServiceTest
- * @package UniAlteri\MangoPayBundle\Tests\Service
+ * Class SecureFlowServiceTest.
+ *
+ * @copyright   Copyright (c) 2009-2015 Uni Alteri (http://uni-alteri.com)
+ *
+ * @link        http://teknoo.it/mangopay-bundle Project website
+ *
+ * @license     http://teknoo.it/license/mit         MIT License
+ * @author      Richard Déloge <r.deloge@uni-alteri.com>
+ *
  * @covers UniAlteri\MangoPayBundle\Service\SecureFlowService
  */
 class SecureFlowServiceTest extends \PHPUnit_Framework_TestCase
@@ -90,6 +116,7 @@ class SecureFlowServiceTest extends \PHPUnit_Framework_TestCase
 
     /**
      * @param string $routerName
+     *
      * @return SecureFlowService
      */
     public function buildService($routerName)
@@ -178,7 +205,7 @@ class SecureFlowServiceTest extends \PHPUnit_Framework_TestCase
         $secureFlowSessionMock->expects($this->once())->method('setPayInId')->with(1234)->willReturnSelf();
 
         /**
-         * @var Response|\PHPUnit_Framework_MockObject_MockObject $responseMock
+         * @var Response|\PHPUnit_Framework_MockObject_MockObject
          */
         $responseMock = $this->getMock('Symfony\Component\HttpFoundation\Response');
         $responseMock->expects($this->once())->method('setStatusCode')->with(302)->willReturnSelf();
@@ -194,7 +221,7 @@ class SecureFlowServiceTest extends \PHPUnit_Framework_TestCase
     public function testProcessMangoPayReturnExceptionOnInvalidReturn()
     {
         /**
-         * @var Response|\PHPUnit_Framework_MockObject_MockObject $responseMock
+         * @var Response|\PHPUnit_Framework_MockObject_MockObject
          */
         $responseMock = $this->getMock('Symfony\Component\HttpFoundation\Response');
 
@@ -210,7 +237,7 @@ class SecureFlowServiceTest extends \PHPUnit_Framework_TestCase
     public function testProcessMangoPayReturnOnError()
     {
         /**
-         * @var Response|\PHPUnit_Framework_MockObject_MockObject $responseMock
+         * @var Response|\PHPUnit_Framework_MockObject_MockObject
          */
         $responseMock = $this->getMock('Symfony\Component\HttpFoundation\Response');
 
@@ -245,7 +272,7 @@ class SecureFlowServiceTest extends \PHPUnit_Framework_TestCase
     public function testProcessMangoPayReturnOnSuccess()
     {
         /**
-         * @var Response|\PHPUnit_Framework_MockObject_MockObject $responseMock
+         * @var Response|\PHPUnit_Framework_MockObject_MockObject
          */
         $responseMock = $this->getMock('Symfony\Component\HttpFoundation\Response');
 

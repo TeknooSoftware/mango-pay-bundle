@@ -1,12 +1,38 @@
 <?php
 
+/**
+ * MangoPayBundle.
+ *
+ * LICENSE
+ *
+ * This source file is subject to the MIT license and the version 3 of the GPL3
+ * license that are bundled with this package in the folder licences
+ * If you did not receive a copy of the license and are unable to
+ * obtain it through the world-wide-web, please send an email
+ * to contact@uni-alteri.com so we can send you a copy immediately.
+ *
+ * @copyright   Copyright (c) 2009-2015 Uni Alteri (http://uni-alteri.com)
+ *
+ * @link        http://teknoo.it/mangopay-bundle Project website
+ *
+ * @license     http://teknoo.it/license/mit         MIT License
+ * @author      Richard Déloge <r.deloge@uni-alteri.com>
+ */
+
 namespace UniAlteri\MangoPayBundle\Tests\Transcriber;
 
 use UniAlteri\MangoPayBundle\Transcriber\UserTranscriber;
 
 /**
- * Class UserTranscriberTest
- * @package UniAlteri\MangoPayBundle\Tests\Transcriber
+ * Class UserTranscriberTest.
+ *
+ * @copyright   Copyright (c) 2009-2015 Uni Alteri (http://uni-alteri.com)
+ *
+ * @link        http://teknoo.it/mangopay-bundle Project website
+ *
+ * @license     http://teknoo.it/license/mit         MIT License
+ * @author      Richard Déloge <r.deloge@uni-alteri.com>
+ *
  * @covers UniAlteri\MangoPayBundle\Transcriber\UserTranscriber
  */
 class UserTranscriberTest extends \PHPUnit_Framework_TestCase
@@ -42,9 +68,8 @@ class UserTranscriberTest extends \PHPUnit_Framework_TestCase
         $user->expects($this->once())->method('getNationality')->willReturn('nationality value');
         $user->expects($this->once())->method('getCountryOfResidence')->willReturn('country value');
 
-
         $result = $this->buildService()->toMango($user);
-        $this->assertInstanceOf('MangoPay\UserNatural',$result);
+        $this->assertInstanceOf('MangoPay\UserNatural', $result);
         $this->assertEquals(12345, $result->Id);
         $this->assertEquals('first name value', $result->FirstName);
         $this->assertEquals('last name value', $result->LastName);
@@ -71,9 +96,8 @@ class UserTranscriberTest extends \PHPUnit_Framework_TestCase
         $user->expects($this->once())->method('getProofOfAddress')->willReturn('proof address value');
         $user->expects($this->once())->method('getProofOfIdentity')->willReturn('proof identity value');
 
-
         $result = $this->buildService()->toMango($user);
-        $this->assertInstanceOf('MangoPay\UserNatural',$result);
+        $this->assertInstanceOf('MangoPay\UserNatural', $result);
         $this->assertEquals(12345, $result->Id);
         $this->assertEquals('first name value', $result->FirstName);
         $this->assertEquals('last name value', $result->LastName);
@@ -113,9 +137,8 @@ class UserTranscriberTest extends \PHPUnit_Framework_TestCase
         $user->expects($this->once())->method('getProofOfIdentity')->willReturn('proof identity value');
         $user->expects($this->once())->method('getAddressObject')->willReturn($address);
 
-
         $result = $this->buildService()->toMango($user);
-        $this->assertInstanceOf('MangoPay\UserNatural',$result);
+        $this->assertInstanceOf('MangoPay\UserNatural', $result);
         $this->assertEquals(12345, $result->Id);
         $this->assertEquals('first name value', $result->FirstName);
         $this->assertEquals('last name value', $result->LastName);
@@ -151,9 +174,8 @@ class UserTranscriberTest extends \PHPUnit_Framework_TestCase
         $user->expects($this->once())->method('getLegalRepresentativeNationality')->willReturn('nationality value');
         $user->expects($this->once())->method('getLegalRepresentativeCountryOfResidence')->willReturn('country value');
 
-
         $result = $this->buildService()->toMango($user);
-        $this->assertInstanceOf('MangoPay\UserLegal',$result);
+        $this->assertInstanceOf('MangoPay\UserLegal', $result);
         $this->assertEquals(12345, $result->Id);
         $this->assertEquals('name value', $result->Name);
         $this->assertEquals('first name value', $result->LegalRepresentativeFirstName);
@@ -190,9 +212,8 @@ class UserTranscriberTest extends \PHPUnit_Framework_TestCase
         $user->expects($this->once())->method('getLegalRepresentativeCountryOfResidence')->willReturn('country value');
         $user->expects($this->once())->method('getHeadquartersAddress')->willReturn($address);
 
-
         $result = $this->buildService()->toMango($user);
-        $this->assertInstanceOf('MangoPay\UserLegal',$result);
+        $this->assertInstanceOf('MangoPay\UserLegal', $result);
         $this->assertEquals(12345, $result->Id);
         $this->assertEquals('name value', $result->Name);
         $this->assertEquals('first name value', $result->LegalRepresentativeFirstName);
@@ -236,9 +257,8 @@ class UserTranscriberTest extends \PHPUnit_Framework_TestCase
         $user->expects($this->once())->method('getLegalRepresentativeCountryOfResidence')->willReturn('country value');
         $user->expects($this->once())->method('getLegalRepresentativeAddress')->willReturn($address);
 
-
         $result = $this->buildService()->toMango($user);
-        $this->assertInstanceOf('MangoPay\UserLegal',$result);
+        $this->assertInstanceOf('MangoPay\UserLegal', $result);
         $this->assertEquals(12345, $result->Id);
         $this->assertEquals('name value', $result->Name);
         $this->assertEquals('first name value', $result->LegalRepresentativeFirstName);

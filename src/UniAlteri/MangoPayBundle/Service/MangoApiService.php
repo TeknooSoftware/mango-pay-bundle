@@ -16,25 +16,21 @@
  * @link        http://teknoo.it/mangopay-bundle Project website
  *
  * @license     http://teknoo.it/license/mit         MIT License
- * @license     http://teknoo.it/license/gpl-3.0     GPL v3 License
  * @author      Richard Déloge <r.deloge@uni-alteri.com>
  */
-
 namespace UniAlteri\MangoPayBundle\Service;
 
 use MangoPay\Libraries\IStorageStrategy;
 use MangoPay\MangoPayApi;
 
 /**
- * Class MangoApi
- * @package UniAlteri\MangoPayBundle\Service
+ * Class MangoApi.
  *
  * @copyright   Copyright (c) 2009-2015 Uni Alteri (http://uni-alteri.com)
  *
  * @link        http://teknoo.it/mangopay-bundle Project website
  *
  * @license     http://teknoo.it/license/mit         MIT License
- * @license     http://teknoo.it/license/gpl-3.0     GPL v3 License
  * @author      Richard Déloge <r.deloge@uni-alteri.com>
  */
 class MangoApiService
@@ -70,11 +66,11 @@ class MangoApiService
     private $storageStrategy;
 
     /**
-     * @param MangoPayApi $api
-     * @param string $clientId
-     * @param string $clientPassPhrase
-     * @param string $baseUrl
-     * @param boolean $debugMode
+     * @param MangoPayApi      $api
+     * @param string           $clientId
+     * @param string           $clientPassPhrase
+     * @param string           $baseUrl
+     * @param bool             $debugMode
      * @param IStorageStrategy $storageStrategy
      */
     public function __construct(
@@ -96,7 +92,8 @@ class MangoApiService
     }
 
     /**
-     * To configure the mango pay sdk
+     * To configure the mango pay sdk.
+     *
      * @return $this
      */
     protected function configureSdk()
@@ -128,7 +125,7 @@ class MangoApiService
     }
 
     /**
-     * @return boolean
+     * @return bool
      */
     public function isDebugMode()
     {

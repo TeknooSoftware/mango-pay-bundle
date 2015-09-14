@@ -16,7 +16,6 @@
  * @link        http://teknoo.it/mangopay-bundle Project website
  *
  * @license     http://teknoo.it/license/mit         MIT License
- * @license     http://teknoo.it/license/gpl-3.0     GPL v3 License
  * @author      Richard Déloge <r.deloge@uni-alteri.com>
  */
 
@@ -25,15 +24,13 @@ namespace UniAlteri\MangoPayBundle\Entity;
 use UniAlteri\MangoPayBundle\Entity\Interfaces\User\UserInterface;
 
 /**
- * Class CardRegistrationResult
- * @package UniAlteri\MangoPayBundle\Entity
+ * Class CardRegistrationResult.
  *
  * @copyright   Copyright (c) 2009-2015 Uni Alteri (http://uni-alteri.com)
  *
  * @link        http://teknoo.it/mangopay-bundle Project website
  *
  * @license     http://teknoo.it/license/mit         MIT License
- * @license     http://teknoo.it/license/gpl-3.0     GPL v3 License
  * @author      Richard Déloge <r.deloge@uni-alteri.com>
  */
 class CardRegistrationResult
@@ -71,7 +68,7 @@ class CardRegistrationResult
     /**
      * @param UserInterface $user
      */
-    public function __construct(UserInterface $user=null)
+    public function __construct(UserInterface $user = null)
     {
         $this->user = $user;
     }
@@ -86,6 +83,7 @@ class CardRegistrationResult
 
     /**
      * @param string $id
+     *
      * @return $this
      */
     public function setId($id)
@@ -105,6 +103,7 @@ class CardRegistrationResult
 
     /**
      * @param UserInterface $user
+     *
      * @return self
      */
     public function setUser($user)
@@ -124,6 +123,7 @@ class CardRegistrationResult
 
     /**
      * @param string $cardRegistrationUrl
+     *
      * @return self
      */
     public function setCardRegistrationUrl($cardRegistrationUrl)
@@ -143,6 +143,7 @@ class CardRegistrationResult
 
     /**
      * @param string $returnUrl
+     *
      * @return self
      */
     public function setReturnUrl($returnUrl)
@@ -162,6 +163,7 @@ class CardRegistrationResult
 
     /**
      * @param string $data
+     *
      * @return self
      */
     public function setData($data)
@@ -181,6 +183,7 @@ class CardRegistrationResult
 
     /**
      * @param string $accessKeyRef
+     *
      * @return self
      */
     public function setAccessKeyRef($accessKeyRef)

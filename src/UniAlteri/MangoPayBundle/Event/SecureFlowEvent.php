@@ -16,7 +16,6 @@
  * @link        http://teknoo.it/mangopay-bundle Project website
  *
  * @license     http://teknoo.it/license/mit         MIT License
- * @license     http://teknoo.it/license/gpl-3.0     GPL v3 License
  * @author      Richard Déloge <r.deloge@uni-alteri.com>
  */
 
@@ -28,15 +27,13 @@ use Symfony\Component\HttpFoundation\Response;
 use UniAlteri\MangoPayBundle\Entity\SecureFlowSession;
 
 /**
- * Class SecureFlowEvent
- * @package UniAlteri\MangoPayBundle\Event
+ * Class SecureFlowEvent.
  *
  * @copyright   Copyright (c) 2009-2015 Uni Alteri (http://uni-alteri.com)
  *
  * @link        http://teknoo.it/mangopay-bundle Project website
  *
  * @license     http://teknoo.it/license/mit         MIT License
- * @license     http://teknoo.it/license/gpl-3.0     GPL v3 License
  * @author      Richard Déloge <r.deloge@uni-alteri.com>
  */
 class SecureFlowEvent extends Event
@@ -64,7 +61,7 @@ class SecureFlowEvent extends Event
     public function __construct(
         PayIn $payIn,
         Response $response,
-        SecureFlowSession $secureFlowSession=null
+        SecureFlowSession $secureFlowSession = null
     ) {
         $this->secureFlowSession = $secureFlowSession;
         $this->payIn = $payIn;

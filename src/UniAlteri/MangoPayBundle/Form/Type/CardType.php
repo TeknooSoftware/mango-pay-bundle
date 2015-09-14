@@ -16,7 +16,6 @@
  * @link        http://teknoo.it/mangopay-bundle Project website
  *
  * @license     http://teknoo.it/license/mit         MIT License
- * @license     http://teknoo.it/license/gpl-3.0     GPL v3 License
  * @author      Richard Déloge <r.deloge@uni-alteri.com>
  */
 
@@ -26,33 +25,40 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 
 /**
- * Class CardType
- * @package UniAlteri\MangoPayBundle\Form\Type
+ * Class CardType.
+ *
+ * @copyright   Copyright (c) 2009-2015 Uni Alteri (http://uni-alteri.com)
+ *
+ * @link        http://teknoo.it/mangopay-bundle Project website
+ *
+ * @license     http://teknoo.it/license/mit         MIT License
+ * @author      Richard Déloge <r.deloge@uni-alteri.com>
  */
 class CardType extends AbstractType
 {
     /**
-     * Configure the form
+     * Configure the form.
+     *
      * @param FormBuilderInterface $builder
-     * @param array $options
+     * @param array                $options
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('data', 'hidden', ['mapped'=>true])
-            ->add('accessKeyRef', 'hidden', ['mapped'=>true])
-            ->add('returnURL', 'hidden', ['mapped'=>true])
-            ->add('cardNumber', 'text', ['mapped'=>false])
-            ->add('cardExpirationDate', 'text', ['mapped'=>false, 'attr' => ['pattern'=>'[0-1]{1}[0-9]{1}[0-9]{2}']])
-            ->add('cardCvx', 'text', ['mapped'=>false]);
+        $builder->add('data', 'hidden', ['mapped' => true])
+            ->add('accessKeyRef', 'hidden', ['mapped' => true])
+            ->add('returnURL', 'hidden', ['mapped' => true])
+            ->add('cardNumber', 'text', ['mapped' => false])
+            ->add('cardExpirationDate', 'text', ['mapped' => false, 'attr' => ['pattern' => '[0-1]{1}[0-9]{1}[0-9]{2}']])
+            ->add('cardCvx', 'text', ['mapped' => false]);
     }
 
     /**
-     * Returns null to not prepend input's name
+     * Returns null to not prepend input's name.
      *
      * @return string The name of this type
      */
     public function getName()
     {
-        return null;
+        return;
     }
 }
