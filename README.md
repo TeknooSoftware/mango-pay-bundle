@@ -1,6 +1,9 @@
 Uni Alteri - Mango Pay bundle
 ===========================
 
+[![SensioLabsInsight](https://insight.sensiolabs.com/projects/ae26f13d-d99a-4873-b403-3808c1b39512/mini.png)](https://insight.sensiolabs.com/projects/ae26f13d-d99a-4873-b403-3808c1b39512)
+[![Build Status](https://travis-ci.org/UniAlteri/mango-pay-bundle.svg)](https://travis-ci.org/UniAlteri/mango-pay-bundle)
+
 Requirements
 ------------
 This library requires :
