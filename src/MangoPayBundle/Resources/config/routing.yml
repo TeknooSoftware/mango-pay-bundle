@@ -1,0 +1,3 @@
+_default:
+    resource: "@UniAlteriMangoPayBundle/Controller"
+    type:     annotation

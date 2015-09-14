@@ -1,0 +1,127 @@
+parameters:
+  #services class
+  unialteri.mangopaybundle.service.mango_api.class: UniAlteri\MangoPayBundle\Service\MangoApiService
+  unialteri.mangopaybundle.service.user.class: UniAlteri\MangoPayBundle\Service\UserService
+  unialteri.mangopaybundle.service.session.class: UniAlteri\MangoPayBundle\Service\SessionStorageService
+  unialteri.mangopaybundle.service.card_registration.class: UniAlteri\MangoPayBundle\Service\CardRegistrationService
+  unialteri.mangopaybundle.service.secure_flow.class: UniAlteri\MangoPayBundle\Service\SecureFlowService
+
+  #transcriber class
+  unialteri.mangopaybundle.transcriber.user.class: UniAlteri\MangoPayBundle\Transcriber\UserTranscriber
+
+  #storage strategy class
+  unialteri.mangopaybundle.storage.local.class: UniAlteri\MangoPayBundle\StorageStrategy\LocalStorage
+
+  #mangopay sdk class
+  mangopay.sdk.mango_pay_api.class: MangoPay\MangoPayApi
+  mangopay.sdk.api_user.class: MangoPay\ApiUsers
+  mangopay.sdk.api_wallet.class: MangoPay\ApiWallets
+  mangopay.sdk.api_pay_ins.class: MangoPay\ApiPayIns
+  mangopay.sdk.api_pay_outs.class: MangoPay\ApiPayOuts
+  mangopay.sdk.api_transfert.class: MangoPay\ApiTransfers
+  mangopay.sdk.api_cards.class: MangoPay\ApiCards
+  mangopay.sdk.api_card_registrations.class: MangoPay\ApiCardRegistrations
+  mangopay.sdk.api_card_pre_authorizations.class: MangoPay\ApiCardPreAuthorizations
+  mangopay.sdk.api_refunds.class: MangoPay\ApiRefunds
+
+  #Parameters,
+  #routes names for
+  unialteri.mangopaybundle.parameters.card_registration.return.route: '_unialteri_mangopay_card_regitration_return'
+  unialteri.mangopaybundle.parameters.secure_flow.return.route: '_unialteri_mangopay_secure_flow_return'
+
+services:
+
+  #mango pay sdk instance
+  mangopay.sdk.mango_pay_api.service:
+    class: "%mangopay.sdk.mango_pay_api.class%"
+
+  mangopay.sdk.api_user.service:
+      class: "%mangopay.sdk.api_user.class%"
+      factory_service: unialteri.mangopaybundle.service.mango_api
+      factory_method: getApiUsers
+
+  mangopay.sdk.api_wallet.service:
+      class: "%mangopay.sdk.api_wallet.class%"
+      factory_service: unialteri.mangopaybundle.service.mango_api
+      factory_method: getApiWallets
+
+  mangopay.sdk.api_pay_ins.service:
+      class: "%mangopay.sdk.api_pay_ins.class%"
+      factory_service: unialteri.mangopaybundle.service.mango_api
+      factory_method: getApiPayIns
+
+  mangopay.sdk.api_pay_outs.service:
+      class: "%mangopay.sdk.api_pay_outs.class%"
+      factory_service: unialteri.mangopaybundle.service.mango_api
+      factory_method: getApiPayOuts
+
+  mangopay.sdk.api_transfert.service:
+      class: "%mangopay.sdk.api_transfert.class%"
+      factory_service: unialteri.mangopaybundle.service.mango_api
+      factory_method: getApiTransferts
+
+  mangopay.sdk.api_cards.service:
+      class: "%mangopay.sdk.api_cards.class%"
+      factory_service: unialteri.mangopaybundle.service.mango_api
+      factory_method: getApiCards
+
+  mangopay.sdk.api_card_registrations.service:
+      class: "%mangopay.sdk.api_card_registrations.class%"
+      factory_service: unialteri.mangopaybundle.service.mango_api
+      factory_method: getApiCardRegistrations
+
+  mangopay.sdk.api_card_pre_authorizations.service:
+      class: "%mangopay.sdk.api_card_pre_authorizations.class%"
+      factory_service: unialteri.mangopaybundle.service.mango_api
+      factory_method: getApiCardPreAuthorizations
+
+  mangopay.sdk.api_refunds.service:
+      class: "%mangopay.sdk.api_refunds.class%"
+      factory_service: unialteri.mangopaybundle.service.mango_api
+      factory_method: getApiRefunds
+
+  #bundle services
+  unialteri.mangopaybundle.transcriber.users:
+    class: "%unialteri.mangopaybundle.transcriber.user.class%"
+
+  unialteri.mangopaybundle.storage.local:
+    class: "%unialteri.mangopaybundle.storage.local.class%"
+
+  unialteri.mangopaybundle.service.session.storage:
+    class: "%unialteri.mangopaybundle.service.session.class%"
+    arguments:
+      - @session
+
+  unialteri.mangopaybundle.service.card_registration:
+    class: "%unialteri.mangopaybundle.service.card_registration.class%"
+    arguments:
+      - @mangopay.sdk.api_card_registrations.service
+      - @router
+      - "%unialteri.mangopaybundle.parameters.card_registration.return.route%"
+      - @unialteri.mangopaybundle.service.session.storage
+      - @event_dispatcher
+
+  unialteri.mangopaybundle.service.mango_api:
+    class: "%unialteri.mangopaybundle.service.mango_api.class%"
+    arguments:
+      - @mangopay.sdk.mango_pay_api.service
+      - "%mangopay.client_id%"
+      - "%mangopay.client_passphrase%"
+      - "%mangopay.base_url%"
+      - "%mangopay.debug_mode%"
+      - @unialteri.mangopaybundle.storage.local
+
+  unialteri.mangopaybundle.service.user:
+    class: "%unialteri.mangopaybundle.service.user.class%"
+    arguments:
+      - @mangopay.sdk.api_user.service
+      - @unialteri.mangopaybundle.transcriber.users
+
+  unialteri.mangopaybundle.service.secure_flow:
+    class: "%unialteri.mangopaybundle.service.secure_flow.class%"
+    arguments:
+      - @router
+      - "%unialteri.mangopaybundle.parameters.secure_flow.return.route%"
+      - @event_dispatcher
+      - @mangopay.sdk.api_pay_ins.service
+      - @unialteri.mangopaybundle.service.session.storage
