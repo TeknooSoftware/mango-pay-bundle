@@ -11,7 +11,8 @@ use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 /**
  * Class MangoPayController.
  *
- * @copyright   Copyright (c) 2009-2015 Uni Alteri (http://uni-alteri.com)
+ * @copyright   Copyright (c) 2009-2016 Uni Alteri (http://uni-alteri.com)
+ * @copyright   Copyright (c) 2009-2016 Richard Déloge (r.deloge@uni-alteri.com)
  *
  * @link        http://teknoo.it/mangopay-bundle Project website
  *
