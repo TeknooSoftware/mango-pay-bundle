@@ -20,12 +20,12 @@
  * @author      Richard Déloge <r.deloge@uni-alteri.com>
  */
 
-namespace UniAlteri\MangoPayBundle\Tests\Controller;
+namespace Teknoo\MangoPayBundle\Tests\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 use Symfony\Component\HttpFoundation\Response;
-use UniAlteri\MangoPayBundle\Service\CardRegistrationService;
-use UniAlteri\MangoPayBundle\Service\SecureFlowService;
+use Teknoo\MangoPayBundle\Service\CardRegistrationService;
+use Teknoo\MangoPayBundle\Service\SecureFlowService;
 
 /**
  * Class MangoPayControllerTest.
@@ -38,8 +38,8 @@ use UniAlteri\MangoPayBundle\Service\SecureFlowService;
  * @license     http://teknoo.it/license/mit         MIT License
  * @author      Richard Déloge <r.deloge@uni-alteri.com>
  *
- * @covers UniAlteri\MangoPayBundle\Controller\MangoPayController
- * @covers UniAlteri\MangoPayBundle\UniAlteriMangoPayBundle
+ * @covers Teknoo\MangoPayBundle\Controller\MangoPayController
+ * @covers Teknoo\MangoPayBundle\UniAlteriMangoPayBundle
  */
 class MangoPayControllerTest extends WebTestCase
 {
@@ -59,7 +59,7 @@ class MangoPayControllerTest extends WebTestCase
     protected function getCardRegistrationServiceMock()
     {
         if (!$this->cardRegistrationServiceMock instanceof CardRegistrationService) {
-            $this->cardRegistrationServiceMock = $this->getMock('UniAlteri\MangoPayBundle\Service\CardRegistrationService', [], [], '', false);
+            $this->cardRegistrationServiceMock = $this->getMock('Teknoo\MangoPayBundle\Service\CardRegistrationService', [], [], '', false);
         }
 
         return $this->cardRegistrationServiceMock;
@@ -71,7 +71,7 @@ class MangoPayControllerTest extends WebTestCase
     protected function getSecureFlowServiceMock()
     {
         if (!$this->secureFlowServiceMock instanceof SecureFlowService) {
-            $this->secureFlowServiceMock = $this->getMock('UniAlteri\MangoPayBundle\Service\SecureFlowService', [], [], '', false);
+            $this->secureFlowServiceMock = $this->getMock('Teknoo\MangoPayBundle\Service\SecureFlowService', [], [], '', false);
         }
 
         return $this->secureFlowServiceMock;
@@ -82,7 +82,7 @@ class MangoPayControllerTest extends WebTestCase
         $client = static::createClient();
 
         $container = $client->getContainer();
-        $container->set('unialteri.mangopaybundle.service.card_registration', $this->getCardRegistrationServiceMock());
+        $container->set('teknoo.mangopaybundle.service.card_registration', $this->getCardRegistrationServiceMock());
 
         $this->getCardRegistrationServiceMock()
             ->expects($this->never())
@@ -111,7 +111,7 @@ class MangoPayControllerTest extends WebTestCase
         $client = static::createClient();
 
         $container = $client->getContainer();
-        $container->set('unialteri.mangopaybundle.service.card_registration', $this->getCardRegistrationServiceMock());
+        $container->set('teknoo.mangopaybundle.service.card_registration', $this->getCardRegistrationServiceMock());
 
         $this->getCardRegistrationServiceMock()
             ->expects($this->never())
@@ -140,7 +140,7 @@ class MangoPayControllerTest extends WebTestCase
         $client = static::createClient();
 
         $container = $client->getContainer();
-        $container->set('unialteri.mangopaybundle.service.card_registration', $this->getCardRegistrationServiceMock());
+        $container->set('teknoo.mangopaybundle.service.card_registration', $this->getCardRegistrationServiceMock());
 
         $this->getCardRegistrationServiceMock()
             ->expects($this->never())
@@ -169,7 +169,7 @@ class MangoPayControllerTest extends WebTestCase
         $client = static::createClient();
 
         $container = $client->getContainer();
-        $container->set('unialteri.mangopaybundle.service.secure_flow', $this->getSecureFlowServiceMock());
+        $container->set('teknoo.mangopaybundle.service.secure_flow', $this->getSecureFlowServiceMock());
 
         $this->getSecureFlowServiceMock()
             ->expects($this->never())
@@ -185,7 +185,7 @@ class MangoPayControllerTest extends WebTestCase
         $client = static::createClient();
 
         $container = $client->getContainer();
-        $container->set('unialteri.mangopaybundle.service.secure_flow', $this->getSecureFlowServiceMock());
+        $container->set('teknoo.mangopaybundle.service.secure_flow', $this->getSecureFlowServiceMock());
 
         $this->getSecureFlowServiceMock()
             ->expects($this->once())

@@ -20,7 +20,7 @@
  * @author      Richard Déloge <r.deloge@uni-alteri.com>
  */
 
-namespace UniAlteri\MangoPayBundle\Tests\Entity;
+namespace Teknoo\MangoPayBundle\Tests\Entity;
 
 /**
  * Trait EntityTestTrait.

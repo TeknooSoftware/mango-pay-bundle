@@ -20,12 +20,10 @@
  * @author      Richard Déloge <r.deloge@uni-alteri.com>
  */
 
-namespace Teknoo\MangoPayBundle\Tests\DependencyInjection;
-
-use Teknoo\MangoPayBundle\DependencyInjection\Configuration;
+namespace Teknoo\MangoPayBundle\Entity\Interfaces\User;
 
 /**
- * Class ConfigurationTest.
+ * Interface FullNaturalUserInterface.
  *
  * @copyright   Copyright (c) 2009-2016 Uni Alteri (http://uni-alteri.com)
  * @copyright   Copyright (c) 2009-2016 Richard Déloge (r.deloge@uni-alteri.com)
@@ -34,24 +32,31 @@ use Teknoo\MangoPayBundle\DependencyInjection\Configuration;
  *
  * @license     http://teknoo.it/license/mit         MIT License
  * @author      Richard Déloge <r.deloge@uni-alteri.com>
- *
- * @covers Teknoo\MangoPayBundle\DependencyInjection\Configuration
  */
-class ConfigurationTest extends \PHPUnit_Framework_TestCase
+interface FullNaturalUserInterface extends NaturalUserInterface
 {
     /**
-     * @return Configuration
+     * @return AddressInterface
      */
-    public function buildConfiguration()
-    {
-        return new Configuration();
-    }
+    public function getAddressObject();
 
-    public function testGetConfigTreeBuilder()
-    {
-        $configuration = $this->buildConfiguration();
-        $treeBuilder = $configuration->getConfigTreeBuilder();
+    /**
+     * @return string
+     */
+    public function getOccupation();
 
-        $this->assertInstanceOf('Symfony\Component\Config\Definition\Builder\TreeBuilder', $treeBuilder);
-    }
+    /**
+     * @return string
+     */
+    public function getIncomeRange();
+
+    /**
+     * @return string
+     */
+    public function getProofOfIdentity();
+
+    /**
+     * @return string
+     */
+    public function getProofOfAddress();
 }

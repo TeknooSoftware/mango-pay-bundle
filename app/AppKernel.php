@@ -38,7 +38,7 @@ class AppKernel extends Kernel
             new Sensio\Bundle\FrameworkExtraBundle\SensioFrameworkExtraBundle(),
 
             //MangoPay Bundle
-            new UniAlteri\MangoPayBundle\UniAlteriMangoPayBundle(),
+            new Teknoo\MangoPayBundle\UniAlteriMangoPayBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {

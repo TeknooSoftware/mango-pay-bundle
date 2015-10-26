@@ -20,9 +20,9 @@
  * @author      Richard Déloge <r.deloge@uni-alteri.com>
  */
 
-namespace UniAlteri\MangoPayBundle\Tests\Transcriber;
+namespace Teknoo\MangoPayBundle\Tests\Transcriber;
 
-use UniAlteri\MangoPayBundle\Transcriber\UserTranscriber;
+use Teknoo\MangoPayBundle\Transcriber\UserTranscriber;
 
 /**
  * Class UserTranscriberTest.
@@ -35,7 +35,7 @@ use UniAlteri\MangoPayBundle\Transcriber\UserTranscriber;
  * @license     http://teknoo.it/license/mit         MIT License
  * @author      Richard Déloge <r.deloge@uni-alteri.com>
  *
- * @covers UniAlteri\MangoPayBundle\Transcriber\UserTranscriber
+ * @covers Teknoo\MangoPayBundle\Transcriber\UserTranscriber
  */
 class UserTranscriberTest extends \PHPUnit_Framework_TestCase
 {
@@ -48,19 +48,19 @@ class UserTranscriberTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @expectedException \UniAlteri\MangoPayBundle\Exception\BadTypeException
+     * @expectedException \Teknoo\MangoPayBundle\Exception\BadTypeException
      */
     public function testToMangoNonSupported()
     {
         $this->buildService()
             ->toMango(
-                $this->getMock('UniAlteri\MangoPayBundle\Entity\Interfaces\User\UserInterface')
+                $this->getMock('Teknoo\MangoPayBundle\Entity\Interfaces\User\UserInterface')
             );
     }
 
     public function testToMangoNaturalUser()
     {
-        $user = $this->getMock('UniAlteri\MangoPayBundle\Entity\Interfaces\User\NaturalUserInterface');
+        $user = $this->getMock('Teknoo\MangoPayBundle\Entity\Interfaces\User\NaturalUserInterface');
         $user->expects($this->once())->method('getMangoPayId')->willReturn(12345);
         $user->expects($this->once())->method('getFirstName')->willReturn('first name value');
         $user->expects($this->once())->method('getLastName')->willReturn('last name value');
@@ -84,7 +84,7 @@ class UserTranscriberTest extends \PHPUnit_Framework_TestCase
 
     public function testToMangoFullNaturalUserWithoutAddress()
     {
-        $user = $this->getMock('UniAlteri\MangoPayBundle\Entity\Interfaces\User\FullNaturalUserInterface');
+        $user = $this->getMock('Teknoo\MangoPayBundle\Entity\Interfaces\User\FullNaturalUserInterface');
         $user->expects($this->once())->method('getMangoPayId')->willReturn(12345);
         $user->expects($this->once())->method('getFirstName')->willReturn('first name value');
         $user->expects($this->once())->method('getLastName')->willReturn('last name value');
@@ -116,7 +116,7 @@ class UserTranscriberTest extends \PHPUnit_Framework_TestCase
 
     public function testToMangoFullNaturalUserWithAddress()
     {
-        $address = $this->getMock('UniAlteri\MangoPayBundle\Entity\Interfaces\User\AddressInterface');
+        $address = $this->getMock('Teknoo\MangoPayBundle\Entity\Interfaces\User\AddressInterface');
         $address->expects($this->once())->method('getAddress1')->willReturn('address 1 value');
         $address->expects($this->once())->method('getAddress2')->willReturn('address 2 value');
         $address->expects($this->once())->method('getPostalCode')->willReturn('zip value');
@@ -124,7 +124,7 @@ class UserTranscriberTest extends \PHPUnit_Framework_TestCase
         $address->expects($this->once())->method('getRegion')->willReturn('region value');
         $address->expects($this->once())->method('getCountry')->willReturn('country value');
 
-        $user = $this->getMock('UniAlteri\MangoPayBundle\Entity\Interfaces\User\FullNaturalUserInterface');
+        $user = $this->getMock('Teknoo\MangoPayBundle\Entity\Interfaces\User\FullNaturalUserInterface');
         $user->expects($this->once())->method('getMangoPayId')->willReturn(12345);
         $user->expects($this->once())->method('getFirstName')->willReturn('first name value');
         $user->expects($this->once())->method('getLastName')->willReturn('last name value');
@@ -164,7 +164,7 @@ class UserTranscriberTest extends \PHPUnit_Framework_TestCase
 
     public function testToMangoLegalUserWithoutAddress()
     {
-        $user = $this->getMock('UniAlteri\MangoPayBundle\Entity\Interfaces\User\LegalUserInterface');
+        $user = $this->getMock('Teknoo\MangoPayBundle\Entity\Interfaces\User\LegalUserInterface');
         $user->expects($this->once())->method('getMangoPayId')->willReturn(12345);
         $user->expects($this->once())->method('getName')->willReturn('name value');
         $user->expects($this->once())->method('getLegalRepresentativeFirstName')->willReturn('first name value');
@@ -193,7 +193,7 @@ class UserTranscriberTest extends \PHPUnit_Framework_TestCase
 
     public function testToMangoLegalUserWithAddressHeadQuarter()
     {
-        $address = $this->getMock('UniAlteri\MangoPayBundle\Entity\Interfaces\User\AddressInterface');
+        $address = $this->getMock('Teknoo\MangoPayBundle\Entity\Interfaces\User\AddressInterface');
         $address->expects($this->once())->method('getAddress1')->willReturn('address 1 value');
         $address->expects($this->once())->method('getAddress2')->willReturn('address 2 value');
         $address->expects($this->once())->method('getPostalCode')->willReturn('zip value');
@@ -201,7 +201,7 @@ class UserTranscriberTest extends \PHPUnit_Framework_TestCase
         $address->expects($this->once())->method('getRegion')->willReturn('region value');
         $address->expects($this->once())->method('getCountry')->willReturn('country value');
 
-        $user = $this->getMock('UniAlteri\MangoPayBundle\Entity\Interfaces\User\LegalUserInterface');
+        $user = $this->getMock('Teknoo\MangoPayBundle\Entity\Interfaces\User\LegalUserInterface');
         $user->expects($this->once())->method('getMangoPayId')->willReturn(12345);
         $user->expects($this->once())->method('getName')->willReturn('name value');
         $user->expects($this->once())->method('getLegalRepresentativeFirstName')->willReturn('first name value');
@@ -238,7 +238,7 @@ class UserTranscriberTest extends \PHPUnit_Framework_TestCase
 
     public function testToMangoLegalUserWithAddressLegal()
     {
-        $address = $this->getMock('UniAlteri\MangoPayBundle\Entity\Interfaces\User\AddressInterface');
+        $address = $this->getMock('Teknoo\MangoPayBundle\Entity\Interfaces\User\AddressInterface');
         $address->expects($this->once())->method('getAddress1')->willReturn('address 1 value');
         $address->expects($this->once())->method('getAddress2')->willReturn('address 2 value');
         $address->expects($this->once())->method('getPostalCode')->willReturn('zip value');
@@ -246,7 +246,7 @@ class UserTranscriberTest extends \PHPUnit_Framework_TestCase
         $address->expects($this->once())->method('getRegion')->willReturn('region value');
         $address->expects($this->once())->method('getCountry')->willReturn('country value');
 
-        $user = $this->getMock('UniAlteri\MangoPayBundle\Entity\Interfaces\User\LegalUserInterface');
+        $user = $this->getMock('Teknoo\MangoPayBundle\Entity\Interfaces\User\LegalUserInterface');
         $user->expects($this->once())->method('getMangoPayId')->willReturn(12345);
         $user->expects($this->once())->method('getName')->willReturn('name value');
         $user->expects($this->once())->method('getLegalRepresentativeFirstName')->willReturn('first name value');

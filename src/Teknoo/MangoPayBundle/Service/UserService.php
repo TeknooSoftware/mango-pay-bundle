@@ -20,12 +20,14 @@
  * @author      Richard Déloge <r.deloge@uni-alteri.com>
  */
 
-namespace Teknoo\MangoPayBundle\Tests\DependencyInjection;
+namespace Teknoo\MangoPayBundle\Service;
 
-use Teknoo\MangoPayBundle\DependencyInjection\Configuration;
+use MangoPay\ApiUsers;
+use Teknoo\MangoPayBundle\Entity\Interfaces\User\UserInterface;
+use Teknoo\MangoPayBundle\Transcriber\UserTranscriber;
 
 /**
- * Class ConfigurationTest.
+ * Class UserService.
  *
  * @copyright   Copyright (c) 2009-2016 Uni Alteri (http://uni-alteri.com)
  * @copyright   Copyright (c) 2009-2016 Richard Déloge (r.deloge@uni-alteri.com)
@@ -34,24 +36,40 @@ use Teknoo\MangoPayBundle\DependencyInjection\Configuration;
  *
  * @license     http://teknoo.it/license/mit         MIT License
  * @author      Richard Déloge <r.deloge@uni-alteri.com>
- *
- * @covers Teknoo\MangoPayBundle\DependencyInjection\Configuration
  */
-class ConfigurationTest extends \PHPUnit_Framework_TestCase
+class UserService
 {
     /**
-     * @return Configuration
+     * @var ApiUsers
      */
-    public function buildConfiguration()
+    protected $apiUsers;
+
+    /**
+     * @var UserTranscriber
+     */
+    protected $userTranscriber;
+
+    /**
+     * @param ApiUsers        $apiUsers
+     * @param UserTranscriber $userTranscriber
+     */
+    public function __construct(ApiUsers $apiUsers, UserTranscriber $userTranscriber)
     {
-        return new Configuration();
+        $this->apiUsers = $apiUsers;
+        $this->userTranscriber = $userTranscriber;
     }
 
-    public function testGetConfigTreeBuilder()
+    /**
+     * @param UserInterface $user
+     *
+     * @return int
+     *
+     * @throws \MangoPay\Libraries\Exception
+     */
+    public function create(UserInterface $user)
     {
-        $configuration = $this->buildConfiguration();
-        $treeBuilder = $configuration->getConfigTreeBuilder();
+        $userMango = $this->userTranscriber->toMango($user);
 
-        $this->assertInstanceOf('Symfony\Component\Config\Definition\Builder\TreeBuilder', $treeBuilder);
+        return $this->apiUsers->Create($userMango)->Id;
     }
 }

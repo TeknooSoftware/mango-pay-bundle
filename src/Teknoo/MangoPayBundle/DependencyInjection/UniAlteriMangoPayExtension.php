@@ -20,12 +20,17 @@
  * @author      Richard Déloge <r.deloge@uni-alteri.com>
  */
 
-namespace Teknoo\MangoPayBundle\Tests\DependencyInjection;
+namespace Teknoo\MangoPayBundle\DependencyInjection;
 
-use Teknoo\MangoPayBundle\DependencyInjection\Configuration;
+use Symfony\Component\DependencyInjection\ContainerBuilder;
+use Symfony\Component\Config\FileLocator;
+use Symfony\Component\HttpKernel\DependencyInjection\Extension;
+use Symfony\Component\DependencyInjection\Loader;
 
 /**
- * Class ConfigurationTest.
+ * This is the class that loads and manages your bundle configuration.
+ *
+ * To learn more see {@link http://symfony.com/doc/current/cookbook/bundles/extension.html}
  *
  * @copyright   Copyright (c) 2009-2016 Uni Alteri (http://uni-alteri.com)
  * @copyright   Copyright (c) 2009-2016 Richard Déloge (r.deloge@uni-alteri.com)
@@ -34,24 +39,18 @@ use Teknoo\MangoPayBundle\DependencyInjection\Configuration;
  *
  * @license     http://teknoo.it/license/mit         MIT License
  * @author      Richard Déloge <r.deloge@uni-alteri.com>
- *
- * @covers Teknoo\MangoPayBundle\DependencyInjection\Configuration
  */
-class ConfigurationTest extends \PHPUnit_Framework_TestCase
+class UniAlteriMangoPayExtension extends Extension
 {
     /**
-     * @return Configuration
+     * {@inheritdoc}
      */
-    public function buildConfiguration()
+    public function load(array $configs, ContainerBuilder $container)
     {
-        return new Configuration();
-    }
+        $configuration = new Configuration();
+        $this->processConfiguration($configuration, $configs);
 
-    public function testGetConfigTreeBuilder()
-    {
-        $configuration = $this->buildConfiguration();
-        $treeBuilder = $configuration->getConfigTreeBuilder();
-
-        $this->assertInstanceOf('Symfony\Component\Config\Definition\Builder\TreeBuilder', $treeBuilder);
+        $loader = new Loader\YamlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
+        $loader->load('services.yml');
     }
 }

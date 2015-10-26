@@ -20,7 +20,7 @@
  * @author      Richard Déloge <r.deloge@uni-alteri.com>
  */
 
-namespace UniAlteri\MangoPayBundle\Tests\Service;
+namespace Teknoo\MangoPayBundle\Tests\Service;
 
 use MangoPay\ApiPayIns;
 use MangoPay\PayIn;
@@ -28,10 +28,10 @@ use MangoPay\PayInExecutionDetailsDirect;
 use Symfony\Bundle\FrameworkBundle\Routing\Router;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 use Symfony\Component\HttpFoundation\Response;
-use UniAlteri\MangoPayBundle\Event\MangoPayEvents;
-use UniAlteri\MangoPayBundle\Event\SecureFlowEvent;
-use UniAlteri\MangoPayBundle\Service\Interfaces\StorageServiceInterface;
-use UniAlteri\MangoPayBundle\Service\SecureFlowService;
+use Teknoo\MangoPayBundle\Event\MangoPayEvents;
+use Teknoo\MangoPayBundle\Event\SecureFlowEvent;
+use Teknoo\MangoPayBundle\Service\Interfaces\StorageServiceInterface;
+use Teknoo\MangoPayBundle\Service\SecureFlowService;
 
 /**
  * Class SecureFlowServiceTest.
@@ -44,7 +44,7 @@ use UniAlteri\MangoPayBundle\Service\SecureFlowService;
  * @license     http://teknoo.it/license/mit         MIT License
  * @author      Richard Déloge <r.deloge@uni-alteri.com>
  *
- * @covers UniAlteri\MangoPayBundle\Service\SecureFlowService
+ * @covers Teknoo\MangoPayBundle\Service\SecureFlowService
  */
 class SecureFlowServiceTest extends \PHPUnit_Framework_TestCase
 {
@@ -110,7 +110,7 @@ class SecureFlowServiceTest extends \PHPUnit_Framework_TestCase
     protected function getStorageServiceInterfaceMock()
     {
         if (!$this->storageServiceMock instanceof StorageServiceInterface) {
-            $this->storageServiceMock = $this->getMock('UniAlteri\MangoPayBundle\Service\Interfaces\StorageServiceInterface', [], [], '', false);
+            $this->storageServiceMock = $this->getMock('Teknoo\MangoPayBundle\Service\Interfaces\StorageServiceInterface', [], [], '', false);
         }
 
         return $this->storageServiceMock;
@@ -152,7 +152,7 @@ class SecureFlowServiceTest extends \PHPUnit_Framework_TestCase
         $payInMock->Id = 1234;
         $payInMock->Status = 'ERROR';
 
-        $secureFlowSessionMock = $this->getMock('UniAlteri\MangoPayBundle\Entity\SecureFlowSession', [], [], '', false);
+        $secureFlowSessionMock = $this->getMock('Teknoo\MangoPayBundle\Entity\SecureFlowSession', [], [], '', false);
         $secureFlowSessionMock->expects($this->once())->method('setPayInId')->with(1234)->willReturnSelf();
 
         $responseMock = $this->getMock('Symfony\Component\HttpFoundation\Response');
@@ -168,7 +168,7 @@ class SecureFlowServiceTest extends \PHPUnit_Framework_TestCase
         $payInMock->Id = 1234;
         $payInMock->Status = 'SUCCESSFULL';
 
-        $secureFlowSessionMock = $this->getMock('UniAlteri\MangoPayBundle\Entity\SecureFlowSession', [], [], '', false);
+        $secureFlowSessionMock = $this->getMock('Teknoo\MangoPayBundle\Entity\SecureFlowSession', [], [], '', false);
         $secureFlowSessionMock->expects($this->once())->method('setPayInId')->with(1234)->willReturnSelf();
 
         $responseMock = $this->getMock('Symfony\Component\HttpFoundation\Response');
@@ -184,7 +184,7 @@ class SecureFlowServiceTest extends \PHPUnit_Framework_TestCase
         $payInMock->Id = 1234;
         $payInMock->Status = 'CREATED';
 
-        $secureFlowSessionMock = $this->getMock('UniAlteri\MangoPayBundle\Entity\SecureFlowSession', [], [], '', false);
+        $secureFlowSessionMock = $this->getMock('Teknoo\MangoPayBundle\Entity\SecureFlowSession', [], [], '', false);
         $secureFlowSessionMock->expects($this->once())->method('setPayInId')->with(1234)->willReturnSelf();
 
         $responseMock = $this->getMock('Symfony\Component\HttpFoundation\Response');
@@ -203,7 +203,7 @@ class SecureFlowServiceTest extends \PHPUnit_Framework_TestCase
         $payInMock->Status = 'CREATED';
         $payInMock->ExecutionDetails = $payInDetail;
 
-        $secureFlowSessionMock = $this->getMock('UniAlteri\MangoPayBundle\Entity\SecureFlowSession', [], [], '', false);
+        $secureFlowSessionMock = $this->getMock('Teknoo\MangoPayBundle\Entity\SecureFlowSession', [], [], '', false);
         $secureFlowSessionMock->expects($this->once())->method('setPayInId')->with(1234)->willReturnSelf();
 
         /**
@@ -218,7 +218,7 @@ class SecureFlowServiceTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @expectedException \UniAlteri\MangoPayBundle\Exception\BadMangoReturnException
+     * @expectedException \Teknoo\MangoPayBundle\Exception\BadMangoReturnException
      */
     public function testProcessMangoPayReturnExceptionOnInvalidReturn()
     {
@@ -253,7 +253,7 @@ class SecureFlowServiceTest extends \PHPUnit_Framework_TestCase
             ->with(1234)
             ->willReturn($payInMock);
 
-        $secureFlowSessionMock = $this->getMock('UniAlteri\MangoPayBundle\Entity\SecureFlowSession', [], [], '', false);
+        $secureFlowSessionMock = $this->getMock('Teknoo\MangoPayBundle\Entity\SecureFlowSession', [], [], '', false);
         $this->getStorageServiceInterfaceMock()
             ->expects($this->once())
             ->method('get')
@@ -288,7 +288,7 @@ class SecureFlowServiceTest extends \PHPUnit_Framework_TestCase
             ->with(1234)
             ->willReturn($payInMock);
 
-        $secureFlowSessionMock = $this->getMock('UniAlteri\MangoPayBundle\Entity\SecureFlowSession', [], [], '', false);
+        $secureFlowSessionMock = $this->getMock('Teknoo\MangoPayBundle\Entity\SecureFlowSession', [], [], '', false);
         $this->getStorageServiceInterfaceMock()
             ->expects($this->once())
             ->method('get')

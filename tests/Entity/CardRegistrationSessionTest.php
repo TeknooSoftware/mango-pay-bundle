@@ -20,7 +20,7 @@
  * @author      Richard Déloge <r.deloge@uni-alteri.com>
  */
 
-namespace UniAlteri\MangoPayBundle\Tests\Entity;
+namespace Teknoo\MangoPayBundle\Tests\Entity;
 
 /**
  * Class CardRegistrationSessionTest.
@@ -33,7 +33,7 @@ namespace UniAlteri\MangoPayBundle\Tests\Entity;
  * @license     http://teknoo.it/license/mit         MIT License
  * @author      Richard Déloge <r.deloge@uni-alteri.com>
  *
- * @covers UniAlteri\MangoPayBundle\Entity\CardRegistrationSession
+ * @covers Teknoo\MangoPayBundle\Entity\CardRegistrationSession
  */
 class CardRegistrationSessionTest extends \PHPUnit_Framework_TestCase
 {
@@ -46,12 +46,12 @@ class CardRegistrationSessionTest extends \PHPUnit_Framework_TestCase
      */
     protected function getEntityClassName()
     {
-        return 'UniAlteri\MangoPayBundle\Entity\CardRegistrationSession';
+        return 'Teknoo\MangoPayBundle\Entity\CardRegistrationSession';
     }
 
     public function testUser()
     {
-        $userMock = $this->getMock('UniAlteri\MangoPayBundle\Entity\Interfaces\User\UserInterface');
+        $userMock = $this->getMock('Teknoo\MangoPayBundle\Entity\Interfaces\User\UserInterface');
         $this->checkGetter('user', $userMock);
         $this->checkSetter('user', $userMock);
     }

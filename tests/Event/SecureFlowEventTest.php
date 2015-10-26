@@ -20,12 +20,12 @@
  * @author      Richard Déloge <r.deloge@uni-alteri.com>
  */
 
-namespace UniAlteri\MangoPayBundle\Tests\Event;
+namespace Teknoo\MangoPayBundle\Tests\Event;
 
 use MangoPay\PayIn;
 use Symfony\Component\HttpFoundation\Response;
-use UniAlteri\MangoPayBundle\Entity\SecureFlowSession;
-use UniAlteri\MangoPayBundle\Event\SecureFlowEvent;
+use Teknoo\MangoPayBundle\Entity\SecureFlowSession;
+use Teknoo\MangoPayBundle\Event\SecureFlowEvent;
 
 /**
  * Class SecureFlowEventTest.
@@ -38,7 +38,7 @@ use UniAlteri\MangoPayBundle\Event\SecureFlowEvent;
  * @license     http://teknoo.it/license/mit         MIT License
  * @author      Richard Déloge <r.deloge@uni-alteri.com>
  *
- * @covers UniAlteri\MangoPayBundle\Event\SecureFlowEvent
+ * @covers Teknoo\MangoPayBundle\Event\SecureFlowEvent
  */
 class SecureFlowEventTest extends \PHPUnit_Framework_TestCase
 {
@@ -63,7 +63,7 @@ class SecureFlowEventTest extends \PHPUnit_Framework_TestCase
     protected function getSecureFlowSessionMock()
     {
         if (!$this->secureFlowSessionMock instanceof SecureFlowSession) {
-            $this->secureFlowSessionMock = $this->getMock('UniAlteri\MangoPayBundle\Entity\SecureFlowSession', [], [], '', false);
+            $this->secureFlowSessionMock = $this->getMock('Teknoo\MangoPayBundle\Entity\SecureFlowSession', [], [], '', false);
         }
 
         return $this->secureFlowSessionMock;

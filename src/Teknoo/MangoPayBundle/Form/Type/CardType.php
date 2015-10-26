@@ -20,12 +20,13 @@
  * @author      Richard Déloge <r.deloge@uni-alteri.com>
  */
 
-namespace Teknoo\MangoPayBundle\Tests\DependencyInjection;
+namespace Teknoo\MangoPayBundle\Form\Type;
 
-use Teknoo\MangoPayBundle\DependencyInjection\Configuration;
+use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\FormBuilderInterface;
 
 /**
- * Class ConfigurationTest.
+ * Class CardType.
  *
  * @copyright   Copyright (c) 2009-2016 Uni Alteri (http://uni-alteri.com)
  * @copyright   Copyright (c) 2009-2016 Richard Déloge (r.deloge@uni-alteri.com)
@@ -34,24 +35,32 @@ use Teknoo\MangoPayBundle\DependencyInjection\Configuration;
  *
  * @license     http://teknoo.it/license/mit         MIT License
  * @author      Richard Déloge <r.deloge@uni-alteri.com>
- *
- * @covers Teknoo\MangoPayBundle\DependencyInjection\Configuration
  */
-class ConfigurationTest extends \PHPUnit_Framework_TestCase
+class CardType extends AbstractType
 {
     /**
-     * @return Configuration
+     * Configure the form.
+     *
+     * @param FormBuilderInterface $builder
+     * @param array                $options
      */
-    public function buildConfiguration()
+    public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        return new Configuration();
+        $builder->add('data', 'hidden', ['mapped' => true])
+            ->add('accessKeyRef', 'hidden', ['mapped' => true])
+            ->add('returnURL', 'hidden', ['mapped' => true])
+            ->add('cardNumber', 'text', ['mapped' => false])
+            ->add('cardExpirationDate', 'text', ['mapped' => false, 'attr' => ['pattern' => '[0-1]{1}[0-9]{1}[0-9]{2}']])
+            ->add('cardCvx', 'text', ['mapped' => false]);
     }
 
-    public function testGetConfigTreeBuilder()
+    /**
+     * Returns null to not prepend input's name.
+     *
+     * @return string The name of this type
+     */
+    public function getName()
     {
-        $configuration = $this->buildConfiguration();
-        $treeBuilder = $configuration->getConfigTreeBuilder();
-
-        $this->assertInstanceOf('Symfony\Component\Config\Definition\Builder\TreeBuilder', $treeBuilder);
+        return;
     }
 }

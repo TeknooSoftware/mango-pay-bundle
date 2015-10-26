@@ -20,12 +20,15 @@
  * @author      Richard Déloge <r.deloge@uni-alteri.com>
  */
 
-namespace Teknoo\MangoPayBundle\Tests\DependencyInjection;
+namespace Teknoo\MangoPayBundle\DependencyInjection;
 
-use Teknoo\MangoPayBundle\DependencyInjection\Configuration;
+use Symfony\Component\Config\Definition\Builder\TreeBuilder;
+use Symfony\Component\Config\Definition\ConfigurationInterface;
 
 /**
- * Class ConfigurationTest.
+ * This is the class that validates and merges configuration from your app/config files.
+ *
+ * To learn more see {@link http://symfony.com/doc/current/cookbook/bundles/extension.html#cookbook-bundles-extension-config-class}
  *
  * @copyright   Copyright (c) 2009-2016 Uni Alteri (http://uni-alteri.com)
  * @copyright   Copyright (c) 2009-2016 Richard Déloge (r.deloge@uni-alteri.com)
@@ -34,24 +37,17 @@ use Teknoo\MangoPayBundle\DependencyInjection\Configuration;
  *
  * @license     http://teknoo.it/license/mit         MIT License
  * @author      Richard Déloge <r.deloge@uni-alteri.com>
- *
- * @covers Teknoo\MangoPayBundle\DependencyInjection\Configuration
  */
-class ConfigurationTest extends \PHPUnit_Framework_TestCase
+class Configuration implements ConfigurationInterface
 {
     /**
-     * @return Configuration
+     * {@inheritdoc}
      */
-    public function buildConfiguration()
+    public function getConfigTreeBuilder()
     {
-        return new Configuration();
-    }
+        $treeBuilder = new TreeBuilder();
+        $treeBuilder->root('uni_alteri_mango_pay');
 
-    public function testGetConfigTreeBuilder()
-    {
-        $configuration = $this->buildConfiguration();
-        $treeBuilder = $configuration->getConfigTreeBuilder();
-
-        $this->assertInstanceOf('Symfony\Component\Config\Definition\Builder\TreeBuilder', $treeBuilder);
+        return $treeBuilder;
     }
 }

@@ -20,12 +20,12 @@
  * @author      Richard Déloge <r.deloge@uni-alteri.com>
  */
 
-namespace UniAlteri\MangoPayBundle\Tests\Event;
+namespace Teknoo\MangoPayBundle\Tests\Event;
 
 use MangoPay\CardRegistration;
 use Symfony\Component\HttpFoundation\Response;
-use UniAlteri\MangoPayBundle\Entity\CardRegistrationSession;
-use UniAlteri\MangoPayBundle\Event\RegistrationEvent;
+use Teknoo\MangoPayBundle\Entity\CardRegistrationSession;
+use Teknoo\MangoPayBundle\Event\RegistrationEvent;
 
 /**
  * Class RegistrationEventTest.
@@ -38,7 +38,7 @@ use UniAlteri\MangoPayBundle\Event\RegistrationEvent;
  * @license     http://teknoo.it/license/mit         MIT License
  * @author      Richard Déloge <r.deloge@uni-alteri.com>
  *
- * @covers UniAlteri\MangoPayBundle\Event\RegistrationEvent
+ * @covers Teknoo\MangoPayBundle\Event\RegistrationEvent
  */
 class RegistrationEventTest extends \PHPUnit_Framework_TestCase
 {
@@ -63,7 +63,7 @@ class RegistrationEventTest extends \PHPUnit_Framework_TestCase
     protected function getCardRegistrationSessionMock()
     {
         if (!$this->registrationSessionMock instanceof CardRegistrationSession) {
-            $this->registrationSessionMock = $this->getMock('UniAlteri\MangoPayBundle\Entity\CardRegistrationSession', [], [], '', false);
+            $this->registrationSessionMock = $this->getMock('Teknoo\MangoPayBundle\Entity\CardRegistrationSession', [], [], '', false);
         }
 
         return $this->registrationSessionMock;

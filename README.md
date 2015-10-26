@@ -1,4 +1,4 @@
-Uni Alteri - Mango Pay bundle
+Teknoo Software - Mango Pay bundle
 ===========================
 
 [![SensioLabsInsight](https://insight.sensiolabs.com/projects/ae26f13d-d99a-4873-b403-3808c1b39512/mini.png)](https://insight.sensiolabs.com/projects/ae26f13d-d99a-4873-b403-3808c1b39512)
@@ -16,7 +16,13 @@ This library requires :
 Credits
 -------
 Richard Déloge - <r.deloge@uni-alteri.com> - Lead developer.
-Uni Alteri - <http://uni-alteri.com> - <http://teknoo.it>
+Teknoo Software - <http://teknoo.software>
+Uni Alteri - <http://uni-alteri.com>
+
+About Teknoo Software
+---------------------
+**Teknoo Software** is the [Uni Alteri](http://uni-alteri.com)'s PHP software editor, founded by Richard Déloge, also co-founder of the web agency Uni Alteri. 
+Teknoo Software shares the same DNA as Uni Alteri : Provide to our partners and to the community a set of high quality services or software, sharing knowledge and skills.
 
 License
 -------

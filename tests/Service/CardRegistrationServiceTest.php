@@ -20,17 +20,17 @@
  * @author      Richard Déloge <r.deloge@uni-alteri.com>
  */
 
-namespace UniAlteri\MangoPayBundle\Tests\Service;
+namespace Teknoo\MangoPayBundle\Tests\Service;
 
 use MangoPay\ApiCardRegistrations;
 use MangoPay\CardRegistration;
 use Symfony\Bundle\FrameworkBundle\Routing\Router;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
-use UniAlteri\MangoPayBundle\Entity\CardRegistrationResult;
-use UniAlteri\MangoPayBundle\Event\MangoPayEvents;
-use UniAlteri\MangoPayBundle\Event\RegistrationEvent;
-use UniAlteri\MangoPayBundle\Service\CardRegistrationService;
-use UniAlteri\MangoPayBundle\Service\Interfaces\StorageServiceInterface;
+use Teknoo\MangoPayBundle\Entity\CardRegistrationResult;
+use Teknoo\MangoPayBundle\Event\MangoPayEvents;
+use Teknoo\MangoPayBundle\Event\RegistrationEvent;
+use Teknoo\MangoPayBundle\Service\CardRegistrationService;
+use Teknoo\MangoPayBundle\Service\Interfaces\StorageServiceInterface;
 
 /**
  * Class MangoApiServiceTest.
@@ -43,7 +43,7 @@ use UniAlteri\MangoPayBundle\Service\Interfaces\StorageServiceInterface;
  * @license     http://teknoo.it/license/mit         MIT License
  * @author      Richard Déloge <r.deloge@uni-alteri.com>
  *
- * @covers UniAlteri\MangoPayBundle\Service\CardRegistrationService
+ * @covers Teknoo\MangoPayBundle\Service\CardRegistrationService
  */
 class CardRegistrationServiceTest extends \PHPUnit_Framework_TestCase
 {
@@ -109,7 +109,7 @@ class CardRegistrationServiceTest extends \PHPUnit_Framework_TestCase
     protected function getStorageServiceInterfaceMock()
     {
         if (!$this->storageServiceMock instanceof StorageServiceInterface) {
-            $this->storageServiceMock = $this->getMock('UniAlteri\MangoPayBundle\Service\Interfaces\StorageServiceInterface', [], [], '', false);
+            $this->storageServiceMock = $this->getMock('Teknoo\MangoPayBundle\Service\Interfaces\StorageServiceInterface', [], [], '', false);
         }
 
         return $this->storageServiceMock;
@@ -142,7 +142,7 @@ class CardRegistrationServiceTest extends \PHPUnit_Framework_TestCase
 
     public function testGetRegistrationSessionFromIdExceptionOnFound()
     {
-        $cardRegistrationSessionMock = $this->getMock('UniAlteri\MangoPayBundle\Entity\CardRegistrationSession', [], [], '', false);
+        $cardRegistrationSessionMock = $this->getMock('Teknoo\MangoPayBundle\Entity\CardRegistrationSession', [], [], '', false);
 
         $this->getStorageServiceInterfaceMock()
             ->expects($this->once())
@@ -163,7 +163,7 @@ class CardRegistrationServiceTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @expectedException \UniAlteri\MangoPayBundle\Exception\BadMangoReturnException
+     * @expectedException \Teknoo\MangoPayBundle\Exception\BadMangoReturnException
      */
     public function testGetCardRegistrationFromMangoExceptionOnNotFound()
     {
@@ -187,21 +187,21 @@ class CardRegistrationServiceTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @expectedException \UniAlteri\MangoPayBundle\Exception\BadMangoEntityException
+     * @expectedException \Teknoo\MangoPayBundle\Exception\BadMangoEntityException
      */
     public function testPrepareExceptionOnUserHasNotMangoPayId()
     {
-        $userMock = $this->getMock('UniAlteri\MangoPayBundle\Entity\Interfaces\User\UserInterface');
+        $userMock = $this->getMock('Teknoo\MangoPayBundle\Entity\Interfaces\User\UserInterface');
         $userMock->expects($this->once())->method('getMangoPayId')->willReturn(null);
 
-        $cardSessionMock = $this->getMock('UniAlteri\MangoPayBundle\Entity\CardRegistrationSession', [], [], '', false);
+        $cardSessionMock = $this->getMock('Teknoo\MangoPayBundle\Entity\CardRegistrationSession', [], [], '', false);
 
         $this->buildService('routerValueName')->prepare($userMock, $cardSessionMock);
     }
 
     public function testPrepare()
     {
-        $userMock = $this->getMock('UniAlteri\MangoPayBundle\Entity\Interfaces\User\UserInterface');
+        $userMock = $this->getMock('Teknoo\MangoPayBundle\Entity\Interfaces\User\UserInterface');
         $userMock->expects($this->atLeastOnce())->method('getMangoPayId')->willReturn(9876);
 
         /**
@@ -231,7 +231,7 @@ class CardRegistrationServiceTest extends \PHPUnit_Framework_TestCase
             )
             ->willReturn($cardRegistrationMock);
 
-        $cardSessionMock = $this->getMock('UniAlteri\MangoPayBundle\Entity\CardRegistrationSession', [], [], '', false);
+        $cardSessionMock = $this->getMock('Teknoo\MangoPayBundle\Entity\CardRegistrationSession', [], [], '', false);
         $cardSessionMock
             ->expects($this->once())
             ->method('setCardRegistrationId')
@@ -292,11 +292,11 @@ class CardRegistrationServiceTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @expectedException \UniAlteri\MangoPayBundle\Exception\BadMangoReturnException
+     * @expectedException \Teknoo\MangoPayBundle\Exception\BadMangoReturnException
      */
     public function testProcessMangoPayValidReturnMangoExceptionOnErrorNotFound()
     {
-        $cardSessionMock = $this->getMock('UniAlteri\MangoPayBundle\Entity\CardRegistrationSession', [], [], '', false);
+        $cardSessionMock = $this->getMock('Teknoo\MangoPayBundle\Entity\CardRegistrationSession', [], [], '', false);
         $cardSessionMock->expects($this->once())
             ->method('getCardRegistrationId')
             ->willReturn(1234);
@@ -326,7 +326,7 @@ class CardRegistrationServiceTest extends \PHPUnit_Framework_TestCase
 
     public function testProcessMangoPayValidReturnMangoExceptionValidating()
     {
-        $cardSessionMock = $this->getMock('UniAlteri\MangoPayBundle\Entity\CardRegistrationSession', [], [], '', false);
+        $cardSessionMock = $this->getMock('Teknoo\MangoPayBundle\Entity\CardRegistrationSession', [], [], '', false);
         $cardSessionMock->expects($this->once())
             ->method('getCardRegistrationId')
             ->willReturn(1234);
@@ -383,7 +383,7 @@ class CardRegistrationServiceTest extends \PHPUnit_Framework_TestCase
 
     public function testProcessMangoPayValidReturnMangoExceptionError()
     {
-        $cardSessionMock = $this->getMock('UniAlteri\MangoPayBundle\Entity\CardRegistrationSession', [], [], '', false);
+        $cardSessionMock = $this->getMock('Teknoo\MangoPayBundle\Entity\CardRegistrationSession', [], [], '', false);
         $cardSessionMock->expects($this->once())
             ->method('getCardRegistrationId')
             ->willReturn(1234);
@@ -440,7 +440,7 @@ class CardRegistrationServiceTest extends \PHPUnit_Framework_TestCase
 
     public function testProcessMangoPayValidReturnMangoExceptionException()
     {
-        $cardSessionMock = $this->getMock('UniAlteri\MangoPayBundle\Entity\CardRegistrationSession', [], [], '', false);
+        $cardSessionMock = $this->getMock('Teknoo\MangoPayBundle\Entity\CardRegistrationSession', [], [], '', false);
         $cardSessionMock->expects($this->once())
             ->method('getCardRegistrationId')
             ->willReturn(1234);
@@ -516,11 +516,11 @@ class CardRegistrationServiceTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @expectedException \UniAlteri\MangoPayBundle\Exception\BadMangoReturnException
+     * @expectedException \Teknoo\MangoPayBundle\Exception\BadMangoReturnException
      */
     public function testProcessMangoPayErrorMangoExceptionOnErrorNotFound()
     {
-        $cardSessionMock = $this->getMock('UniAlteri\MangoPayBundle\Entity\CardRegistrationSession', [], [], '', false);
+        $cardSessionMock = $this->getMock('Teknoo\MangoPayBundle\Entity\CardRegistrationSession', [], [], '', false);
         $cardSessionMock->expects($this->once())
             ->method('getCardRegistrationId')
             ->willReturn(1234);
@@ -550,7 +550,7 @@ class CardRegistrationServiceTest extends \PHPUnit_Framework_TestCase
 
     public function testProcessMangoPayErrorMangoExceptionValidating()
     {
-        $cardSessionMock = $this->getMock('UniAlteri\MangoPayBundle\Entity\CardRegistrationSession', [], [], '', false);
+        $cardSessionMock = $this->getMock('Teknoo\MangoPayBundle\Entity\CardRegistrationSession', [], [], '', false);
         $cardSessionMock->expects($this->once())
             ->method('getCardRegistrationId')
             ->willReturn(1234);
@@ -607,7 +607,7 @@ class CardRegistrationServiceTest extends \PHPUnit_Framework_TestCase
 
     public function testProcessMangoPayErrorMangoExceptionException()
     {
-        $cardSessionMock = $this->getMock('UniAlteri\MangoPayBundle\Entity\CardRegistrationSession', [], [], '', false);
+        $cardSessionMock = $this->getMock('Teknoo\MangoPayBundle\Entity\CardRegistrationSession', [], [], '', false);
         $cardSessionMock->expects($this->once())
             ->method('getCardRegistrationId')
             ->willReturn(1234);

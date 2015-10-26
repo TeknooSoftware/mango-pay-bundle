@@ -20,11 +20,11 @@
  * @author      Richard Déloge <r.deloge@uni-alteri.com>
  */
 
-namespace UniAlteri\MangoPayBundle\Tests\Service;
+namespace Teknoo\MangoPayBundle\Tests\Service;
 
 use MangoPay\Libraries\IStorageStrategy;
 use MangoPay\MangoPayApi;
-use UniAlteri\MangoPayBundle\Service\MangoApiService;
+use Teknoo\MangoPayBundle\Service\MangoApiService;
 
 /**
  * Class MangoApiServiceTest.
@@ -37,7 +37,7 @@ use UniAlteri\MangoPayBundle\Service\MangoApiService;
  * @license     http://teknoo.it/license/mit         MIT License
  * @author      Richard Déloge <r.deloge@uni-alteri.com>
  *
- * @covers UniAlteri\MangoPayBundle\Service\MangoApiService
+ * @covers Teknoo\MangoPayBundle\Service\MangoApiService
  */
 class MangoApiServiceTest extends \PHPUnit_Framework_TestCase
 {

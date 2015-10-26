@@ -20,12 +20,12 @@
  * @author      Richard Déloge <r.deloge@uni-alteri.com>
  */
 
-namespace UniAlteri\MangoPayBundle\Tests\Service;
+namespace Teknoo\MangoPayBundle\Tests\Service;
 
 use MangoPay\ApiUsers;
 use MangoPay\UserNatural;
-use UniAlteri\MangoPayBundle\Service\UserService;
-use UniAlteri\MangoPayBundle\Transcriber\UserTranscriber;
+use Teknoo\MangoPayBundle\Service\UserService;
+use Teknoo\MangoPayBundle\Transcriber\UserTranscriber;
 
 /**
  * Class UserServiceTest.
@@ -38,7 +38,7 @@ use UniAlteri\MangoPayBundle\Transcriber\UserTranscriber;
  * @license     http://teknoo.it/license/mit         MIT License
  * @author      Richard Déloge <r.deloge@uni-alteri.com>
  *
- * @covers UniAlteri\MangoPayBundle\Service\UserService
+ * @covers Teknoo\MangoPayBundle\Service\UserService
  */
 class UserServiceTest extends \PHPUnit_Framework_TestCase
 {
@@ -70,7 +70,7 @@ class UserServiceTest extends \PHPUnit_Framework_TestCase
     protected function getUserTranscriberMock()
     {
         if (!$this->userTranscriberMock instanceof UserTranscriber) {
-            $this->userTranscriberMock = $this->getMock('UniAlteri\MangoPayBundle\Transcriber\UserTranscriber', [], [], '', false);
+            $this->userTranscriberMock = $this->getMock('Teknoo\MangoPayBundle\Transcriber\UserTranscriber', [], [], '', false);
         }
 
         return $this->userTranscriberMock;
@@ -89,7 +89,7 @@ class UserServiceTest extends \PHPUnit_Framework_TestCase
         $mangoUser = new UserNatural();
         $mangoUser->Id = 1234;
 
-        $userMock = $this->getMock('UniAlteri\MangoPayBundle\Entity\Interfaces\User\UserInterface');
+        $userMock = $this->getMock('Teknoo\MangoPayBundle\Entity\Interfaces\User\UserInterface');
         $this->getUserTranscriberMock()
             ->expects($this->once())
             ->method('toMango')

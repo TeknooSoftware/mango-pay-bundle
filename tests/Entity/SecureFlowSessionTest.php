@@ -20,7 +20,7 @@
  * @author      Richard Déloge <r.deloge@uni-alteri.com>
  */
 
-namespace UniAlteri\MangoPayBundle\Tests\Entity;
+namespace Teknoo\MangoPayBundle\Tests\Entity;
 
 /**
  * Class SecureFlowSession.
@@ -33,7 +33,7 @@ namespace UniAlteri\MangoPayBundle\Tests\Entity;
  * @license     http://teknoo.it/license/mit         MIT License
  * @author      Richard Déloge <r.deloge@uni-alteri.com>
  *
- * @covers UniAlteri\MangoPayBundle\Entity\SecureFlowSession
+ * @covers Teknoo\MangoPayBundle\Entity\SecureFlowSession
  */
 class SecureFlowSessionTest extends \PHPUnit_Framework_TestCase
 {
@@ -46,12 +46,12 @@ class SecureFlowSessionTest extends \PHPUnit_Framework_TestCase
      */
     protected function getEntityClassName()
     {
-        return 'UniAlteri\MangoPayBundle\Entity\SecureFlowSession';
+        return 'Teknoo\MangoPayBundle\Entity\SecureFlowSession';
     }
 
     public function testUser()
     {
-        $userMock = $this->getMock('UniAlteri\MangoPayBundle\Entity\Interfaces\User\UserInterface');
+        $userMock = $this->getMock('Teknoo\MangoPayBundle\Entity\Interfaces\User\UserInterface');
         $this->checkGetter('user', $userMock);
         $this->checkSetter('user', $userMock);
     }

@@ -20,10 +20,10 @@
  * @author      Richard Déloge <r.deloge@uni-alteri.com>
  */
 
-namespace UniAlteri\MangoPayBundle\Tests\Service;
+namespace Teknoo\MangoPayBundle\Tests\Service;
 
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
-use UniAlteri\MangoPayBundle\Service\SessionStorageService;
+use Teknoo\MangoPayBundle\Service\SessionStorageService;
 
 /**
  * Class SessionStorageServiceTest.
@@ -36,7 +36,7 @@ use UniAlteri\MangoPayBundle\Service\SessionStorageService;
  * @license     http://teknoo.it/license/mit         MIT License
  * @author      Richard Déloge <r.deloge@uni-alteri.com>
  *
- * @covers UniAlteri\MangoPayBundle\Service\SessionStorageService
+ * @covers Teknoo\MangoPayBundle\Service\SessionStorageService
  */
 class SessionStorageServiceTest extends \PHPUnit_Framework_TestCase
 {

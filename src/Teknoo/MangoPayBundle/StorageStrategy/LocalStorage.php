@@ -20,12 +20,13 @@
  * @author      Richard Déloge <r.deloge@uni-alteri.com>
  */
 
-namespace Teknoo\MangoPayBundle\Tests\DependencyInjection;
+namespace Teknoo\MangoPayBundle\StorageStrategy;
 
-use Teknoo\MangoPayBundle\DependencyInjection\Configuration;
+use MangoPay\Libraries\IStorageStrategy;
+use MangoPay\Libraries\OAuthToken;
 
 /**
- * Class ConfigurationTest.
+ * Class LocalStorage.
  *
  * @copyright   Copyright (c) 2009-2016 Uni Alteri (http://uni-alteri.com)
  * @copyright   Copyright (c) 2009-2016 Richard Déloge (r.deloge@uni-alteri.com)
@@ -34,24 +35,35 @@ use Teknoo\MangoPayBundle\DependencyInjection\Configuration;
  *
  * @license     http://teknoo.it/license/mit         MIT License
  * @author      Richard Déloge <r.deloge@uni-alteri.com>
- *
- * @covers Teknoo\MangoPayBundle\DependencyInjection\Configuration
  */
-class ConfigurationTest extends \PHPUnit_Framework_TestCase
+class LocalStorage implements IStorageStrategy
 {
     /**
-     * @return Configuration
+     * @var OAuthToken
      */
-    public function buildConfiguration()
+    private $token;
+
+    /**
+     * Gets the current authorization token.
+     *
+     * @return OAuthToken Currently stored token instance or null.
+     */
+    public function Get()
     {
-        return new Configuration();
+        return $this->token;
     }
 
-    public function testGetConfigTreeBuilder()
+    /**
+     * Stores authorization token passed as an argument.
+     *
+     * @param OAuthToken $token Token instance to be stored.
+     *
+     * @return self
+     */
+    public function Store($token)
     {
-        $configuration = $this->buildConfiguration();
-        $treeBuilder = $configuration->getConfigTreeBuilder();
+        $this->token = $token;
 
-        $this->assertInstanceOf('Symfony\Component\Config\Definition\Builder\TreeBuilder', $treeBuilder);
+        return $this;
     }
 }

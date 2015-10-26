@@ -20,12 +20,10 @@
  * @author      Richard Déloge <r.deloge@uni-alteri.com>
  */
 
-namespace Teknoo\MangoPayBundle\Tests\DependencyInjection;
-
-use Teknoo\MangoPayBundle\DependencyInjection\Configuration;
+namespace Teknoo\MangoPayBundle\Entity\Interfaces\User;
 
 /**
- * Class ConfigurationTest.
+ * Interface AddressInterface.
  *
  * @copyright   Copyright (c) 2009-2016 Uni Alteri (http://uni-alteri.com)
  * @copyright   Copyright (c) 2009-2016 Richard Déloge (r.deloge@uni-alteri.com)
@@ -34,24 +32,36 @@ use Teknoo\MangoPayBundle\DependencyInjection\Configuration;
  *
  * @license     http://teknoo.it/license/mit         MIT License
  * @author      Richard Déloge <r.deloge@uni-alteri.com>
- *
- * @covers Teknoo\MangoPayBundle\DependencyInjection\Configuration
  */
-class ConfigurationTest extends \PHPUnit_Framework_TestCase
+interface AddressInterface
 {
     /**
-     * @return Configuration
+     * @return string
      */
-    public function buildConfiguration()
-    {
-        return new Configuration();
-    }
+    public function getAddress1();
 
-    public function testGetConfigTreeBuilder()
-    {
-        $configuration = $this->buildConfiguration();
-        $treeBuilder = $configuration->getConfigTreeBuilder();
+    /**
+     * @return string
+     */
+    public function getAddress2();
 
-        $this->assertInstanceOf('Symfony\Component\Config\Definition\Builder\TreeBuilder', $treeBuilder);
-    }
+    /**
+     * @return string
+     */
+    public function getCity();
+
+    /**
+     * @return string
+     */
+    public function getRegion();
+
+    /**
+     * @return string
+     */
+    public function getPostalCode();
+
+    /**
+     * @return string
+     */
+    public function getCountry();
 }

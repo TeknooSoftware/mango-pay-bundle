@@ -20,12 +20,12 @@
  * @author      Richard Déloge <r.deloge@uni-alteri.com>
  */
 
-namespace Teknoo\MangoPayBundle\Tests\DependencyInjection;
+namespace Teknoo\MangoPayBundle;
 
-use Teknoo\MangoPayBundle\DependencyInjection\Configuration;
+use Symfony\Component\HttpKernel\Bundle\Bundle;
 
 /**
- * Class ConfigurationTest.
+ * Class UniAlteriMangoPayBundle.
  *
  * @copyright   Copyright (c) 2009-2016 Uni Alteri (http://uni-alteri.com)
  * @copyright   Copyright (c) 2009-2016 Richard Déloge (r.deloge@uni-alteri.com)
@@ -34,24 +34,7 @@ use Teknoo\MangoPayBundle\DependencyInjection\Configuration;
  *
  * @license     http://teknoo.it/license/mit         MIT License
  * @author      Richard Déloge <r.deloge@uni-alteri.com>
- *
- * @covers Teknoo\MangoPayBundle\DependencyInjection\Configuration
  */
-class ConfigurationTest extends \PHPUnit_Framework_TestCase
+class UniAlteriMangoPayBundle extends Bundle
 {
-    /**
-     * @return Configuration
-     */
-    public function buildConfiguration()
-    {
-        return new Configuration();
-    }
-
-    public function testGetConfigTreeBuilder()
-    {
-        $configuration = $this->buildConfiguration();
-        $treeBuilder = $configuration->getConfigTreeBuilder();
-
-        $this->assertInstanceOf('Symfony\Component\Config\Definition\Builder\TreeBuilder', $treeBuilder);
-    }
 }

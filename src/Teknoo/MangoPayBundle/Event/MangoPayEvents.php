@@ -20,12 +20,10 @@
  * @author      Richard Déloge <r.deloge@uni-alteri.com>
  */
 
-namespace Teknoo\MangoPayBundle\Tests\DependencyInjection;
-
-use Teknoo\MangoPayBundle\DependencyInjection\Configuration;
+namespace Teknoo\MangoPayBundle\Event;
 
 /**
- * Class ConfigurationTest.
+ * Class MangoPayEvents.
  *
  * @copyright   Copyright (c) 2009-2016 Uni Alteri (http://uni-alteri.com)
  * @copyright   Copyright (c) 2009-2016 Richard Déloge (r.deloge@uni-alteri.com)
@@ -34,24 +32,12 @@ use Teknoo\MangoPayBundle\DependencyInjection\Configuration;
  *
  * @license     http://teknoo.it/license/mit         MIT License
  * @author      Richard Déloge <r.deloge@uni-alteri.com>
- *
- * @covers Teknoo\MangoPayBundle\DependencyInjection\Configuration
  */
-class ConfigurationTest extends \PHPUnit_Framework_TestCase
+final class MangoPayEvents
 {
-    /**
-     * @return Configuration
-     */
-    public function buildConfiguration()
-    {
-        return new Configuration();
-    }
-
-    public function testGetConfigTreeBuilder()
-    {
-        $configuration = $this->buildConfiguration();
-        $treeBuilder = $configuration->getConfigTreeBuilder();
-
-        $this->assertInstanceOf('Symfony\Component\Config\Definition\Builder\TreeBuilder', $treeBuilder);
-    }
+    const CARD_REGISTRATION_ERROR = 'event.mangopay.card.registration.error';
+    const CARD_REGISTRATION_VALIDATED = 'event.mangopay.card.registration.validate';
+    const CARD_REGISTRATION_ERROR_IN_VALIDATING = 'event.mangopay.card.registration.validating.error';
+    const SECURE_FLOW_SUCCESS = 'event.mangopay.secure.flow.success';
+    const SECURE_FLOW_ERROR = 'event.mangopay.secure.flow.error';
 }

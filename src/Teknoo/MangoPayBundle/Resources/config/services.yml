@@ -1,0 +1,127 @@
+parameters:
+  #services class
+  teknoo.mangopaybundle.service.mango_api.class: Teknoo\MangoPayBundle\Service\MangoApiService
+  teknoo.mangopaybundle.service.user.class: Teknoo\MangoPayBundle\Service\UserService
+  teknoo.mangopaybundle.service.session.class: Teknoo\MangoPayBundle\Service\SessionStorageService
+  teknoo.mangopaybundle.service.card_registration.class: Teknoo\MangoPayBundle\Service\CardRegistrationService
+  teknoo.mangopaybundle.service.secure_flow.class: Teknoo\MangoPayBundle\Service\SecureFlowService
+
+  #transcriber class
+  teknoo.mangopaybundle.transcriber.user.class: Teknoo\MangoPayBundle\Transcriber\UserTranscriber
+
+  #storage strategy class
+  teknoo.mangopaybundle.storage.local.class: Teknoo\MangoPayBundle\StorageStrategy\LocalStorage
+
+  #mangopay sdk class
+  mangopay.sdk.mango_pay_api.class: MangoPay\MangoPayApi
+  mangopay.sdk.api_user.class: MangoPay\ApiUsers
+  mangopay.sdk.api_wallet.class: MangoPay\ApiWallets
+  mangopay.sdk.api_pay_ins.class: MangoPay\ApiPayIns
+  mangopay.sdk.api_pay_outs.class: MangoPay\ApiPayOuts
+  mangopay.sdk.api_transfert.class: MangoPay\ApiTransfers
+  mangopay.sdk.api_cards.class: MangoPay\ApiCards
+  mangopay.sdk.api_card_registrations.class: MangoPay\ApiCardRegistrations
+  mangopay.sdk.api_card_pre_authorizations.class: MangoPay\ApiCardPreAuthorizations
+  mangopay.sdk.api_refunds.class: MangoPay\ApiRefunds
+
+  #Parameters,
+  #routes names for
+  teknoo.mangopaybundle.parameters.card_registration.return.route: '_teknoo_mangopay_card_regitration_return'
+  teknoo.mangopaybundle.parameters.secure_flow.return.route: '_teknoo_mangopay_secure_flow_return'
+
+services:
+
+  #mango pay sdk instance
+  mangopay.sdk.mango_pay_api.service:
+    class: "%mangopay.sdk.mango_pay_api.class%"
+
+  mangopay.sdk.api_user.service:
+      class: "%mangopay.sdk.api_user.class%"
+      factory_service: teknoo.mangopaybundle.service.mango_api
+      factory_method: getApiUsers
+
+  mangopay.sdk.api_wallet.service:
+      class: "%mangopay.sdk.api_wallet.class%"
+      factory_service: teknoo.mangopaybundle.service.mango_api
+      factory_method: getApiWallets
+
+  mangopay.sdk.api_pay_ins.service:
+      class: "%mangopay.sdk.api_pay_ins.class%"
+      factory_service: teknoo.mangopaybundle.service.mango_api
+      factory_method: getApiPayIns
+
+  mangopay.sdk.api_pay_outs.service:
+      class: "%mangopay.sdk.api_pay_outs.class%"
+      factory_service: teknoo.mangopaybundle.service.mango_api
+      factory_method: getApiPayOuts
+
+  mangopay.sdk.api_transfert.service:
+      class: "%mangopay.sdk.api_transfert.class%"
+      factory_service: teknoo.mangopaybundle.service.mango_api
+      factory_method: getApiTransferts
+
+  mangopay.sdk.api_cards.service:
+      class: "%mangopay.sdk.api_cards.class%"
+      factory_service: teknoo.mangopaybundle.service.mango_api
+      factory_method: getApiCards
+
+  mangopay.sdk.api_card_registrations.service:
+      class: "%mangopay.sdk.api_card_registrations.class%"
+      factory_service: teknoo.mangopaybundle.service.mango_api
+      factory_method: getApiCardRegistrations
+
+  mangopay.sdk.api_card_pre_authorizations.service:
+      class: "%mangopay.sdk.api_card_pre_authorizations.class%"
+      factory_service: teknoo.mangopaybundle.service.mango_api
+      factory_method: getApiCardPreAuthorizations
+
+  mangopay.sdk.api_refunds.service:
+      class: "%mangopay.sdk.api_refunds.class%"
+      factory_service: teknoo.mangopaybundle.service.mango_api
+      factory_method: getApiRefunds
+
+  #bundle services
+  teknoo.mangopaybundle.transcriber.users:
+    class: "%teknoo.mangopaybundle.transcriber.user.class%"
+
+  teknoo.mangopaybundle.storage.local:
+    class: "%teknoo.mangopaybundle.storage.local.class%"
+
+  teknoo.mangopaybundle.service.session.storage:
+    class: "%teknoo.mangopaybundle.service.session.class%"
+    arguments:
+      - @session
+
+  teknoo.mangopaybundle.service.card_registration:
+    class: "%teknoo.mangopaybundle.service.card_registration.class%"
+    arguments:
+      - @mangopay.sdk.api_card_registrations.service
+      - @router
+      - "%teknoo.mangopaybundle.parameters.card_registration.return.route%"
+      - @teknoo.mangopaybundle.service.session.storage
+      - @event_dispatcher
+
+  teknoo.mangopaybundle.service.mango_api:
+    class: "%teknoo.mangopaybundle.service.mango_api.class%"
+    arguments:
+      - @mangopay.sdk.mango_pay_api.service
+      - "%mangopay.client_id%"
+      - "%mangopay.client_passphrase%"
+      - "%mangopay.base_url%"
+      - "%mangopay.debug_mode%"
+      - @teknoo.mangopaybundle.storage.local
+
+  teknoo.mangopaybundle.service.user:
+    class: "%teknoo.mangopaybundle.service.user.class%"
+    arguments:
+      - @mangopay.sdk.api_user.service
+      - @teknoo.mangopaybundle.transcriber.users
+
+  teknoo.mangopaybundle.service.secure_flow:
+    class: "%teknoo.mangopaybundle.service.secure_flow.class%"
+    arguments:
+      - @router
+      - "%teknoo.mangopaybundle.parameters.secure_flow.return.route%"
+      - @event_dispatcher
+      - @mangopay.sdk.api_pay_ins.service
+      - @teknoo.mangopaybundle.service.session.storage

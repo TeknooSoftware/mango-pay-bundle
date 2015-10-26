@@ -1,5 +1,5 @@
 {
-    "name": "unialteri/mango-pay-bundle",
+    "name": "teknoo/mango-pay-bundle",
     "type": "symfony-bundle",
     "description": "Bundle to import and use the Mango Pay PHP SDK into a Symfony 2.7+ projects, and use it as standard Symfony services.",
     "keywords": ["mango pay","bundle", "mango"],
@@ -26,12 +26,12 @@
     },
     "autoload": {
         "psr-4": {
-            "UniAlteri\\MangoPayBundle\\": "src/UniAlteri/MangoPayBundle/"
+            "Teknoo\\MangoPayBundle\\": "src/Teknoo/MangoPayBundle/"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "UniAlteri\\MangoPayBundle\\Tests\\": "tests/"
+            "Teknoo\\MangoPayBundle\\Tests\\": "tests/"
         }
     },
     "archive": {

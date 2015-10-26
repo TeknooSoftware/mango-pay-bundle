@@ -20,9 +20,9 @@
  * @author      Richard Déloge <r.deloge@uni-alteri.com>
  */
 
-namespace UniAlteri\MangoPayBundle\Tests\StorageStrategy;
+namespace Teknoo\MangoPayBundle\Tests\StorageStrategy;
 
-use UniAlteri\MangoPayBundle\StorageStrategy\LocalStorage;
+use Teknoo\MangoPayBundle\StorageStrategy\LocalStorage;
 
 /**
  * Class LocalStorageTest.
@@ -35,7 +35,7 @@ use UniAlteri\MangoPayBundle\StorageStrategy\LocalStorage;
  * @license     http://teknoo.it/license/mit         MIT License
  * @author      Richard Déloge <r.deloge@uni-alteri.com>
  *
- * @covers UniAlteri\MangoPayBundle\StorageStrategy\LocalStorage
+ * @covers Teknoo\MangoPayBundle\StorageStrategy\LocalStorage
  */
 class LocalStorageTest extends \PHPUnit_Framework_TestCase
 {

@@ -20,9 +20,9 @@
  * @author      Richard Déloge <r.deloge@uni-alteri.com>
  */
 
-namespace UniAlteri\MangoPayBundle\Tests\Form;
+namespace Teknoo\MangoPayBundle\Tests\Form;
 
-use UniAlteri\MangoPayBundle\Form\Type\CardType;
+use Teknoo\MangoPayBundle\Form\Type\CardType;
 
 /**
  * Class CardTypeTest.
@@ -35,7 +35,7 @@ use UniAlteri\MangoPayBundle\Form\Type\CardType;
  * @license     http://teknoo.it/license/mit         MIT License
  * @author      Richard Déloge <r.deloge@uni-alteri.com>
  *
- * @covers UniAlteri\MangoPayBundle\Form\Type\CardType
+ * @covers Teknoo\MangoPayBundle\Form\Type\CardType
  */
 class CardTypeTest extends \PHPUnit_Framework_TestCase
 {

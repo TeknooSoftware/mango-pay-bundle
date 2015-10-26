@@ -20,9 +20,9 @@
  * @author      Richard Déloge <r.deloge@uni-alteri.com>
  */
 
-namespace UniAlteri\MangoPayBundle\Tests\DependencyInjection;
+namespace Teknoo\MangoPayBundle\Tests\DependencyInjection;
 
-use UniAlteri\MangoPayBundle\DependencyInjection\UniAlteriMangoPayExtension;
+use Teknoo\MangoPayBundle\DependencyInjection\UniAlteriMangoPayExtension;
 
 /**
  * Class UniAlteriMangoPayExtensionTest.
@@ -35,7 +35,7 @@ use UniAlteri\MangoPayBundle\DependencyInjection\UniAlteriMangoPayExtension;
  * @license     http://teknoo.it/license/mit         MIT License
  * @author      Richard Déloge <r.deloge@uni-alteri.com>
  *
- * @covers UniAlteri\MangoPayBundle\DependencyInjection\UniAlteriMangoPayExtension
+ * @covers Teknoo\MangoPayBundle\DependencyInjection\UniAlteriMangoPayExtension
  */
 class UniAlteriMangoPayExtensionTest extends \PHPUnit_Framework_TestCase
 {
