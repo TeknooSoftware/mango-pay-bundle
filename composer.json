@@ -3,7 +3,7 @@
     "type": "symfony-bundle",
     "description": "Bundle to import and use the Mango Pay PHP SDK into a Symfony 2.7+ projects, and use it as standard Symfony services.",
     "keywords": ["mango pay","bundle", "mango"],
-    "homepage": "http://teknoo.it/mango-pay",
+    "homepage": "http://teknoo.software/mango-pay",
     "license": ["MIT"],
     "authors": [
         {
