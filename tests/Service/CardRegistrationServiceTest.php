@@ -11,13 +11,13 @@
  * obtain it through the world-wide-web, please send an email
  * to contact@uni-alteri.com so we can send you a copy immediately.
  *
- * @copyright   Copyright (c) 2009-2016 Uni Alteri (http://uni-alteri.com)
- * @copyright   Copyright (c) 2009-2016 Richard Déloge (r.deloge@uni-alteri.com)
+ *
+ * @copyright   Copyright (c) 2009-2016 Richard Déloge (richarddeloge@gmail.com)
  *
  * @link        http://teknoo.software/mangopay-bundle Project website
  *
  * @license     http://teknoo.software/license/mit         MIT License
- * @author      Richard Déloge <r.deloge@uni-alteri.com>
+ * @author      Richard Déloge <richarddeloge@gmail.com>
  */
 
 namespace Teknoo\MangoPayBundle\Tests\Service;
@@ -35,13 +35,13 @@ use Teknoo\MangoPayBundle\Service\Interfaces\StorageServiceInterface;
 /**
  * Class MangoApiServiceTest.
  *
- * @copyright   Copyright (c) 2009-2016 Uni Alteri (http://uni-alteri.com)
- * @copyright   Copyright (c) 2009-2016 Richard Déloge (r.deloge@uni-alteri.com)
+ *
+ * @copyright   Copyright (c) 2009-2016 Richard Déloge (richarddeloge@gmail.com)
  *
  * @link        http://teknoo.software/mangopay-bundle Project website
  *
  * @license     http://teknoo.software/license/mit         MIT License
- * @author      Richard Déloge <r.deloge@uni-alteri.com>
+ * @author      Richard Déloge <richarddeloge@gmail.com>
  *
  * @covers Teknoo\MangoPayBundle\Service\CardRegistrationService
  */
@@ -204,7 +204,7 @@ class CardRegistrationServiceTest extends \PHPUnit_Framework_TestCase
         $userMock = $this->getMock('Teknoo\MangoPayBundle\Entity\Interfaces\User\UserInterface');
         $userMock->expects($this->atLeastOnce())->method('getMangoPayId')->willReturn(9876);
 
-        /**
+        /*
          * @var CardRegistration
          */
         $cardRegistrationMock = $this->getMock('MangoPay\CardRegistration');

@@ -11,13 +11,13 @@
  * obtain it through the world-wide-web, please send an email
  * to contact@uni-alteri.com so we can send you a copy immediately.
  *
- * @copyright   Copyright (c) 2009-2016 Uni Alteri (http://uni-alteri.com)
- * @copyright   Copyright (c) 2009-2016 Richard Déloge (r.deloge@uni-alteri.com)
+ *
+ * @copyright   Copyright (c) 2009-2016 Richard Déloge (richarddeloge@gmail.com)
  *
  * @link        http://teknoo.software/mangopay-bundle Project website
  *
  * @license     http://teknoo.software/license/mit         MIT License
- * @author      Richard Déloge <r.deloge@uni-alteri.com>
+ * @author      Richard Déloge <richarddeloge@gmail.com>
  */
 
 namespace Teknoo\MangoPayBundle\Tests\Service;
@@ -36,13 +36,13 @@ use Teknoo\MangoPayBundle\Service\SecureFlowService;
 /**
  * Class SecureFlowServiceTest.
  *
- * @copyright   Copyright (c) 2009-2016 Uni Alteri (http://uni-alteri.com)
- * @copyright   Copyright (c) 2009-2016 Richard Déloge (r.deloge@uni-alteri.com)
+ *
+ * @copyright   Copyright (c) 2009-2016 Richard Déloge (richarddeloge@gmail.com)
  *
  * @link        http://teknoo.software/mangopay-bundle Project website
  *
  * @license     http://teknoo.software/license/mit         MIT License
- * @author      Richard Déloge <r.deloge@uni-alteri.com>
+ * @author      Richard Déloge <richarddeloge@gmail.com>
  *
  * @covers Teknoo\MangoPayBundle\Service\SecureFlowService
  */
@@ -206,7 +206,7 @@ class SecureFlowServiceTest extends \PHPUnit_Framework_TestCase
         $secureFlowSessionMock = $this->getMock('Teknoo\MangoPayBundle\Entity\SecureFlowSession', [], [], '', false);
         $secureFlowSessionMock->expects($this->once())->method('setPayInId')->with(1234)->willReturnSelf();
 
-        /**
+        /*
          * @var Response|\PHPUnit_Framework_MockObject_MockObject
          */
         $responseMock = $this->getMock('Symfony\Component\HttpFoundation\Response');
@@ -222,7 +222,7 @@ class SecureFlowServiceTest extends \PHPUnit_Framework_TestCase
      */
     public function testProcessMangoPayReturnExceptionOnInvalidReturn()
     {
-        /**
+        /*
          * @var Response|\PHPUnit_Framework_MockObject_MockObject
          */
         $responseMock = $this->getMock('Symfony\Component\HttpFoundation\Response');
@@ -238,7 +238,7 @@ class SecureFlowServiceTest extends \PHPUnit_Framework_TestCase
 
     public function testProcessMangoPayReturnOnError()
     {
-        /**
+        /*
          * @var Response|\PHPUnit_Framework_MockObject_MockObject
          */
         $responseMock = $this->getMock('Symfony\Component\HttpFoundation\Response');
@@ -273,7 +273,7 @@ class SecureFlowServiceTest extends \PHPUnit_Framework_TestCase
 
     public function testProcessMangoPayReturnOnSuccess()
     {
-        /**
+        /*
          * @var Response|\PHPUnit_Framework_MockObject_MockObject
          */
         $responseMock = $this->getMock('Symfony\Component\HttpFoundation\Response');
