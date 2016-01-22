@@ -1,5 +1,9 @@
 #Teknoo Software - Mango Pay Bundle - Change Log
 
+##[1.0.0-rc1] - 2016-01-22
+###Fixed
+- .gitignore clean
+
 ##[1.0.0-beta2] - 2015-10-26
 ###Changed
 - Migrate library from Uni Alteri Organization to Teknoo Software
