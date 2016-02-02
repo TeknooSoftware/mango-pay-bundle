@@ -1,5 +1,9 @@
 #Teknoo Software - Mango Pay Bundle - Change Log
 
+##[1.0.0-rc2] - 2016-02-02
+###Fixed
+- composer minimum requirements
+
 ##[1.0.0-rc1] - 2016-01-22
 ###Fixed
 - .gitignore clean
