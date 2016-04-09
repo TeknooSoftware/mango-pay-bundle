@@ -19,7 +19,6 @@
  * @license     http://teknoo.software/license/mit         MIT License
  * @author      Richard Déloge <richarddeloge@gmail.com>
  */
-
 namespace Teknoo\MangoPayBundle\Tests\StorageStrategy;
 
 use Teknoo\MangoPayBundle\StorageStrategy\LocalStorage;

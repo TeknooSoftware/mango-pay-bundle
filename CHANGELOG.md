@@ -1,9 +1,12 @@
 #Teknoo Software - Mango Pay Bundle - Change Log
 
+##[1.0.1] - 2016-04-09
+###Fixed
+- Fix code style with cs-fixer
+
 ##[1.0.0] - 2016-02-11
 ###Fixed
 - Stable release
-
 
 ##[1.0.0-rc2] - 2016-02-02
 ###Fixed
