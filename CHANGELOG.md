@@ -1,6 +1,6 @@
 #Teknoo Software - Mango Pay Bundle - Change Log
 
-##[1.0.1] - 2016-07-26
+##[1.0.2] - 2016-07-26
 ###Fixed
 - Fix code style with cs-fixer
 - Remove legacy reference to Uni Alteri
