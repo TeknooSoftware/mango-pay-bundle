@@ -3,8 +3,16 @@ Teknoo Software - Mango Pay bundle
 
 [![SensioLabsInsight](https://insight.sensiolabs.com/projects/a181daad-0db5-46f0-ab9d-34c9ba72fffa/mini.png)](https://insight.sensiolabs.com/projects/a181daad-0db5-46f0-ab9d-34c9ba72fffa) [![Build Status](https://travis-ci.org/TeknooSoftware/mango-pay-bundle.svg?branch=master)](https://travis-ci.org/TeknooSoftware/mango-pay-bundle)
 
-Requirements
-------------
+Installation & Requirements
+---------------------------
+To install this bundle
+
+    composer require teknoo/mango-pay-bundle
+    
+And add to your AppKernel : 
+
+    new Teknoo\MangoPayBundle\TeknooMangoPayBundle(),
+    
 This library requires :
 
     * PHP 5.5+
@@ -19,8 +27,9 @@ Teknoo Software - <http://teknoo.software>
 
 About Teknoo Software
 ---------------------
-**Teknoo Software** is a PHP software editor, founded by Richard Déloge, also co-founder of the web agency Uni Alteri. 
-Teknoo Software shares the same DNA as Uni Alteri : Provide to our partners and to the community a set of high quality services or software, sharing knowledge and skills.
+**Teknoo Software** is a PHP software editor, founded by Richard Déloge. 
+Teknoo Software's DNA is simple : Provide to our partners and to the community a set of high quality services or software,
+ sharing knowledge and skills.
 
 License
 -------

@@ -9,7 +9,7 @@
  * license that are bundled with this package in the folder licences
  * If you did not receive a copy of the license and are unable to
  * obtain it through the world-wide-web, please send an email
- * to contact@uni-alteri.com so we can send you a copy immediately.
+ * to richarddeloge@gmail.com so we can send you a copy immediately.
  *
  *
  * @copyright   Copyright (c) 2009-2016 Richard Déloge (richarddeloge@gmail.com)
@@ -21,10 +21,10 @@
  */
 namespace Teknoo\MangoPayBundle\Tests\DependencyInjection;
 
-use Teknoo\MangoPayBundle\DependencyInjection\UniAlteriMangoPayExtension;
+use Teknoo\MangoPayBundle\DependencyInjection\TeknooMangoPayExtension;
 
 /**
- * Class UniAlteriMangoPayExtensionTest.
+ * Class TeknooMangoPayExtensionTest.
  *
  *
  * @copyright   Copyright (c) 2009-2016 Richard Déloge (richarddeloge@gmail.com)
@@ -34,16 +34,16 @@ use Teknoo\MangoPayBundle\DependencyInjection\UniAlteriMangoPayExtension;
  * @license     http://teknoo.software/license/mit         MIT License
  * @author      Richard Déloge <richarddeloge@gmail.com>
  *
- * @covers Teknoo\MangoPayBundle\DependencyInjection\UniAlteriMangoPayExtension
+ * @covers Teknoo\MangoPayBundle\DependencyInjection\TeknooMangoPayExtension
  */
-class UniAlteriMangoPayExtensionTest extends \PHPUnit_Framework_TestCase
+class TeknooMangoPayExtensionTest extends \PHPUnit_Framework_TestCase
 {
     /**
-     * @return UniAlteriMangoPayExtension
+     * @return TeknooMangoPayExtension
      */
     public function buildExtension()
     {
-        return new UniAlteriMangoPayExtension();
+        return new TeknooMangoPayExtension();
     }
 
     public function testLoad()

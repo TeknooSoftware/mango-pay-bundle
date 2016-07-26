@@ -9,7 +9,7 @@
  * license that are bundled with this package in the folder licences
  * If you did not receive a copy of the license and are unable to
  * obtain it through the world-wide-web, please send an email
- * to contact@uni-alteri.com so we can send you a copy immediately.
+ * to richarddeloge@gmail.com so we can send you a copy immediately.
  *
  *
  * @copyright   Copyright (c) 2009-2016 Richard Déloge (richarddeloge@gmail.com)
@@ -38,7 +38,7 @@ use Teknoo\MangoPayBundle\Service\SecureFlowService;
  * @author      Richard Déloge <richarddeloge@gmail.com>
  *
  * @covers Teknoo\MangoPayBundle\Controller\MangoPayController
- * @covers Teknoo\MangoPayBundle\UniAlteriMangoPayBundle
+ * @covers Teknoo\MangoPayBundle\TeknooMangoPayBundle
  */
 class MangoPayControllerTest extends WebTestCase
 {
