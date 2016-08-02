@@ -61,7 +61,7 @@ class CardRegistrationSession
      */
     public function __construct()
     {
-        $this->sessionId = uniqid();
+        $this->sessionId = \uniqid();
     }
 
     /**
