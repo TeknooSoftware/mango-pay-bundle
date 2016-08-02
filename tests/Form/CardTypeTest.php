@@ -21,6 +21,8 @@
  */
 namespace Teknoo\MangoPayBundle\Tests\Form;
 
+use Symfony\Component\Form\Extension\Core\Type\HiddenType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Teknoo\MangoPayBundle\Form\Type\CardType;
 
 /**
@@ -60,28 +62,28 @@ class CardTypeTest extends \PHPUnit_Framework_TestCase
 
                         switch ($name) {
                             case 'data':
-                                $this->assertEquals('hidden', $type);
+                                $this->assertEquals(HiddenType::class, $type);
                                 $this->assertTrue($options['mapped']);
                                 break;
                             case 'accessKeyRef':
-                                $this->assertEquals('hidden', $type);
+                                $this->assertEquals(HiddenType::class, $type);
                                 $this->assertTrue($options['mapped']);
                                 break;
                             case 'returnURL':
-                                $this->assertEquals('hidden', $type);
+                                $this->assertEquals(HiddenType::class, $type);
                                 $this->assertTrue($options['mapped']);
                                 break;
                             case 'cardNumber':
-                                $this->assertEquals('text', $type);
+                                $this->assertEquals(TextType::class, $type);
                                 $this->assertFalse($options['mapped']);
                                 break;
                             case 'cardExpirationDate':
-                                $this->assertEquals('text', $type);
+                                $this->assertEquals(TextType::class, $type);
                                 $this->assertFalse($options['mapped']);
                                 $this->assertEquals('[0-1]{1}[0-9]{1}[0-9]{2}', $options['attr']['pattern']);
                                 break;
                             case 'cardCvx':
-                                $this->assertEquals('text', $type);
+                                $this->assertEquals(TextType::class, $type);
                                 $this->assertFalse($options['mapped']);
                                 break;
                         }
