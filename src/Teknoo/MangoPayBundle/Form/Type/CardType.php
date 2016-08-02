@@ -22,6 +22,8 @@
 namespace Teknoo\MangoPayBundle\Form\Type;
 
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\HiddenType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 
 /**
@@ -45,12 +47,12 @@ class CardType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('data', 'hidden', ['mapped' => true])
-            ->add('accessKeyRef', 'hidden', ['mapped' => true])
-            ->add('returnURL', 'hidden', ['mapped' => true])
-            ->add('cardNumber', 'text', ['mapped' => false])
-            ->add('cardExpirationDate', 'text', ['mapped' => false, 'attr' => ['pattern' => '[0-1]{1}[0-9]{1}[0-9]{2}']])
-            ->add('cardCvx', 'text', ['mapped' => false]);
+        $builder->add('data', HiddenType::class, ['mapped' => true])
+            ->add('accessKeyRef', HiddenType::class, ['mapped' => true])
+            ->add('returnURL', HiddenType::class, ['mapped' => true])
+            ->add('cardNumber', TextType::class, ['mapped' => false])
+            ->add('cardExpirationDate', TextType::class, ['mapped' => false, 'attr' => ['pattern' => '[0-1]{1}[0-9]{1}[0-9]{2}']])
+            ->add('cardCvx', TextType::class, ['mapped' => false]);
     }
 
     /**
