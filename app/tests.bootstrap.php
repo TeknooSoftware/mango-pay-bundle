@@ -1,5 +1,4 @@
 <?php
-
 /**
  * MangoPayBundle.
  *
@@ -19,8 +18,8 @@
  * @license     http://teknoo.software/license/mit         MIT License
  * @author      Richard Déloge <richarddeloge@gmail.com>
  */
+
 use Doctrine\Common\Annotations\AnnotationRegistry;
-use Composer\Autoload\ClassLoader;
 
 /*
  * @var ClassLoader
