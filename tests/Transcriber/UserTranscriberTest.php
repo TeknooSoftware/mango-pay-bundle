@@ -21,6 +21,7 @@
  */
 namespace Teknoo\MangoPayBundle\Tests\Transcriber;
 
+use Teknoo\MangoPayBundle\Entity\Interfaces\User\LegalUserInterface;
 use Teknoo\MangoPayBundle\Transcriber\UserTranscriber;
 
 /**
@@ -166,6 +167,7 @@ class UserTranscriberTest extends \PHPUnit_Framework_TestCase
         $user = $this->getMock('Teknoo\MangoPayBundle\Entity\Interfaces\User\LegalUserInterface');
         $user->expects($this->once())->method('getMangoPayId')->willReturn(12345);
         $user->expects($this->once())->method('getName')->willReturn('name value');
+	$user->expects($this->once())->method('getLegalPersonType')->willReturn(LegalUserInterface::LEGAL_PERSON_TYPE_BUSINESS);
         $user->expects($this->once())->method('getLegalRepresentativeFirstName')->willReturn('first name value');
         $user->expects($this->once())->method('getLegalRepresentativeLastName')->willReturn('last name value');
         $date = new \DateTime('1989-03-19');
@@ -179,6 +181,7 @@ class UserTranscriberTest extends \PHPUnit_Framework_TestCase
         $this->assertInstanceOf('MangoPay\UserLegal', $result);
         $this->assertEquals(12345, $result->Id);
         $this->assertEquals('name value', $result->Name);
+	$this->assertEquals(LegalUserInterface::LEGAL_PERSON_TYPE_BUSINESS, $result->LegalPersonType);
         $this->assertEquals('first name value', $result->LegalRepresentativeFirstName);
         $this->assertEquals('last name value', $result->LegalRepresentativeLastName);
         $this->assertEquals($date->getTimestamp(), $result->LegalRepresentativeBirthday);
@@ -203,6 +206,7 @@ class UserTranscriberTest extends \PHPUnit_Framework_TestCase
         $user = $this->getMock('Teknoo\MangoPayBundle\Entity\Interfaces\User\LegalUserInterface');
         $user->expects($this->once())->method('getMangoPayId')->willReturn(12345);
         $user->expects($this->once())->method('getName')->willReturn('name value');
+	$user->expects($this->once())->method('getLegalPersonType')->willReturn(LegalUserInterface::LEGAL_PERSON_TYPE_BUSINESS);
         $user->expects($this->once())->method('getLegalRepresentativeFirstName')->willReturn('first name value');
         $user->expects($this->once())->method('getLegalRepresentativeLastName')->willReturn('last name value');
         $date = new \DateTime('1989-03-19');
@@ -217,6 +221,7 @@ class UserTranscriberTest extends \PHPUnit_Framework_TestCase
         $this->assertInstanceOf('MangoPay\UserLegal', $result);
         $this->assertEquals(12345, $result->Id);
         $this->assertEquals('name value', $result->Name);
+	$this->assertEquals(LegalUserInterface::LEGAL_PERSON_TYPE_BUSINESS, $result->LegalPersonType);
         $this->assertEquals('first name value', $result->LegalRepresentativeFirstName);
         $this->assertEquals('last name value', $result->LegalRepresentativeLastName);
         $this->assertEquals($date->getTimestamp(), $result->LegalRepresentativeBirthday);
@@ -248,6 +253,7 @@ class UserTranscriberTest extends \PHPUnit_Framework_TestCase
         $user = $this->getMock('Teknoo\MangoPayBundle\Entity\Interfaces\User\LegalUserInterface');
         $user->expects($this->once())->method('getMangoPayId')->willReturn(12345);
         $user->expects($this->once())->method('getName')->willReturn('name value');
+	$user->expects($this->once())->method('getLegalPersonType')->willReturn(LegalUserInterface::LEGAL_PERSON_TYPE_BUSINESS);
         $user->expects($this->once())->method('getLegalRepresentativeFirstName')->willReturn('first name value');
         $user->expects($this->once())->method('getLegalRepresentativeLastName')->willReturn('last name value');
         $date = new \DateTime('1989-03-19');
@@ -262,6 +268,7 @@ class UserTranscriberTest extends \PHPUnit_Framework_TestCase
         $this->assertInstanceOf('MangoPay\UserLegal', $result);
         $this->assertEquals(12345, $result->Id);
         $this->assertEquals('name value', $result->Name);
+	$this->assertEquals(LegalUserInterface::LEGAL_PERSON_TYPE_BUSINESS, $result->LegalPersonType);
         $this->assertEquals('first name value', $result->LegalRepresentativeFirstName);
         $this->assertEquals('last name value', $result->LegalRepresentativeLastName);
         $this->assertEquals($date->getTimestamp(), $result->LegalRepresentativeBirthday);

@@ -106,6 +106,7 @@ class UserTranscriber
             $legalUser->HeadquartersAddress = $mangoAddress;
         }
 
+        $legalUser->LegalPersonType = $user->getLegalPersonType();
         $legalUser->LegalRepresentativeFirstName = $user->getLegalRepresentativeFirstName();
         $legalUser->LegalRepresentativeLastName = $user->getLegalRepresentativeLastName();
         $legalUser->LegalRepresentativeEmail = $user->getLegalRepresentativeEmail();
