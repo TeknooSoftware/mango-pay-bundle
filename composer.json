@@ -13,7 +13,7 @@
         }
     ],
     "require": {
-        "php": ">=5.5",
+        "php": ">=5.6",
         "mangopay/php-sdk-v2": "~2.1"
     },
     "require-dev": {
