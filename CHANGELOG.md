@@ -1,5 +1,15 @@
 #Teknoo Software - Mango Pay Bundle - Change Log
 
+##[1.0.4] - 2017-01-27
+###Removed
+- Remove support of PHP5.5 (non supported by PHP Group and incompatibility with last versions of Twig)
+
+###Added
+- Add LegalPersonType transcription in UserTranscriber (Merge from quef)
+
+###Fixed
+- Missing LegalPersonType transcription in UserTranscriber
+
 ##[1.0.3] - 2016-08-04
 ###Fixed
 - Improve optimization on call to native function and optimized
