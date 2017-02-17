@@ -19,6 +19,7 @@
  * @license     http://teknoo.software/license/mit         MIT License
  * @author      Richard Déloge <richarddeloge@gmail.com>
  */
+
 namespace Teknoo\MangoPayBundle\StorageStrategy;
 
 use MangoPay\Libraries\IStorageStrategy;
@@ -46,7 +47,7 @@ class LocalStorage implements IStorageStrategy
     /**
      * Gets the current authorization token.
      *
-     * @return OAuthToken Currently stored token instance or null.
+     * @return OAuthToken Currently stored token instance or null
      */
     public function Get()
     {
@@ -56,7 +57,7 @@ class LocalStorage implements IStorageStrategy
     /**
      * Stores authorization token passed as an argument.
      *
-     * @param OAuthToken $token Token instance to be stored.
+     * @param OAuthToken $token Token instance to be stored
      *
      * @return self
      */

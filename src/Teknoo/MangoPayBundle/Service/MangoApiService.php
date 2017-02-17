@@ -19,6 +19,7 @@
  * @license     http://teknoo.software/license/mit         MIT License
  * @author      Richard Déloge <richarddeloge@gmail.com>
  */
+
 namespace Teknoo\MangoPayBundle\Service;
 
 use MangoPay\Libraries\IStorageStrategy;
