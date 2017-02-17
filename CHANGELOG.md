@@ -1,5 +1,13 @@
 #Teknoo Software - Mango Pay Bundle - Change Log
 
+###[1.0.5] - 2017-02-17
+###Fix
+- Code style fix
+- License file follow Github specs
+- Add tools to checks QA, use `make qa` and `make test`, `make` to initalize the project, (or `composer update`).
+- Update Travis to use this tool
+- Fix QA Errors
+
 ##[1.0.4] - 2017-01-27
 ###Removed
 - Remove support of PHP5.5 (non supported by PHP Group and incompatibility with last versions of Twig)
