@@ -41,9 +41,17 @@ class MangoPayController extends Controller
 
         $response = new Response();
         if ($getQuery->has('data')) {
-            $cardRegistrationService->processMangoPayValidReturn($registrationSessionId, $getQuery->get('data'), $response);
+            $cardRegistrationService->processMangoPayValidReturn(
+                $registrationSessionId,
+                $getQuery->get('data'),
+                $response
+            );
         } else {
-            $cardRegistrationService->processMangoPayError($registrationSessionId, $getQuery->get('errorCode'), $response);
+            $cardRegistrationService->processMangoPayError(
+                $registrationSessionId,
+                $getQuery->get('errorCode'),
+                $response
+            );
         }
 
         return $response;

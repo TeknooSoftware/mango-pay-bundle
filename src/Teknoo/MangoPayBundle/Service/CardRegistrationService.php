@@ -46,6 +46,7 @@ use Teknoo\MangoPayBundle\Service\Interfaces\StorageServiceInterface;
  *
  * @license     http://teknoo.software/license/mit         MIT License
  * @author      Richard Déloge <richarddeloge@gmail.com>
+ * @SuppressWarnings(PHPMD)
  */
 class CardRegistrationService
 {

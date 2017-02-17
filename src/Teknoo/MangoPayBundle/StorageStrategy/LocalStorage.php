@@ -34,6 +34,7 @@ use MangoPay\Libraries\OAuthToken;
  *
  * @license     http://teknoo.software/license/mit         MIT License
  * @author      Richard Déloge <richarddeloge@gmail.com>
+ * @SuppressWarnings(PHPMD)
  */
 class LocalStorage implements IStorageStrategy
 {

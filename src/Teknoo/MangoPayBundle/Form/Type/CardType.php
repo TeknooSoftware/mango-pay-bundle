@@ -44,6 +44,7 @@ class CardType extends AbstractType
      *
      * @param FormBuilderInterface $builder
      * @param array                $options
+     * @SuppressWarnings(PHPMD)
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
@@ -51,7 +52,11 @@ class CardType extends AbstractType
             ->add('accessKeyRef', HiddenType::class, ['mapped' => true])
             ->add('returnURL', HiddenType::class, ['mapped' => true])
             ->add('cardNumber', TextType::class, ['mapped' => false])
-            ->add('cardExpirationDate', TextType::class, ['mapped' => false, 'attr' => ['pattern' => '[0-1]{1}[0-9]{1}[0-9]{2}']])
+            ->add(
+                'cardExpirationDate',
+                TextType::class,
+                ['mapped' => false, 'attr' => ['pattern' => '[0-1]{1}[0-9]{1}[0-9]{2}']]
+            )
             ->add('cardCvx', TextType::class, ['mapped' => false]);
     }
 
