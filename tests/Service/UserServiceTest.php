@@ -23,6 +23,7 @@ namespace Teknoo\MangoPayBundle\Tests\Service;
 
 use MangoPay\ApiUsers;
 use MangoPay\UserNatural;
+use Teknoo\MangoPayBundle\Entity\Interfaces\User\UserInterface;
 use Teknoo\MangoPayBundle\Service\UserService;
 use Teknoo\MangoPayBundle\Transcriber\UserTranscriber;
 
@@ -37,7 +38,7 @@ use Teknoo\MangoPayBundle\Transcriber\UserTranscriber;
  * @license     http://teknoo.software/license/mit         MIT License
  * @author      Richard Déloge <richarddeloge@gmail.com>
  *
- * @covers Teknoo\MangoPayBundle\Service\UserService
+ * @covers \Teknoo\MangoPayBundle\Service\UserService
  */
 class UserServiceTest extends \PHPUnit_Framework_TestCase
 {
@@ -57,7 +58,7 @@ class UserServiceTest extends \PHPUnit_Framework_TestCase
     protected function getApiUsersMock()
     {
         if (!$this->apiUsersMock instanceof ApiUsers) {
-            $this->apiUsersMock = $this->getMock('MangoPay\ApiUsers', [], [], '', false);
+            $this->apiUsersMock = $this->createMock(ApiUsers::class);
         }
 
         return $this->apiUsersMock;
@@ -69,7 +70,7 @@ class UserServiceTest extends \PHPUnit_Framework_TestCase
     protected function getUserTranscriberMock()
     {
         if (!$this->userTranscriberMock instanceof UserTranscriber) {
-            $this->userTranscriberMock = $this->getMock('Teknoo\MangoPayBundle\Transcriber\UserTranscriber', [], [], '', false);
+            $this->userTranscriberMock = $this->createMock(UserTranscriber::class);
         }
 
         return $this->userTranscriberMock;
@@ -88,19 +89,19 @@ class UserServiceTest extends \PHPUnit_Framework_TestCase
         $mangoUser = new UserNatural();
         $mangoUser->Id = 1234;
 
-        $userMock = $this->getMock('Teknoo\MangoPayBundle\Entity\Interfaces\User\UserInterface');
+        $userMock = $this->createMock(UserInterface::class);
         $this->getUserTranscriberMock()
-            ->expects($this->once())
+            ->expects(self::once())
             ->method('toMango')
             ->with($userMock)
             ->willReturn($mangoUser);
 
         $this->getApiUsersMock()
-            ->expects($this->once())
+            ->expects(self::once())
             ->method('Create')
             ->with($mangoUser)
             ->willReturn($mangoUser);
 
-        $this->assertEquals(1234, $this->buildService()->create($userMock));
+        self::assertEquals(1234, $this->buildService()->create($userMock));
     }
 }

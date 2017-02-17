@@ -37,7 +37,7 @@ use Teknoo\MangoPayBundle\Event\SecureFlowEvent;
  * @license     http://teknoo.software/license/mit         MIT License
  * @author      Richard Déloge <richarddeloge@gmail.com>
  *
- * @covers Teknoo\MangoPayBundle\Event\SecureFlowEvent
+ * @covers \Teknoo\MangoPayBundle\Event\SecureFlowEvent
  */
 class SecureFlowEventTest extends \PHPUnit_Framework_TestCase
 {
@@ -62,7 +62,7 @@ class SecureFlowEventTest extends \PHPUnit_Framework_TestCase
     protected function getSecureFlowSessionMock()
     {
         if (!$this->secureFlowSessionMock instanceof SecureFlowSession) {
-            $this->secureFlowSessionMock = $this->getMock('Teknoo\MangoPayBundle\Entity\SecureFlowSession', [], [], '', false);
+            $this->secureFlowSessionMock = $this->createMock(SecureFlowSession::class);
         }
 
         return $this->secureFlowSessionMock;
@@ -74,7 +74,7 @@ class SecureFlowEventTest extends \PHPUnit_Framework_TestCase
     protected function getPayInMock()
     {
         if (!$this->payInMock instanceof PayIn) {
-            $this->payInMock = $this->getMock('MangoPay\PayIn', [], [], '', false);
+            $this->payInMock = $this->createMock(PayIn::class);
         }
 
         return $this->payInMock;
@@ -86,7 +86,7 @@ class SecureFlowEventTest extends \PHPUnit_Framework_TestCase
     protected function getResponseMock()
     {
         if (!$this->responseMock instanceof Response) {
-            $this->responseMock = $this->getMock('Symfony\Component\HttpFoundation\Response', [], [], '', false);
+            $this->responseMock = $this->createMock(Response::class);
         }
 
         return $this->responseMock;
@@ -106,7 +106,7 @@ class SecureFlowEventTest extends \PHPUnit_Framework_TestCase
 
     public function testGetResponse()
     {
-        $this->assertEquals(
+        self::assertEquals(
             $this->getResponseMock(),
             $this->buildService()->getResponse()
         );
@@ -114,7 +114,7 @@ class SecureFlowEventTest extends \PHPUnit_Framework_TestCase
 
     public function testGetPayIn()
     {
-        $this->assertEquals(
+        self::assertEquals(
             $this->getPayInMock(),
             $this->buildService()->getPayIn()
         );
@@ -122,7 +122,7 @@ class SecureFlowEventTest extends \PHPUnit_Framework_TestCase
 
     public function testGetSecureFlowSession()
     {
-        $this->assertEquals(
+        self::assertEquals(
             $this->getSecureFlowSessionMock(),
             $this->buildService()->getSecureFlowSession()
         );

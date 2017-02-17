@@ -21,7 +21,11 @@
  */
 namespace Teknoo\MangoPayBundle\Tests\Transcriber;
 
+use Teknoo\MangoPayBundle\Entity\Interfaces\User\AddressInterface;
+use Teknoo\MangoPayBundle\Entity\Interfaces\User\FullNaturalUserInterface;
 use Teknoo\MangoPayBundle\Entity\Interfaces\User\LegalUserInterface;
+use Teknoo\MangoPayBundle\Entity\Interfaces\User\NaturalUserInterface;
+use Teknoo\MangoPayBundle\Entity\Interfaces\User\UserInterface;
 use Teknoo\MangoPayBundle\Transcriber\UserTranscriber;
 
 /**
@@ -35,7 +39,7 @@ use Teknoo\MangoPayBundle\Transcriber\UserTranscriber;
  * @license     http://teknoo.software/license/mit         MIT License
  * @author      Richard Déloge <richarddeloge@gmail.com>
  *
- * @covers Teknoo\MangoPayBundle\Transcriber\UserTranscriber
+ * @covers \Teknoo\MangoPayBundle\Transcriber\UserTranscriber
  */
 class UserTranscriberTest extends \PHPUnit_Framework_TestCase
 {
@@ -54,236 +58,236 @@ class UserTranscriberTest extends \PHPUnit_Framework_TestCase
     {
         $this->buildService()
             ->toMango(
-                $this->getMock('Teknoo\MangoPayBundle\Entity\Interfaces\User\UserInterface')
+                $this->createMock(UserInterface::class)
             );
     }
 
     public function testToMangoNaturalUser()
     {
-        $user = $this->getMock('Teknoo\MangoPayBundle\Entity\Interfaces\User\NaturalUserInterface');
-        $user->expects($this->once())->method('getMangoPayId')->willReturn(12345);
-        $user->expects($this->once())->method('getFirstName')->willReturn('first name value');
-        $user->expects($this->once())->method('getLastName')->willReturn('last name value');
+        $user = $this->createMock(NaturalUserInterface::class);
+        $user->expects(self::once())->method('getMangoPayId')->willReturn(12345);
+        $user->expects(self::once())->method('getFirstName')->willReturn('first name value');
+        $user->expects(self::once())->method('getLastName')->willReturn('last name value');
         $date = new \DateTime('1989-03-19');
-        $user->expects($this->once())->method('getBirthday')->willReturn($date);
-        $user->expects($this->once())->method('getEmail')->willReturn('email@address.com');
-        $user->expects($this->once())->method('getNationality')->willReturn('nationality value');
-        $user->expects($this->once())->method('getCountryOfResidence')->willReturn('country value');
+        $user->expects(self::once())->method('getBirthday')->willReturn($date);
+        $user->expects(self::once())->method('getEmail')->willReturn('email@address.com');
+        $user->expects(self::once())->method('getNationality')->willReturn('nationality value');
+        $user->expects(self::once())->method('getCountryOfResidence')->willReturn('country value');
 
         $result = $this->buildService()->toMango($user);
-        $this->assertInstanceOf('MangoPay\UserNatural', $result);
-        $this->assertEquals(12345, $result->Id);
-        $this->assertEquals('first name value', $result->FirstName);
-        $this->assertEquals('last name value', $result->LastName);
-        $this->assertEquals($date->getTimestamp(), $result->Birthday);
-        $this->assertEquals('email@address.com', $result->Email);
-        $this->assertEquals('nationality value', $result->Nationality);
-        $this->assertEquals('country value', $result->CountryOfResidence);
-        $this->assertNull($result->Address);
+        self::assertInstanceOf('MangoPay\UserNatural', $result);
+        self::assertEquals(12345, $result->Id);
+        self::assertEquals('first name value', $result->FirstName);
+        self::assertEquals('last name value', $result->LastName);
+        self::assertEquals($date->getTimestamp(), $result->Birthday);
+        self::assertEquals('email@address.com', $result->Email);
+        self::assertEquals('nationality value', $result->Nationality);
+        self::assertEquals('country value', $result->CountryOfResidence);
+        self::assertNull($result->Address);
     }
 
     public function testToMangoFullNaturalUserWithoutAddress()
     {
-        $user = $this->getMock('Teknoo\MangoPayBundle\Entity\Interfaces\User\FullNaturalUserInterface');
-        $user->expects($this->once())->method('getMangoPayId')->willReturn(12345);
-        $user->expects($this->once())->method('getFirstName')->willReturn('first name value');
-        $user->expects($this->once())->method('getLastName')->willReturn('last name value');
+        $user = $this->createMock(FullNaturalUserInterface::class);
+        $user->expects(self::once())->method('getMangoPayId')->willReturn(12345);
+        $user->expects(self::once())->method('getFirstName')->willReturn('first name value');
+        $user->expects(self::once())->method('getLastName')->willReturn('last name value');
         $date = new \DateTime('1989-03-19');
-        $user->expects($this->once())->method('getBirthday')->willReturn($date);
-        $user->expects($this->once())->method('getEmail')->willReturn('email@address.com');
-        $user->expects($this->once())->method('getNationality')->willReturn('nationality value');
-        $user->expects($this->once())->method('getCountryOfResidence')->willReturn('country value');
-        $user->expects($this->once())->method('getOccupation')->willReturn('occupaton value');
-        $user->expects($this->once())->method('getIncomeRange')->willReturn('income range value');
-        $user->expects($this->once())->method('getProofOfAddress')->willReturn('proof address value');
-        $user->expects($this->once())->method('getProofOfIdentity')->willReturn('proof identity value');
+        $user->expects(self::once())->method('getBirthday')->willReturn($date);
+        $user->expects(self::once())->method('getEmail')->willReturn('email@address.com');
+        $user->expects(self::once())->method('getNationality')->willReturn('nationality value');
+        $user->expects(self::once())->method('getCountryOfResidence')->willReturn('country value');
+        $user->expects(self::once())->method('getOccupation')->willReturn('occupaton value');
+        $user->expects(self::once())->method('getIncomeRange')->willReturn('income range value');
+        $user->expects(self::once())->method('getProofOfAddress')->willReturn('proof address value');
+        $user->expects(self::once())->method('getProofOfIdentity')->willReturn('proof identity value');
 
         $result = $this->buildService()->toMango($user);
-        $this->assertInstanceOf('MangoPay\UserNatural', $result);
-        $this->assertEquals(12345, $result->Id);
-        $this->assertEquals('first name value', $result->FirstName);
-        $this->assertEquals('last name value', $result->LastName);
-        $this->assertEquals($date->getTimestamp(), $result->Birthday);
-        $this->assertEquals('email@address.com', $result->Email);
-        $this->assertEquals('nationality value', $result->Nationality);
-        $this->assertEquals('country value', $result->CountryOfResidence);
-        $this->assertEquals('occupaton value', $result->Occupation);
-        $this->assertEquals('income range value', $result->IncomeRange);
-        $this->assertEquals('proof address value', $result->ProofOfAddress);
-        $this->assertEquals('proof identity value', $result->ProofOfIdentity);
-        $this->assertNull($result->Address);
+        self::assertInstanceOf('MangoPay\UserNatural', $result);
+        self::assertEquals(12345, $result->Id);
+        self::assertEquals('first name value', $result->FirstName);
+        self::assertEquals('last name value', $result->LastName);
+        self::assertEquals($date->getTimestamp(), $result->Birthday);
+        self::assertEquals('email@address.com', $result->Email);
+        self::assertEquals('nationality value', $result->Nationality);
+        self::assertEquals('country value', $result->CountryOfResidence);
+        self::assertEquals('occupaton value', $result->Occupation);
+        self::assertEquals('income range value', $result->IncomeRange);
+        self::assertEquals('proof address value', $result->ProofOfAddress);
+        self::assertEquals('proof identity value', $result->ProofOfIdentity);
+        self::assertNull($result->Address);
     }
 
     public function testToMangoFullNaturalUserWithAddress()
     {
-        $address = $this->getMock('Teknoo\MangoPayBundle\Entity\Interfaces\User\AddressInterface');
-        $address->expects($this->once())->method('getAddress1')->willReturn('address 1 value');
-        $address->expects($this->once())->method('getAddress2')->willReturn('address 2 value');
-        $address->expects($this->once())->method('getPostalCode')->willReturn('zip value');
-        $address->expects($this->once())->method('getCity')->willReturn('city value');
-        $address->expects($this->once())->method('getRegion')->willReturn('region value');
-        $address->expects($this->once())->method('getCountry')->willReturn('country value');
+        $address = $this->createMock(AddressInterface::class);
+        $address->expects(self::once())->method('getAddress1')->willReturn('address 1 value');
+        $address->expects(self::once())->method('getAddress2')->willReturn('address 2 value');
+        $address->expects(self::once())->method('getPostalCode')->willReturn('zip value');
+        $address->expects(self::once())->method('getCity')->willReturn('city value');
+        $address->expects(self::once())->method('getRegion')->willReturn('region value');
+        $address->expects(self::once())->method('getCountry')->willReturn('country value');
 
-        $user = $this->getMock('Teknoo\MangoPayBundle\Entity\Interfaces\User\FullNaturalUserInterface');
-        $user->expects($this->once())->method('getMangoPayId')->willReturn(12345);
-        $user->expects($this->once())->method('getFirstName')->willReturn('first name value');
-        $user->expects($this->once())->method('getLastName')->willReturn('last name value');
+        $user = $this->createMock(FullNaturalUserInterface::class);
+        $user->expects(self::once())->method('getMangoPayId')->willReturn(12345);
+        $user->expects(self::once())->method('getFirstName')->willReturn('first name value');
+        $user->expects(self::once())->method('getLastName')->willReturn('last name value');
         $date = new \DateTime('1989-03-19');
-        $user->expects($this->once())->method('getBirthday')->willReturn($date);
-        $user->expects($this->once())->method('getEmail')->willReturn('email@address.com');
-        $user->expects($this->once())->method('getNationality')->willReturn('nationality value');
-        $user->expects($this->once())->method('getCountryOfResidence')->willReturn('country value');
-        $user->expects($this->once())->method('getOccupation')->willReturn('occupaton value');
-        $user->expects($this->once())->method('getIncomeRange')->willReturn('income range value');
-        $user->expects($this->once())->method('getProofOfAddress')->willReturn('proof address value');
-        $user->expects($this->once())->method('getProofOfIdentity')->willReturn('proof identity value');
-        $user->expects($this->once())->method('getAddressObject')->willReturn($address);
+        $user->expects(self::once())->method('getBirthday')->willReturn($date);
+        $user->expects(self::once())->method('getEmail')->willReturn('email@address.com');
+        $user->expects(self::once())->method('getNationality')->willReturn('nationality value');
+        $user->expects(self::once())->method('getCountryOfResidence')->willReturn('country value');
+        $user->expects(self::once())->method('getOccupation')->willReturn('occupaton value');
+        $user->expects(self::once())->method('getIncomeRange')->willReturn('income range value');
+        $user->expects(self::once())->method('getProofOfAddress')->willReturn('proof address value');
+        $user->expects(self::once())->method('getProofOfIdentity')->willReturn('proof identity value');
+        $user->expects(self::once())->method('getAddressObject')->willReturn($address);
 
         $result = $this->buildService()->toMango($user);
-        $this->assertInstanceOf('MangoPay\UserNatural', $result);
-        $this->assertEquals(12345, $result->Id);
-        $this->assertEquals('first name value', $result->FirstName);
-        $this->assertEquals('last name value', $result->LastName);
-        $this->assertEquals($date->getTimestamp(), $result->Birthday);
-        $this->assertEquals('email@address.com', $result->Email);
-        $this->assertEquals('nationality value', $result->Nationality);
-        $this->assertEquals('country value', $result->CountryOfResidence);
-        $this->assertEquals('occupaton value', $result->Occupation);
-        $this->assertEquals('income range value', $result->IncomeRange);
-        $this->assertEquals('proof address value', $result->ProofOfAddress);
-        $this->assertEquals('proof identity value', $result->ProofOfIdentity);
-        $this->assertInstanceOf('MangoPay\Address', $result->Address);
+        self::assertInstanceOf('MangoPay\UserNatural', $result);
+        self::assertEquals(12345, $result->Id);
+        self::assertEquals('first name value', $result->FirstName);
+        self::assertEquals('last name value', $result->LastName);
+        self::assertEquals($date->getTimestamp(), $result->Birthday);
+        self::assertEquals('email@address.com', $result->Email);
+        self::assertEquals('nationality value', $result->Nationality);
+        self::assertEquals('country value', $result->CountryOfResidence);
+        self::assertEquals('occupaton value', $result->Occupation);
+        self::assertEquals('income range value', $result->IncomeRange);
+        self::assertEquals('proof address value', $result->ProofOfAddress);
+        self::assertEquals('proof identity value', $result->ProofOfIdentity);
+        self::assertInstanceOf('MangoPay\Address', $result->Address);
         $address = $result->Address;
-        $this->assertEquals('address 1 value', $address->AddressLine1);
-        $this->assertEquals('address 2 value', $address->AddressLine2);
-        $this->assertEquals('zip value', $address->PostalCode);
-        $this->assertEquals('city value', $address->City);
-        $this->assertEquals('region value', $address->Region);
-        $this->assertEquals('country value', $address->Country);
+        self::assertEquals('address 1 value', $address->AddressLine1);
+        self::assertEquals('address 2 value', $address->AddressLine2);
+        self::assertEquals('zip value', $address->PostalCode);
+        self::assertEquals('city value', $address->City);
+        self::assertEquals('region value', $address->Region);
+        self::assertEquals('country value', $address->Country);
     }
 
     public function testToMangoLegalUserWithoutAddress()
     {
-        $user = $this->getMock('Teknoo\MangoPayBundle\Entity\Interfaces\User\LegalUserInterface');
-        $user->expects($this->once())->method('getMangoPayId')->willReturn(12345);
-        $user->expects($this->once())->method('getName')->willReturn('name value');
-	$user->expects($this->once())->method('getLegalPersonType')->willReturn(LegalUserInterface::LEGAL_PERSON_TYPE_BUSINESS);
-        $user->expects($this->once())->method('getLegalRepresentativeFirstName')->willReturn('first name value');
-        $user->expects($this->once())->method('getLegalRepresentativeLastName')->willReturn('last name value');
+        $user = $this->createMock(LegalUserInterface::class);
+        $user->expects(self::once())->method('getMangoPayId')->willReturn(12345);
+        $user->expects(self::once())->method('getName')->willReturn('name value');
+	$user->expects(self::once())->method('getLegalPersonType')->willReturn(LegalUserInterface::LEGAL_PERSON_TYPE_BUSINESS);
+        $user->expects(self::once())->method('getLegalRepresentativeFirstName')->willReturn('first name value');
+        $user->expects(self::once())->method('getLegalRepresentativeLastName')->willReturn('last name value');
         $date = new \DateTime('1989-03-19');
-        $user->expects($this->once())->method('getLegalRepresentativeBirthday')->willReturn($date);
-        $user->expects($this->once())->method('getEmail')->willReturn('email@address.com');
-        $user->expects($this->once())->method('getLegalRepresentativeEmail')->willReturn('email2@address.com');
-        $user->expects($this->once())->method('getLegalRepresentativeNationality')->willReturn('nationality value');
-        $user->expects($this->once())->method('getLegalRepresentativeCountryOfResidence')->willReturn('country value');
+        $user->expects(self::once())->method('getLegalRepresentativeBirthday')->willReturn($date);
+        $user->expects(self::once())->method('getEmail')->willReturn('email@address.com');
+        $user->expects(self::once())->method('getLegalRepresentativeEmail')->willReturn('email2@address.com');
+        $user->expects(self::once())->method('getLegalRepresentativeNationality')->willReturn('nationality value');
+        $user->expects(self::once())->method('getLegalRepresentativeCountryOfResidence')->willReturn('country value');
 
         $result = $this->buildService()->toMango($user);
-        $this->assertInstanceOf('MangoPay\UserLegal', $result);
-        $this->assertEquals(12345, $result->Id);
-        $this->assertEquals('name value', $result->Name);
-	$this->assertEquals(LegalUserInterface::LEGAL_PERSON_TYPE_BUSINESS, $result->LegalPersonType);
-        $this->assertEquals('first name value', $result->LegalRepresentativeFirstName);
-        $this->assertEquals('last name value', $result->LegalRepresentativeLastName);
-        $this->assertEquals($date->getTimestamp(), $result->LegalRepresentativeBirthday);
-        $this->assertEquals('email@address.com', $result->Email);
-        $this->assertEquals('email2@address.com', $result->LegalRepresentativeEmail);
-        $this->assertEquals('nationality value', $result->LegalRepresentativeNationality);
-        $this->assertEquals('country value', $result->LegalRepresentativeCountryOfResidence);
-        $this->assertNull($result->HeadquartersAddress);
-        $this->assertNull($result->LegalRepresentativeAddress);
+        self::assertInstanceOf('MangoPay\UserLegal', $result);
+        self::assertEquals(12345, $result->Id);
+        self::assertEquals('name value', $result->Name);
+	self::assertEquals(LegalUserInterface::LEGAL_PERSON_TYPE_BUSINESS, $result->LegalPersonType);
+        self::assertEquals('first name value', $result->LegalRepresentativeFirstName);
+        self::assertEquals('last name value', $result->LegalRepresentativeLastName);
+        self::assertEquals($date->getTimestamp(), $result->LegalRepresentativeBirthday);
+        self::assertEquals('email@address.com', $result->Email);
+        self::assertEquals('email2@address.com', $result->LegalRepresentativeEmail);
+        self::assertEquals('nationality value', $result->LegalRepresentativeNationality);
+        self::assertEquals('country value', $result->LegalRepresentativeCountryOfResidence);
+        self::assertNull($result->HeadquartersAddress);
+        self::assertNull($result->LegalRepresentativeAddress);
     }
 
     public function testToMangoLegalUserWithAddressHeadQuarter()
     {
-        $address = $this->getMock('Teknoo\MangoPayBundle\Entity\Interfaces\User\AddressInterface');
-        $address->expects($this->once())->method('getAddress1')->willReturn('address 1 value');
-        $address->expects($this->once())->method('getAddress2')->willReturn('address 2 value');
-        $address->expects($this->once())->method('getPostalCode')->willReturn('zip value');
-        $address->expects($this->once())->method('getCity')->willReturn('city value');
-        $address->expects($this->once())->method('getRegion')->willReturn('region value');
-        $address->expects($this->once())->method('getCountry')->willReturn('country value');
+        $address = $this->createMock(AddressInterface::class);
+        $address->expects(self::once())->method('getAddress1')->willReturn('address 1 value');
+        $address->expects(self::once())->method('getAddress2')->willReturn('address 2 value');
+        $address->expects(self::once())->method('getPostalCode')->willReturn('zip value');
+        $address->expects(self::once())->method('getCity')->willReturn('city value');
+        $address->expects(self::once())->method('getRegion')->willReturn('region value');
+        $address->expects(self::once())->method('getCountry')->willReturn('country value');
 
-        $user = $this->getMock('Teknoo\MangoPayBundle\Entity\Interfaces\User\LegalUserInterface');
-        $user->expects($this->once())->method('getMangoPayId')->willReturn(12345);
-        $user->expects($this->once())->method('getName')->willReturn('name value');
-	$user->expects($this->once())->method('getLegalPersonType')->willReturn(LegalUserInterface::LEGAL_PERSON_TYPE_BUSINESS);
-        $user->expects($this->once())->method('getLegalRepresentativeFirstName')->willReturn('first name value');
-        $user->expects($this->once())->method('getLegalRepresentativeLastName')->willReturn('last name value');
+        $user = $this->createMock(LegalUserInterface::class);
+        $user->expects(self::once())->method('getMangoPayId')->willReturn(12345);
+        $user->expects(self::once())->method('getName')->willReturn('name value');
+	$user->expects(self::once())->method('getLegalPersonType')->willReturn(LegalUserInterface::LEGAL_PERSON_TYPE_BUSINESS);
+        $user->expects(self::once())->method('getLegalRepresentativeFirstName')->willReturn('first name value');
+        $user->expects(self::once())->method('getLegalRepresentativeLastName')->willReturn('last name value');
         $date = new \DateTime('1989-03-19');
-        $user->expects($this->once())->method('getLegalRepresentativeBirthday')->willReturn($date);
-        $user->expects($this->once())->method('getEmail')->willReturn('email@address.com');
-        $user->expects($this->once())->method('getLegalRepresentativeEmail')->willReturn('email2@address.com');
-        $user->expects($this->once())->method('getLegalRepresentativeNationality')->willReturn('nationality value');
-        $user->expects($this->once())->method('getLegalRepresentativeCountryOfResidence')->willReturn('country value');
-        $user->expects($this->once())->method('getHeadquartersAddress')->willReturn($address);
+        $user->expects(self::once())->method('getLegalRepresentativeBirthday')->willReturn($date);
+        $user->expects(self::once())->method('getEmail')->willReturn('email@address.com');
+        $user->expects(self::once())->method('getLegalRepresentativeEmail')->willReturn('email2@address.com');
+        $user->expects(self::once())->method('getLegalRepresentativeNationality')->willReturn('nationality value');
+        $user->expects(self::once())->method('getLegalRepresentativeCountryOfResidence')->willReturn('country value');
+        $user->expects(self::once())->method('getHeadquartersAddress')->willReturn($address);
 
         $result = $this->buildService()->toMango($user);
-        $this->assertInstanceOf('MangoPay\UserLegal', $result);
-        $this->assertEquals(12345, $result->Id);
-        $this->assertEquals('name value', $result->Name);
-	$this->assertEquals(LegalUserInterface::LEGAL_PERSON_TYPE_BUSINESS, $result->LegalPersonType);
-        $this->assertEquals('first name value', $result->LegalRepresentativeFirstName);
-        $this->assertEquals('last name value', $result->LegalRepresentativeLastName);
-        $this->assertEquals($date->getTimestamp(), $result->LegalRepresentativeBirthday);
-        $this->assertEquals('email@address.com', $result->Email);
-        $this->assertEquals('email2@address.com', $result->LegalRepresentativeEmail);
-        $this->assertEquals('nationality value', $result->LegalRepresentativeNationality);
-        $this->assertEquals('country value', $result->LegalRepresentativeCountryOfResidence);
-        $this->assertInstanceOf('MangoPay\Address', $result->HeadquartersAddress);
-        $this->assertNull($result->LegalRepresentativeAddress);
+        self::assertInstanceOf('MangoPay\UserLegal', $result);
+        self::assertEquals(12345, $result->Id);
+        self::assertEquals('name value', $result->Name);
+	self::assertEquals(LegalUserInterface::LEGAL_PERSON_TYPE_BUSINESS, $result->LegalPersonType);
+        self::assertEquals('first name value', $result->LegalRepresentativeFirstName);
+        self::assertEquals('last name value', $result->LegalRepresentativeLastName);
+        self::assertEquals($date->getTimestamp(), $result->LegalRepresentativeBirthday);
+        self::assertEquals('email@address.com', $result->Email);
+        self::assertEquals('email2@address.com', $result->LegalRepresentativeEmail);
+        self::assertEquals('nationality value', $result->LegalRepresentativeNationality);
+        self::assertEquals('country value', $result->LegalRepresentativeCountryOfResidence);
+        self::assertInstanceOf('MangoPay\Address', $result->HeadquartersAddress);
+        self::assertNull($result->LegalRepresentativeAddress);
         $address = $result->HeadquartersAddress;
-        $this->assertEquals('address 1 value', $address->AddressLine1);
-        $this->assertEquals('address 2 value', $address->AddressLine2);
-        $this->assertEquals('zip value', $address->PostalCode);
-        $this->assertEquals('city value', $address->City);
-        $this->assertEquals('region value', $address->Region);
-        $this->assertEquals('country value', $address->Country);
+        self::assertEquals('address 1 value', $address->AddressLine1);
+        self::assertEquals('address 2 value', $address->AddressLine2);
+        self::assertEquals('zip value', $address->PostalCode);
+        self::assertEquals('city value', $address->City);
+        self::assertEquals('region value', $address->Region);
+        self::assertEquals('country value', $address->Country);
     }
 
     public function testToMangoLegalUserWithAddressLegal()
     {
-        $address = $this->getMock('Teknoo\MangoPayBundle\Entity\Interfaces\User\AddressInterface');
-        $address->expects($this->once())->method('getAddress1')->willReturn('address 1 value');
-        $address->expects($this->once())->method('getAddress2')->willReturn('address 2 value');
-        $address->expects($this->once())->method('getPostalCode')->willReturn('zip value');
-        $address->expects($this->once())->method('getCity')->willReturn('city value');
-        $address->expects($this->once())->method('getRegion')->willReturn('region value');
-        $address->expects($this->once())->method('getCountry')->willReturn('country value');
+        $address = $this->createMock(AddressInterface::class);
+        $address->expects(self::once())->method('getAddress1')->willReturn('address 1 value');
+        $address->expects(self::once())->method('getAddress2')->willReturn('address 2 value');
+        $address->expects(self::once())->method('getPostalCode')->willReturn('zip value');
+        $address->expects(self::once())->method('getCity')->willReturn('city value');
+        $address->expects(self::once())->method('getRegion')->willReturn('region value');
+        $address->expects(self::once())->method('getCountry')->willReturn('country value');
 
-        $user = $this->getMock('Teknoo\MangoPayBundle\Entity\Interfaces\User\LegalUserInterface');
-        $user->expects($this->once())->method('getMangoPayId')->willReturn(12345);
-        $user->expects($this->once())->method('getName')->willReturn('name value');
-	$user->expects($this->once())->method('getLegalPersonType')->willReturn(LegalUserInterface::LEGAL_PERSON_TYPE_BUSINESS);
-        $user->expects($this->once())->method('getLegalRepresentativeFirstName')->willReturn('first name value');
-        $user->expects($this->once())->method('getLegalRepresentativeLastName')->willReturn('last name value');
+        $user = $this->createMock(LegalUserInterface::class);
+        $user->expects(self::once())->method('getMangoPayId')->willReturn(12345);
+        $user->expects(self::once())->method('getName')->willReturn('name value');
+	$user->expects(self::once())->method('getLegalPersonType')->willReturn(LegalUserInterface::LEGAL_PERSON_TYPE_BUSINESS);
+        $user->expects(self::once())->method('getLegalRepresentativeFirstName')->willReturn('first name value');
+        $user->expects(self::once())->method('getLegalRepresentativeLastName')->willReturn('last name value');
         $date = new \DateTime('1989-03-19');
-        $user->expects($this->once())->method('getLegalRepresentativeBirthday')->willReturn($date);
-        $user->expects($this->once())->method('getEmail')->willReturn('email@address.com');
-        $user->expects($this->once())->method('getLegalRepresentativeEmail')->willReturn('email2@address.com');
-        $user->expects($this->once())->method('getLegalRepresentativeNationality')->willReturn('nationality value');
-        $user->expects($this->once())->method('getLegalRepresentativeCountryOfResidence')->willReturn('country value');
-        $user->expects($this->once())->method('getLegalRepresentativeAddress')->willReturn($address);
+        $user->expects(self::once())->method('getLegalRepresentativeBirthday')->willReturn($date);
+        $user->expects(self::once())->method('getEmail')->willReturn('email@address.com');
+        $user->expects(self::once())->method('getLegalRepresentativeEmail')->willReturn('email2@address.com');
+        $user->expects(self::once())->method('getLegalRepresentativeNationality')->willReturn('nationality value');
+        $user->expects(self::once())->method('getLegalRepresentativeCountryOfResidence')->willReturn('country value');
+        $user->expects(self::once())->method('getLegalRepresentativeAddress')->willReturn($address);
 
         $result = $this->buildService()->toMango($user);
-        $this->assertInstanceOf('MangoPay\UserLegal', $result);
-        $this->assertEquals(12345, $result->Id);
-        $this->assertEquals('name value', $result->Name);
-	$this->assertEquals(LegalUserInterface::LEGAL_PERSON_TYPE_BUSINESS, $result->LegalPersonType);
-        $this->assertEquals('first name value', $result->LegalRepresentativeFirstName);
-        $this->assertEquals('last name value', $result->LegalRepresentativeLastName);
-        $this->assertEquals($date->getTimestamp(), $result->LegalRepresentativeBirthday);
-        $this->assertEquals('email@address.com', $result->Email);
-        $this->assertEquals('email2@address.com', $result->LegalRepresentativeEmail);
-        $this->assertEquals('nationality value', $result->LegalRepresentativeNationality);
-        $this->assertEquals('country value', $result->LegalRepresentativeCountryOfResidence);
-        $this->assertInstanceOf('MangoPay\Address', $result->LegalRepresentativeAddress);
-        $this->assertNull($result->HeadquartersAddress);
+        self::assertInstanceOf('MangoPay\UserLegal', $result);
+        self::assertEquals(12345, $result->Id);
+        self::assertEquals('name value', $result->Name);
+	self::assertEquals(LegalUserInterface::LEGAL_PERSON_TYPE_BUSINESS, $result->LegalPersonType);
+        self::assertEquals('first name value', $result->LegalRepresentativeFirstName);
+        self::assertEquals('last name value', $result->LegalRepresentativeLastName);
+        self::assertEquals($date->getTimestamp(), $result->LegalRepresentativeBirthday);
+        self::assertEquals('email@address.com', $result->Email);
+        self::assertEquals('email2@address.com', $result->LegalRepresentativeEmail);
+        self::assertEquals('nationality value', $result->LegalRepresentativeNationality);
+        self::assertEquals('country value', $result->LegalRepresentativeCountryOfResidence);
+        self::assertInstanceOf('MangoPay\Address', $result->LegalRepresentativeAddress);
+        self::assertNull($result->HeadquartersAddress);
         $address = $result->LegalRepresentativeAddress;
-        $this->assertEquals('address 1 value', $address->AddressLine1);
-        $this->assertEquals('address 2 value', $address->AddressLine2);
-        $this->assertEquals('zip value', $address->PostalCode);
-        $this->assertEquals('city value', $address->City);
-        $this->assertEquals('region value', $address->Region);
-        $this->assertEquals('country value', $address->Country);
+        self::assertEquals('address 1 value', $address->AddressLine1);
+        self::assertEquals('address 2 value', $address->AddressLine2);
+        self::assertEquals('zip value', $address->PostalCode);
+        self::assertEquals('city value', $address->City);
+        self::assertEquals('region value', $address->Region);
+        self::assertEquals('country value', $address->Country);
     }
 }

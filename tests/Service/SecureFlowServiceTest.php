@@ -27,6 +27,7 @@ use MangoPay\PayInExecutionDetailsDirect;
 use Symfony\Bundle\FrameworkBundle\Routing\Router;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 use Symfony\Component\HttpFoundation\Response;
+use Teknoo\MangoPayBundle\Entity\SecureFlowSession;
 use Teknoo\MangoPayBundle\Event\MangoPayEvents;
 use Teknoo\MangoPayBundle\Event\SecureFlowEvent;
 use Teknoo\MangoPayBundle\Service\Interfaces\StorageServiceInterface;
@@ -43,7 +44,7 @@ use Teknoo\MangoPayBundle\Service\SecureFlowService;
  * @license     http://teknoo.software/license/mit         MIT License
  * @author      Richard Déloge <richarddeloge@gmail.com>
  *
- * @covers Teknoo\MangoPayBundle\Service\SecureFlowService
+ * @covers \Teknoo\MangoPayBundle\Service\SecureFlowService
  */
 class SecureFlowServiceTest extends \PHPUnit_Framework_TestCase
 {
@@ -73,7 +74,7 @@ class SecureFlowServiceTest extends \PHPUnit_Framework_TestCase
     protected function getRouterMock()
     {
         if (!$this->routerMock instanceof Router) {
-            $this->routerMock = $this->getMock('Symfony\Bundle\FrameworkBundle\Routing\Router', [], [], '', false);
+            $this->routerMock = $this->createMock(Router::class);
         }
 
         return $this->routerMock;
@@ -85,7 +86,7 @@ class SecureFlowServiceTest extends \PHPUnit_Framework_TestCase
     protected function getEventDispatcherInterfaceMock()
     {
         if (!$this->eventDispatchedMock instanceof EventDispatcherInterface) {
-            $this->eventDispatchedMock = $this->getMock('Symfony\Component\EventDispatcher\EventDispatcherInterface', [], [], '', false);
+            $this->eventDispatchedMock = $this->createMock(EventDispatcherInterface::class);
         }
 
         return $this->eventDispatchedMock;
@@ -97,7 +98,7 @@ class SecureFlowServiceTest extends \PHPUnit_Framework_TestCase
     protected function getApiPayInsMock()
     {
         if (!$this->mangoPayPayInsApiMock instanceof ApiPayIns) {
-            $this->mangoPayPayInsApiMock = $this->getMock('MangoPay\ApiPayIns', [], [], '', false);
+            $this->mangoPayPayInsApiMock = $this->createMock(ApiPayIns::class);
         }
 
         return $this->mangoPayPayInsApiMock;
@@ -109,7 +110,7 @@ class SecureFlowServiceTest extends \PHPUnit_Framework_TestCase
     protected function getStorageServiceInterfaceMock()
     {
         if (!$this->storageServiceMock instanceof StorageServiceInterface) {
-            $this->storageServiceMock = $this->getMock('Teknoo\MangoPayBundle\Service\Interfaces\StorageServiceInterface', [], [], '', false);
+            $this->storageServiceMock = $this->createMock(StorageServiceInterface::class);
         }
 
         return $this->storageServiceMock;
@@ -134,12 +135,12 @@ class SecureFlowServiceTest extends \PHPUnit_Framework_TestCase
     public function testGetSecureFlowReturnUrl()
     {
         $this->getRouterMock()
-            ->expects($this->once())
+            ->expects(self::once())
             ->method('generate')
             ->with('routerNameValue', [], Router::ABSOLUTE_URL)
             ->willReturn('http://foo.bar.com/return');
 
-        $this->assertEquals(
+        self::assertEquals(
             'http://foo.bar.com/return',
             $this->buildService('routerNameValue')->getSecureFlowReturnUrl()
         );
@@ -151,14 +152,14 @@ class SecureFlowServiceTest extends \PHPUnit_Framework_TestCase
         $payInMock->Id = 1234;
         $payInMock->Status = 'ERROR';
 
-        $secureFlowSessionMock = $this->getMock('Teknoo\MangoPayBundle\Entity\SecureFlowSession', [], [], '', false);
-        $secureFlowSessionMock->expects($this->once())->method('setPayInId')->with(1234)->willReturnSelf();
+        $secureFlowSessionMock = $this->createMock(SecureFlowSession::class);
+        $secureFlowSessionMock->expects(self::once())->method('setPayInId')->with(1234)->willReturnSelf();
 
-        $responseMock = $this->getMock('Symfony\Component\HttpFoundation\Response');
-        $responseMock->expects($this->never())->method('setStatusCode');
+        $responseMock = $this->createMock(Response::class);
+        $responseMock->expects(self::never())->method('setStatusCode');
 
         $service = $this->buildService('routerNameValue');
-        $this->assertEquals($service, $service->prepareSecureFlow($payInMock, $secureFlowSessionMock, $responseMock));
+        self::assertEquals($service, $service->prepareSecureFlow($payInMock, $secureFlowSessionMock, $responseMock));
     }
 
     public function testPrepareSecureFlowSuccess()
@@ -167,14 +168,14 @@ class SecureFlowServiceTest extends \PHPUnit_Framework_TestCase
         $payInMock->Id = 1234;
         $payInMock->Status = 'SUCCESSFULL';
 
-        $secureFlowSessionMock = $this->getMock('Teknoo\MangoPayBundle\Entity\SecureFlowSession', [], [], '', false);
-        $secureFlowSessionMock->expects($this->once())->method('setPayInId')->with(1234)->willReturnSelf();
+        $secureFlowSessionMock = $this->createMock(SecureFlowSession::class);
+        $secureFlowSessionMock->expects(self::once())->method('setPayInId')->with(1234)->willReturnSelf();
 
-        $responseMock = $this->getMock('Symfony\Component\HttpFoundation\Response');
-        $responseMock->expects($this->never())->method('setStatusCode');
+        $responseMock = $this->createMock(Response::class);
+        $responseMock->expects(self::never())->method('setStatusCode');
 
         $service = $this->buildService('routerNameValue');
-        $this->assertEquals($service, $service->prepareSecureFlow($payInMock, $secureFlowSessionMock, $responseMock));
+        self::assertEquals($service, $service->prepareSecureFlow($payInMock, $secureFlowSessionMock, $responseMock));
     }
 
     public function testPrepareSecureFlowCreatedWithoutDetail()
@@ -183,14 +184,14 @@ class SecureFlowServiceTest extends \PHPUnit_Framework_TestCase
         $payInMock->Id = 1234;
         $payInMock->Status = 'CREATED';
 
-        $secureFlowSessionMock = $this->getMock('Teknoo\MangoPayBundle\Entity\SecureFlowSession', [], [], '', false);
-        $secureFlowSessionMock->expects($this->once())->method('setPayInId')->with(1234)->willReturnSelf();
+        $secureFlowSessionMock = $this->createMock(SecureFlowSession::class);
+        $secureFlowSessionMock->expects(self::once())->method('setPayInId')->with(1234)->willReturnSelf();
 
-        $responseMock = $this->getMock('Symfony\Component\HttpFoundation\Response');
-        $responseMock->expects($this->never())->method('setStatusCode');
+        $responseMock = $this->createMock(Response::class);
+        $responseMock->expects(self::never())->method('setStatusCode');
 
         $service = $this->buildService('routerNameValue');
-        $this->assertEquals($service, $service->prepareSecureFlow($payInMock, $secureFlowSessionMock, $responseMock));
+        self::assertEquals($service, $service->prepareSecureFlow($payInMock, $secureFlowSessionMock, $responseMock));
     }
 
     public function testPrepareSecureFlowCreatedWithDetail()
@@ -202,18 +203,18 @@ class SecureFlowServiceTest extends \PHPUnit_Framework_TestCase
         $payInMock->Status = 'CREATED';
         $payInMock->ExecutionDetails = $payInDetail;
 
-        $secureFlowSessionMock = $this->getMock('Teknoo\MangoPayBundle\Entity\SecureFlowSession', [], [], '', false);
-        $secureFlowSessionMock->expects($this->once())->method('setPayInId')->with(1234)->willReturnSelf();
+        $secureFlowSessionMock = $this->createMock(SecureFlowSession::class);
+        $secureFlowSessionMock->expects(self::once())->method('setPayInId')->with(1234)->willReturnSelf();
 
         /*
          * @var Response|\PHPUnit_Framework_MockObject_MockObject
          */
-        $responseMock = $this->getMock('Symfony\Component\HttpFoundation\Response');
-        $responseMock->expects($this->once())->method('setStatusCode')->with(302)->willReturnSelf();
+        $responseMock = $this->getMockBuilder(Response::class)->getMock();
+        $responseMock->expects(self::once())->method('setStatusCode')->with(302)->willReturnSelf();
 
         $service = $this->buildService('routerNameValue');
-        $this->assertEquals($service, $service->prepareSecureFlow($payInMock, $secureFlowSessionMock, $responseMock));
-        $this->assertEquals($responseMock->headers->get('Location'), 'https://3d.secure.com/url');
+        self::assertEquals($service, $service->prepareSecureFlow($payInMock, $secureFlowSessionMock, $responseMock));
+        self::assertEquals($responseMock->headers->get('Location'), 'https://3d.secure.com/url');
     }
 
     /**
@@ -224,10 +225,10 @@ class SecureFlowServiceTest extends \PHPUnit_Framework_TestCase
         /*
          * @var Response|\PHPUnit_Framework_MockObject_MockObject
          */
-        $responseMock = $this->getMock('Symfony\Component\HttpFoundation\Response');
+        $responseMock = $this->createMock(Response::class);
 
         $this->getApiPayInsMock()
-            ->expects($this->once())
+            ->expects(self::once())
             ->method('Get')
             ->with(1234)
             ->willReturn(null);
@@ -240,27 +241,27 @@ class SecureFlowServiceTest extends \PHPUnit_Framework_TestCase
         /*
          * @var Response|\PHPUnit_Framework_MockObject_MockObject
          */
-        $responseMock = $this->getMock('Symfony\Component\HttpFoundation\Response');
+        $responseMock = $this->createMock(Response::class);
 
         $payInMock = new PayIn();
         $payInMock->Id = 1234;
         $payInMock->Status = 'ERROR';
 
         $this->getApiPayInsMock()
-            ->expects($this->once())
+            ->expects(self::once())
             ->method('Get')
             ->with(1234)
             ->willReturn($payInMock);
 
-        $secureFlowSessionMock = $this->getMock('Teknoo\MangoPayBundle\Entity\SecureFlowSession', [], [], '', false);
+        $secureFlowSessionMock = $this->createMock(SecureFlowSession::class);
         $this->getStorageServiceInterfaceMock()
-            ->expects($this->once())
+            ->expects(self::once())
             ->method('get')
             ->with('MANGO_SECURE_FLOW1234')
             ->willReturn($secureFlowSessionMock);
 
         $this->getEventDispatcherInterfaceMock()
-            ->expects($this->once())
+            ->expects(self::once())
             ->method('dispatch')
             ->with(
                 MangoPayEvents::SECURE_FLOW_ERROR,
@@ -275,27 +276,27 @@ class SecureFlowServiceTest extends \PHPUnit_Framework_TestCase
         /*
          * @var Response|\PHPUnit_Framework_MockObject_MockObject
          */
-        $responseMock = $this->getMock('Symfony\Component\HttpFoundation\Response');
+        $responseMock = $this->createMock(Response::class);
 
         $payInMock = new PayIn();
         $payInMock->Id = 1234;
         $payInMock->Status = 'SUCCEEDED';
 
         $this->getApiPayInsMock()
-            ->expects($this->once())
+            ->expects(self::once())
             ->method('Get')
             ->with(1234)
             ->willReturn($payInMock);
 
-        $secureFlowSessionMock = $this->getMock('Teknoo\MangoPayBundle\Entity\SecureFlowSession', [], [], '', false);
+        $secureFlowSessionMock = $this->createMock(SecureFlowSession::class);
         $this->getStorageServiceInterfaceMock()
-            ->expects($this->once())
+            ->expects(self::once())
             ->method('get')
             ->with('MANGO_SECURE_FLOW1234')
             ->willReturn($secureFlowSessionMock);
 
         $this->getEventDispatcherInterfaceMock()
-            ->expects($this->once())
+            ->expects(self::once())
             ->method('dispatch')
             ->with(
                 MangoPayEvents::SECURE_FLOW_SUCCESS,

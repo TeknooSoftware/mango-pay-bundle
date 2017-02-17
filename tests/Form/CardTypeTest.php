@@ -23,6 +23,7 @@ namespace Teknoo\MangoPayBundle\Tests\Form;
 
 use Symfony\Component\Form\Extension\Core\Type\HiddenType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Form\FormBuilderInterface;
 use Teknoo\MangoPayBundle\Form\Type\CardType;
 
 /**
@@ -36,7 +37,7 @@ use Teknoo\MangoPayBundle\Form\Type\CardType;
  * @license     http://teknoo.software/license/mit         MIT License
  * @author      Richard Déloge <richarddeloge@gmail.com>
  *
- * @covers Teknoo\MangoPayBundle\Form\Type\CardType
+ * @covers \Teknoo\MangoPayBundle\Form\Type\CardType
  */
 class CardTypeTest extends \PHPUnit_Framework_TestCase
 {
@@ -50,7 +51,7 @@ class CardTypeTest extends \PHPUnit_Framework_TestCase
 
     public function testBuildForm()
     {
-        $builderMock = $this->getMock('Symfony\Component\Form\FormBuilderInterface', [], [], '', false);
+        $builderMock = $this->createMock(FormBuilderInterface::class);
         $neededFields = array_flip(['data', 'accessKeyRef', 'returnURL', 'cardNumber', 'cardExpirationDate', 'cardCvx']);
         $builderMock
             ->expects($this->atLeast(6))
@@ -62,29 +63,29 @@ class CardTypeTest extends \PHPUnit_Framework_TestCase
 
                         switch ($name) {
                             case 'data':
-                                $this->assertEquals(HiddenType::class, $type);
-                                $this->assertTrue($options['mapped']);
+                                self::assertEquals(HiddenType::class, $type);
+                                self::assertTrue($options['mapped']);
                                 break;
                             case 'accessKeyRef':
-                                $this->assertEquals(HiddenType::class, $type);
-                                $this->assertTrue($options['mapped']);
+                                self::assertEquals(HiddenType::class, $type);
+                                self::assertTrue($options['mapped']);
                                 break;
                             case 'returnURL':
-                                $this->assertEquals(HiddenType::class, $type);
-                                $this->assertTrue($options['mapped']);
+                                self::assertEquals(HiddenType::class, $type);
+                                self::assertTrue($options['mapped']);
                                 break;
                             case 'cardNumber':
-                                $this->assertEquals(TextType::class, $type);
-                                $this->assertFalse($options['mapped']);
+                                self::assertEquals(TextType::class, $type);
+                                self::assertFalse($options['mapped']);
                                 break;
                             case 'cardExpirationDate':
-                                $this->assertEquals(TextType::class, $type);
-                                $this->assertFalse($options['mapped']);
-                                $this->assertEquals('[0-1]{1}[0-9]{1}[0-9]{2}', $options['attr']['pattern']);
+                                self::assertEquals(TextType::class, $type);
+                                self::assertFalse($options['mapped']);
+                                self::assertEquals('[0-1]{1}[0-9]{1}[0-9]{2}', $options['attr']['pattern']);
                                 break;
                             case 'cardCvx':
-                                $this->assertEquals(TextType::class, $type);
-                                $this->assertFalse($options['mapped']);
+                                self::assertEquals(TextType::class, $type);
+                                self::assertFalse($options['mapped']);
                                 break;
                         }
                     }
@@ -101,6 +102,6 @@ class CardTypeTest extends \PHPUnit_Framework_TestCase
 
     public function testGetNameNull()
     {
-        $this->assertNull($this->buildService()->getName());
+        self::assertNull($this->buildService()->getName());
     }
 }

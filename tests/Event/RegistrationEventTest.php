@@ -37,7 +37,7 @@ use Teknoo\MangoPayBundle\Event\RegistrationEvent;
  * @license     http://teknoo.software/license/mit         MIT License
  * @author      Richard Déloge <richarddeloge@gmail.com>
  *
- * @covers Teknoo\MangoPayBundle\Event\RegistrationEvent
+ * @covers \Teknoo\MangoPayBundle\Event\RegistrationEvent
  */
 class RegistrationEventTest extends \PHPUnit_Framework_TestCase
 {
@@ -62,7 +62,7 @@ class RegistrationEventTest extends \PHPUnit_Framework_TestCase
     protected function getCardRegistrationSessionMock()
     {
         if (!$this->registrationSessionMock instanceof CardRegistrationSession) {
-            $this->registrationSessionMock = $this->getMock('Teknoo\MangoPayBundle\Entity\CardRegistrationSession', [], [], '', false);
+            $this->registrationSessionMock = $this->createMock(CardRegistrationSession::class);
         }
 
         return $this->registrationSessionMock;
@@ -74,7 +74,7 @@ class RegistrationEventTest extends \PHPUnit_Framework_TestCase
     protected function getCardRegistrationMock()
     {
         if (!$this->cardRegistrationMock instanceof CardRegistration) {
-            $this->cardRegistrationMock = $this->getMock('MangoPay\CardRegistration', [], [], '', false);
+            $this->cardRegistrationMock = $this->createMock(CardRegistration::class);
         }
 
         return $this->cardRegistrationMock;
@@ -86,7 +86,7 @@ class RegistrationEventTest extends \PHPUnit_Framework_TestCase
     protected function getResponseMock()
     {
         if (!$this->responseMock instanceof Response) {
-            $this->responseMock = $this->getMock('Symfony\Component\HttpFoundation\Response', [], [], '', false);
+            $this->responseMock = $this->createMock(Response::class);
         }
 
         return $this->responseMock;
@@ -106,7 +106,7 @@ class RegistrationEventTest extends \PHPUnit_Framework_TestCase
 
     public function testGetResponse()
     {
-        $this->assertEquals(
+        self::assertEquals(
             $this->getResponseMock(),
             $this->buildService()->getResponse()
         );
@@ -114,7 +114,7 @@ class RegistrationEventTest extends \PHPUnit_Framework_TestCase
 
     public function testGetRegistrationSession()
     {
-        $this->assertEquals(
+        self::assertEquals(
             $this->getCardRegistrationSessionMock(),
             $this->buildService()->getRegistrationSession()
         );
@@ -122,7 +122,7 @@ class RegistrationEventTest extends \PHPUnit_Framework_TestCase
 
     public function testGetCardRegistration()
     {
-        $this->assertEquals(
+        self::assertEquals(
             $this->getCardRegistrationMock(),
             $this->buildService()->getCardRegistration()
         );

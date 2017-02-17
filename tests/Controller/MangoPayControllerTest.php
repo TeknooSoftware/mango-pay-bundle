@@ -37,8 +37,8 @@ use Teknoo\MangoPayBundle\Service\SecureFlowService;
  * @license     http://teknoo.software/license/mit         MIT License
  * @author      Richard Déloge <richarddeloge@gmail.com>
  *
- * @covers Teknoo\MangoPayBundle\Controller\MangoPayController
- * @covers Teknoo\MangoPayBundle\TeknooMangoPayBundle
+ * @covers \Teknoo\MangoPayBundle\Controller\MangoPayController
+ * @covers \Teknoo\MangoPayBundle\TeknooMangoPayBundle
  */
 class MangoPayControllerTest extends WebTestCase
 {
@@ -58,7 +58,7 @@ class MangoPayControllerTest extends WebTestCase
     protected function getCardRegistrationServiceMock()
     {
         if (!$this->cardRegistrationServiceMock instanceof CardRegistrationService) {
-            $this->cardRegistrationServiceMock = $this->getMock('Teknoo\MangoPayBundle\Service\CardRegistrationService', [], [], '', false);
+            $this->cardRegistrationServiceMock = $this->createMock(CardRegistrationService::class);
         }
 
         return $this->cardRegistrationServiceMock;
@@ -70,7 +70,7 @@ class MangoPayControllerTest extends WebTestCase
     protected function getSecureFlowServiceMock()
     {
         if (!$this->secureFlowServiceMock instanceof SecureFlowService) {
-            $this->secureFlowServiceMock = $this->getMock('Teknoo\MangoPayBundle\Service\SecureFlowService', [], [], '', false);
+            $this->secureFlowServiceMock = $this->createMock(SecureFlowService::class);
         }
 
         return $this->secureFlowServiceMock;
@@ -84,11 +84,11 @@ class MangoPayControllerTest extends WebTestCase
         $container->set('teknoo.mangopaybundle.service.card_registration', $this->getCardRegistrationServiceMock());
 
         $this->getCardRegistrationServiceMock()
-            ->expects($this->never())
+            ->expects(self::never())
             ->method('processMangoPayValidReturn');
 
         $this->getCardRegistrationServiceMock()
-            ->expects($this->once())
+            ->expects(self::once())
             ->method('processMangoPayError')
             ->with(
                 'registrationSessionIdValue',
@@ -102,7 +102,7 @@ class MangoPayControllerTest extends WebTestCase
 
         $client->request('GET', '/mango-pay/card-registration/return/registrationSessionIdValue?errorCode=errorValue');
 
-        $this->assertEquals('https://foo.bar.com', $client->getResponse()->headers->get('Location'));
+        self::assertEquals('https://foo.bar.com', $client->getResponse()->headers->get('Location'));
     }
 
     public function testCardRegistrationReturnActionErrorEmpty()
@@ -113,11 +113,11 @@ class MangoPayControllerTest extends WebTestCase
         $container->set('teknoo.mangopaybundle.service.card_registration', $this->getCardRegistrationServiceMock());
 
         $this->getCardRegistrationServiceMock()
-            ->expects($this->never())
+            ->expects(self::never())
             ->method('processMangoPayValidReturn');
 
         $this->getCardRegistrationServiceMock()
-            ->expects($this->once())
+            ->expects(self::once())
             ->method('processMangoPayError')
             ->with(
                 'registrationSessionIdValue',
@@ -131,7 +131,7 @@ class MangoPayControllerTest extends WebTestCase
 
         $client->request('GET', '/mango-pay/card-registration/return/registrationSessionIdValue');
 
-        $this->assertEquals('https://foo.bar.com', $client->getResponse()->headers->get('Location'));
+        self::assertEquals('https://foo.bar.com', $client->getResponse()->headers->get('Location'));
     }
 
     public function testCardRegistrationReturnActionSuccess()
@@ -142,11 +142,11 @@ class MangoPayControllerTest extends WebTestCase
         $container->set('teknoo.mangopaybundle.service.card_registration', $this->getCardRegistrationServiceMock());
 
         $this->getCardRegistrationServiceMock()
-            ->expects($this->never())
+            ->expects(self::never())
             ->method('processMangoPayError');
 
         $this->getCardRegistrationServiceMock()
-            ->expects($this->once())
+            ->expects(self::once())
             ->method('processMangoPayValidReturn')
             ->with(
                 'registrationSessionIdValue',
@@ -160,7 +160,7 @@ class MangoPayControllerTest extends WebTestCase
 
         $client->request('GET', '/mango-pay/card-registration/return/registrationSessionIdValue?data=dataValue');
 
-        $this->assertEquals('https://foo.bar.com', $client->getResponse()->headers->get('Location'));
+        self::assertEquals('https://foo.bar.com', $client->getResponse()->headers->get('Location'));
     }
 
     public function testSecureFlowReturnActionError()
@@ -171,12 +171,12 @@ class MangoPayControllerTest extends WebTestCase
         $container->set('teknoo.mangopaybundle.service.secure_flow', $this->getSecureFlowServiceMock());
 
         $this->getSecureFlowServiceMock()
-            ->expects($this->never())
+            ->expects(self::never())
             ->method('processMangoPayReturn');
 
         $client->request('GET', '/mango-pay/3dsecure/return');
 
-        $this->assertNull($client->getResponse()->headers->get('Location'));
+        self::assertNull($client->getResponse()->headers->get('Location'));
     }
 
     public function testSecureFlowReturnActionSuccess()
@@ -187,7 +187,7 @@ class MangoPayControllerTest extends WebTestCase
         $container->set('teknoo.mangopaybundle.service.secure_flow', $this->getSecureFlowServiceMock());
 
         $this->getSecureFlowServiceMock()
-            ->expects($this->once())
+            ->expects(self::once())
             ->method('processMangoPayReturn')
             ->with(
                 'transactionIdValue',
@@ -200,6 +200,6 @@ class MangoPayControllerTest extends WebTestCase
 
         $client->request('GET', '/mango-pay/3dsecure/return?transactionId=transactionIdValue');
 
-        $this->assertEquals('https://foo.bar.com', $client->getResponse()->headers->get('Location'));
+        self::assertEquals('https://foo.bar.com', $client->getResponse()->headers->get('Location'));
     }
 }

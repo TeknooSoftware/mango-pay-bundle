@@ -35,7 +35,7 @@ use Teknoo\MangoPayBundle\Service\SessionStorageService;
  * @license     http://teknoo.software/license/mit         MIT License
  * @author      Richard Déloge <richarddeloge@gmail.com>
  *
- * @covers Teknoo\MangoPayBundle\Service\SessionStorageService
+ * @covers \Teknoo\MangoPayBundle\Service\SessionStorageService
  */
 class SessionStorageServiceTest extends \PHPUnit_Framework_TestCase
 {
@@ -50,7 +50,7 @@ class SessionStorageServiceTest extends \PHPUnit_Framework_TestCase
     protected function getSessionInterfaceMock()
     {
         if (!$this->sessionMock instanceof SessionInterface) {
-            $this->sessionMock = $this->getMock('Symfony\Component\HttpFoundation\Session\SessionInterface', [], [], '', false);
+            $this->sessionMock = $this->createMock(SessionInterface::class);
         }
 
         return $this->sessionMock;
@@ -69,11 +69,11 @@ class SessionStorageServiceTest extends \PHPUnit_Framework_TestCase
     public function testAll()
     {
         $this->getSessionInterfaceMock()
-            ->expects($this->once())
+            ->expects(self::once())
             ->method('all')
             ->willReturn(['foo' => 'bar']);
 
-        $this->assertEquals(
+        self::assertEquals(
             ['foo' => 'bar'],
             $this->buildService()->all()
         );
@@ -82,12 +82,12 @@ class SessionStorageServiceTest extends \PHPUnit_Framework_TestCase
     public function testGet()
     {
         $this->getSessionInterfaceMock()
-            ->expects($this->once())
+            ->expects(self::once())
             ->method('get')
             ->with('fooBar')
             ->willReturn('Value');
 
-        $this->assertEquals(
+        self::assertEquals(
             'Value',
             $this->buildService()->get('fooBar')
         );
@@ -96,13 +96,13 @@ class SessionStorageServiceTest extends \PHPUnit_Framework_TestCase
     public function testSet()
     {
         $this->getSessionInterfaceMock()
-            ->expects($this->once())
+            ->expects(self::once())
             ->method('set')
             ->with('fooBar', 'Value')
             ->willReturn('Value');
 
         $service = $this->buildService();
-        $this->assertEquals(
+        self::assertEquals(
             $service,
             $service->set('fooBar', 'Value')
         );
@@ -111,12 +111,12 @@ class SessionStorageServiceTest extends \PHPUnit_Framework_TestCase
     public function testHasTrue()
     {
         $this->getSessionInterfaceMock()
-            ->expects($this->once())
+            ->expects(self::once())
             ->method('has')
             ->with('fooBar')
             ->willReturn(true);
 
-        $this->assertTrue(
+        self::assertTrue(
             $this->buildService()->has('fooBar')
         );
     }
@@ -124,12 +124,12 @@ class SessionStorageServiceTest extends \PHPUnit_Framework_TestCase
     public function testHasFalse()
     {
         $this->getSessionInterfaceMock()
-            ->expects($this->once())
+            ->expects(self::once())
             ->method('has')
             ->with('fooBar')
             ->willReturn(false);
 
-        $this->assertFalse(
+        self::assertFalse(
             $this->buildService()->has('fooBar')
         );
     }

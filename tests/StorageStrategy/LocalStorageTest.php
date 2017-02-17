@@ -21,6 +21,7 @@
  */
 namespace Teknoo\MangoPayBundle\Tests\StorageStrategy;
 
+use MangoPay\Libraries\OAuthToken;
 use Teknoo\MangoPayBundle\StorageStrategy\LocalStorage;
 
 /**
@@ -34,7 +35,7 @@ use Teknoo\MangoPayBundle\StorageStrategy\LocalStorage;
  * @license     http://teknoo.software/license/mit         MIT License
  * @author      Richard Déloge <richarddeloge@gmail.com>
  *
- * @covers Teknoo\MangoPayBundle\StorageStrategy\LocalStorage
+ * @covers \Teknoo\MangoPayBundle\StorageStrategy\LocalStorage
  */
 class LocalStorageTest extends \PHPUnit_Framework_TestCase
 {
@@ -50,15 +51,15 @@ class LocalStorageTest extends \PHPUnit_Framework_TestCase
     {
         $localStorage = $this->buildService();
 
-        $OAuthMock = $this->getMock('MangoPay\Libraries\OAuthToken', [], [], '', false);
-        $OAuthMock2 = $this->getMock('MangoPay\Libraries\OAuthToken', [], [], '', false);
+        $OAuthMock = $this->createMock(OAuthToken::class);
+        $OAuthMock2 = $this->createMock(OAuthToken::class);
 
-        $this->assertNull($localStorage->Get());
-        $this->assertEquals($localStorage, $localStorage->Store($OAuthMock));
-        $this->assertEquals($OAuthMock, $localStorage->Get());
-        $this->assertEquals($OAuthMock, $localStorage->Get());
-        $this->assertEquals($OAuthMock, $localStorage->Get());
-        $this->assertEquals($localStorage, $localStorage->Store($OAuthMock2));
-        $this->assertEquals($OAuthMock2, $localStorage->Get());
+        self::assertNull($localStorage->Get());
+        self::assertEquals($localStorage, $localStorage->Store($OAuthMock));
+        self::assertEquals($OAuthMock, $localStorage->Get());
+        self::assertEquals($OAuthMock, $localStorage->Get());
+        self::assertEquals($OAuthMock, $localStorage->Get());
+        self::assertEquals($localStorage, $localStorage->Store($OAuthMock2));
+        self::assertEquals($OAuthMock2, $localStorage->Get());
     }
 }

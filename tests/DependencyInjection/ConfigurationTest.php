@@ -34,7 +34,7 @@ use Teknoo\MangoPayBundle\DependencyInjection\Configuration;
  * @license     http://teknoo.software/license/mit         MIT License
  * @author      Richard Déloge <richarddeloge@gmail.com>
  *
- * @covers Teknoo\MangoPayBundle\DependencyInjection\Configuration
+ * @covers \Teknoo\MangoPayBundle\DependencyInjection\Configuration
  */
 class ConfigurationTest extends \PHPUnit_Framework_TestCase
 {
@@ -51,6 +51,6 @@ class ConfigurationTest extends \PHPUnit_Framework_TestCase
         $configuration = $this->buildConfiguration();
         $treeBuilder = $configuration->getConfigTreeBuilder();
 
-        $this->assertInstanceOf('Symfony\Component\Config\Definition\Builder\TreeBuilder', $treeBuilder);
+        self::assertInstanceOf('Symfony\Component\Config\Definition\Builder\TreeBuilder', $treeBuilder);
     }
 }

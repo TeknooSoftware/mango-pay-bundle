@@ -21,6 +21,7 @@
  */
 namespace Teknoo\MangoPayBundle\Tests\DependencyInjection;
 
+use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Teknoo\MangoPayBundle\DependencyInjection\TeknooMangoPayExtension;
 
 /**
@@ -34,7 +35,7 @@ use Teknoo\MangoPayBundle\DependencyInjection\TeknooMangoPayExtension;
  * @license     http://teknoo.software/license/mit         MIT License
  * @author      Richard Déloge <richarddeloge@gmail.com>
  *
- * @covers Teknoo\MangoPayBundle\DependencyInjection\TeknooMangoPayExtension
+ * @covers \Teknoo\MangoPayBundle\DependencyInjection\TeknooMangoPayExtension
  */
 class TeknooMangoPayExtensionTest extends \PHPUnit_Framework_TestCase
 {
@@ -48,7 +49,7 @@ class TeknooMangoPayExtensionTest extends \PHPUnit_Framework_TestCase
 
     public function testLoad()
     {
-        $containerMock = $this->getMock('Symfony\Component\DependencyInjection\ContainerBuilder', [], [], '', false);
+        $containerMock = $this->createMock(ContainerBuilder::class);
 
         $containerMock->expects($this->atLeastOnce())->method('setParameter');
         $containerMock->expects($this->atLeastOnce())->method('setDefinition');

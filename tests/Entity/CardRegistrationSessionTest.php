@@ -20,6 +20,7 @@
  * @author      Richard Déloge <richarddeloge@gmail.com>
  */
 namespace Teknoo\MangoPayBundle\Tests\Entity;
+use Teknoo\MangoPayBundle\Entity\Interfaces\User\UserInterface;
 
 /**
  * Class CardRegistrationSessionTest.
@@ -32,7 +33,7 @@ namespace Teknoo\MangoPayBundle\Tests\Entity;
  * @license     http://teknoo.software/license/mit         MIT License
  * @author      Richard Déloge <richarddeloge@gmail.com>
  *
- * @covers Teknoo\MangoPayBundle\Entity\CardRegistrationSession
+ * @covers \Teknoo\MangoPayBundle\Entity\CardRegistrationSession
  */
 class CardRegistrationSessionTest extends \PHPUnit_Framework_TestCase
 {
@@ -50,7 +51,7 @@ class CardRegistrationSessionTest extends \PHPUnit_Framework_TestCase
 
     public function testUser()
     {
-        $userMock = $this->getMock('Teknoo\MangoPayBundle\Entity\Interfaces\User\UserInterface');
+        $userMock = $this->createMock(UserInterface::class);
         $this->checkGetter('user', $userMock);
         $this->checkSetter('user', $userMock);
     }

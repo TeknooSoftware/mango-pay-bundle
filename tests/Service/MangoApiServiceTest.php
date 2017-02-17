@@ -22,6 +22,7 @@
 namespace Teknoo\MangoPayBundle\Tests\Service;
 
 use MangoPay\Libraries\IStorageStrategy;
+use MangoPay\Libraries\OAuthToken;
 use MangoPay\MangoPayApi;
 use Teknoo\MangoPayBundle\Service\MangoApiService;
 
@@ -36,7 +37,7 @@ use Teknoo\MangoPayBundle\Service\MangoApiService;
  * @license     http://teknoo.software/license/mit         MIT License
  * @author      Richard Déloge <richarddeloge@gmail.com>
  *
- * @covers Teknoo\MangoPayBundle\Service\MangoApiService
+ * @covers \Teknoo\MangoPayBundle\Service\MangoApiService
  */
 class MangoApiServiceTest extends \PHPUnit_Framework_TestCase
 {
@@ -56,7 +57,7 @@ class MangoApiServiceTest extends \PHPUnit_Framework_TestCase
     protected function getMangoPayApiMock()
     {
         if (!$this->apiMock instanceof MangoPayApi) {
-            $this->apiMock = $this->getMock('MangoPay\MangoPayApi');
+            $this->apiMock = $this->getMockBuilder(MangoPayApi::class)->getMock();
         }
 
         return $this->apiMock;
@@ -68,7 +69,7 @@ class MangoApiServiceTest extends \PHPUnit_Framework_TestCase
     protected function getIStorageStrategyMock()
     {
         if (!$this->storageStrategyMock instanceof IStorageStrategy) {
-            $this->storageStrategyMock = $this->getMock('MangoPay\Libraries\IStorageStrategy');
+            $this->storageStrategyMock = $this->createMock(IStorageStrategy::class);
         }
 
         return $this->storageStrategyMock;
@@ -99,40 +100,40 @@ class MangoApiServiceTest extends \PHPUnit_Framework_TestCase
         $this->buildService('clientIdValue', 'clientPassPhraseValue', 'http://foo.bar.com', true);
         $api = $this->getMangoPayApiMock();
         $config = $api->Config;
-        $this->assertEquals('clientIdValue', $config->ClientId);
-        $this->assertEquals('clientPassPhraseValue', $config->ClientPassword);
-        $this->assertEquals('http://foo.bar.com', $config->BaseUrl);
-        $this->assertEquals(true, $config->DebugMode);
+        self::assertEquals('clientIdValue', $config->ClientId);
+        self::assertEquals('clientPassPhraseValue', $config->ClientPassword);
+        self::assertEquals('http://foo.bar.com', $config->BaseUrl);
+        self::assertEquals(true, $config->DebugMode);
 
-        $tokenMock = $this->getMock('MangoPay\Libraries\OAuthToken', [], [], '', false);
-        $this->getIStorageStrategyMock()->expects($this->once())->method('Store')->with($tokenMock);
+        $tokenMock = $this->createMock(OAuthToken::class);
+        $this->getIStorageStrategyMock()->expects(self::once())->method('Store')->with($tokenMock);
         $api->OAuthTokenManager->StoreToken($tokenMock);
     }
 
     public function testGetClientId()
     {
         $service = $this->buildService('clientIdValue', 'clientPassPhraseValue', 'http://foo.bar.com', true);
-        $this->assertEquals('clientIdValue', $service->getClientId());
+        self::assertEquals('clientIdValue', $service->getClientId());
     }
 
     public function testGetBaseUrl()
     {
         $service = $this->buildService('clientIdValue', 'clientPassPhraseValue', 'http://foo.bar.com', true);
-        $this->assertEquals('http://foo.bar.com', $service->getBaseUrl());
+        self::assertEquals('http://foo.bar.com', $service->getBaseUrl());
     }
 
     public function testIsDebugMode()
     {
         $service = $this->buildService('clientIdValue', 'clientPassPhraseValue', 'http://foo.bar.com', true);
-        $this->assertTrue($service->isDebugMode());
+        self::assertTrue($service->isDebugMode());
         $service = $this->buildService('clientIdValue', 'clientPassPhraseValue', 'http://foo.bar.com', false);
-        $this->assertFalse($service->isDebugMode());
+        self::assertFalse($service->isDebugMode());
     }
 
     public function testGetApiUsers()
     {
         $service = $this->buildService('clientIdValue', 'clientPassPhraseValue', 'http://foo.bar.com', true);
-        $this->assertSame(
+        self::assertSame(
             $this->getMangoPayApiMock()->Users,
             $service->getApiUsers()
         );
@@ -141,7 +142,7 @@ class MangoApiServiceTest extends \PHPUnit_Framework_TestCase
     public function testGetApiWallets()
     {
         $service = $this->buildService('clientIdValue', 'clientPassPhraseValue', 'http://foo.bar.com', true);
-        $this->assertSame(
+        self::assertSame(
             $this->getMangoPayApiMock()->Wallets,
             $service->getApiWallets()
         );
@@ -150,7 +151,7 @@ class MangoApiServiceTest extends \PHPUnit_Framework_TestCase
     public function testGetApiPayIns()
     {
         $service = $this->buildService('clientIdValue', 'clientPassPhraseValue', 'http://foo.bar.com', true);
-        $this->assertSame(
+        self::assertSame(
             $this->getMangoPayApiMock()->PayIns,
             $service->getApiPayIns()
         );
@@ -159,7 +160,7 @@ class MangoApiServiceTest extends \PHPUnit_Framework_TestCase
     public function testGetApiPayOuts()
     {
         $service = $this->buildService('clientIdValue', 'clientPassPhraseValue', 'http://foo.bar.com', true);
-        $this->assertSame(
+        self::assertSame(
             $this->getMangoPayApiMock()->PayOuts,
             $service->getApiPayOuts()
         );
@@ -168,7 +169,7 @@ class MangoApiServiceTest extends \PHPUnit_Framework_TestCase
     public function testGetApiTransferts()
     {
         $service = $this->buildService('clientIdValue', 'clientPassPhraseValue', 'http://foo.bar.com', true);
-        $this->assertSame(
+        self::assertSame(
             $this->getMangoPayApiMock()->Transfers,
             $service->getApiTransferts()
         );
@@ -177,7 +178,7 @@ class MangoApiServiceTest extends \PHPUnit_Framework_TestCase
     public function testGetApiCards()
     {
         $service = $this->buildService('clientIdValue', 'clientPassPhraseValue', 'http://foo.bar.com', true);
-        $this->assertSame(
+        self::assertSame(
             $this->getMangoPayApiMock()->Cards,
             $service->getApiCards()
         );
@@ -186,7 +187,7 @@ class MangoApiServiceTest extends \PHPUnit_Framework_TestCase
     public function testGetApiCardPreAuthorizations()
     {
         $service = $this->buildService('clientIdValue', 'clientPassPhraseValue', 'http://foo.bar.com', true);
-        $this->assertSame(
+        self::assertSame(
             $this->getMangoPayApiMock()->CardPreAuthorizations,
             $service->getApiCardPreAuthorizations()
         );
@@ -195,7 +196,7 @@ class MangoApiServiceTest extends \PHPUnit_Framework_TestCase
     public function testGetApiCardRegistrations()
     {
         $service = $this->buildService('clientIdValue', 'clientPassPhraseValue', 'http://foo.bar.com', true);
-        $this->assertSame(
+        self::assertSame(
             $this->getMangoPayApiMock()->CardRegistrations,
             $service->getApiCardRegistrations()
         );
@@ -204,7 +205,7 @@ class MangoApiServiceTest extends \PHPUnit_Framework_TestCase
     public function testGetApiRefunds()
     {
         $service = $this->buildService('clientIdValue', 'clientPassPhraseValue', 'http://foo.bar.com', true);
-        $this->assertSame(
+        self::assertSame(
             $this->getMangoPayApiMock()->Refunds,
             $service->getApiRefunds()
         );

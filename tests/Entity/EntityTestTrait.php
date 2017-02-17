@@ -125,7 +125,7 @@ trait EntityTestTrait
 
             //Test with a tested value
             $entityInstance = $this->buildEntity([$propertyName => $testValue]);
-            $this->assertEquals($testValue, $entityInstance->{$getterName}());
+            self::assertEquals($testValue, $entityInstance->{$getterName}());
         } else {
             $this->fail(sprintf('Error, property %s is not available for %s', $propertyName, $entityClassName));
         }
@@ -157,9 +157,9 @@ trait EntityTestTrait
 
             //Test with a tested value
             $entityInstance = $this->buildEntity();
-            $this->assertSame($entityInstance, $entityInstance->{$setterName}($testValue));
+            self::assertSame($entityInstance, $entityInstance->{$setterName}($testValue));
             $propertyObject->setAccessible(true);
-            $this->assertEquals($testValue, $propertyObject->getValue($entityInstance));
+            self::assertEquals($testValue, $propertyObject->getValue($entityInstance));
         } else {
             $this->fail(sprintf('Error, property %s is not available for %s', $propertyName, $entityClassName));
         }
