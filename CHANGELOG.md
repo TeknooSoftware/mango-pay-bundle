@@ -1,6 +1,6 @@
 #Teknoo Software - Mango Pay Bundle - Change Log
 
-###[1.0.5] - 2017-02-17
+###[1.0.5] - 2017-02-18
 ###Fix
 - Code style fix
 - License file follow Github specs
