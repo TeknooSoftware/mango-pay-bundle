@@ -4,6 +4,9 @@
 ###Removed
 - Remove support of PHP 5.6, because Doctrine stop support PHP 5.x
 
+###Updated
+- Set methods GET for _teknoo_mangopay_secure_flow_return and _teknoo_mangopay_card_regitration_return
+
 ###[1.0.5] - 2017-02-18
 ###Fix
 - Code style fix
