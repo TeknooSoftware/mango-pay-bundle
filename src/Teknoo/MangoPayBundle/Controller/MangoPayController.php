@@ -24,7 +24,7 @@ use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 class MangoPayController extends Controller
 {
     /**
-     * @Route("/card-registration/return/{registrationSessionId}", name="_teknoo_mangopay_card_regitration_return")
+     * @Route("/card-registration/return/{registrationSessionId}", methods={"GET"}, name="_teknoo_mangopay_card_regitration_return")
      *
      * @param Request $request
      * @param string  $registrationSessionId
@@ -58,7 +58,7 @@ class MangoPayController extends Controller
     }
 
     /**
-     * @Route("/3dsecure/return", name="_teknoo_mangopay_secure_flow_return")
+     * @Route("/3dsecure/return", name="_teknoo_mangopay_secure_flow_return", methods={"GET"})
      *
      * @param Request $request
      *
