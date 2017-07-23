@@ -19,6 +19,7 @@
     "require-dev": {
         "doctrine/common": "<2.8",
         "doctrine/annotations": "<1.5",
+        "doctrine/cache": "<1.7",
         "squizlabs/php_codesniffer": "~2.8",
         "pdepend/pdepend": "~2.5",
         "phpmd/phpmd": "~2.6",
