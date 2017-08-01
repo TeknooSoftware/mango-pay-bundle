@@ -35,7 +35,7 @@ use Teknoo\MangoPayBundle\Entity\Interfaces\User\UserInterface;
  *
  * @covers \Teknoo\MangoPayBundle\Entity\CardRegistrationSession
  */
-class CardRegistrationSessionTest extends \PHPUnit_Framework_TestCase
+class CardRegistrationSessionTest extends \PHPUnit\Framework\TestCase
 {
     use EntityTestTrait;
 

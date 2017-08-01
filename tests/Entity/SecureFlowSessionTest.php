@@ -35,7 +35,7 @@ use Teknoo\MangoPayBundle\Entity\Interfaces\User\UserInterface;
  *
  * @covers \Teknoo\MangoPayBundle\Entity\SecureFlowSession
  */
-class SecureFlowSessionTest extends \PHPUnit_Framework_TestCase
+class SecureFlowSessionTest extends \PHPUnit\Framework\TestCase
 {
     use EntityTestTrait;
 

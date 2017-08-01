@@ -41,7 +41,7 @@ use Teknoo\MangoPayBundle\Transcriber\UserTranscriber;
  *
  * @covers \Teknoo\MangoPayBundle\Transcriber\UserTranscriber
  */
-class UserTranscriberTest extends \PHPUnit_Framework_TestCase
+class UserTranscriberTest extends \PHPUnit\Framework\TestCase
 {
     /**
      * @return UserTranscriber

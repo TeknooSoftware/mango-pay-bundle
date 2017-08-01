@@ -39,7 +39,7 @@ use Teknoo\MangoPayBundle\Event\RegistrationEvent;
  *
  * @covers \Teknoo\MangoPayBundle\Event\RegistrationEvent
  */
-class RegistrationEventTest extends \PHPUnit_Framework_TestCase
+class RegistrationEventTest extends \PHPUnit\Framework\TestCase
 {
     /**
      * @var CardRegistrationSession

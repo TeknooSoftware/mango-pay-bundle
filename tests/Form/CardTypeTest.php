@@ -39,7 +39,7 @@ use Teknoo\MangoPayBundle\Form\Type\CardType;
  *
  * @covers \Teknoo\MangoPayBundle\Form\Type\CardType
  */
-class CardTypeTest extends \PHPUnit_Framework_TestCase
+class CardTypeTest extends \PHPUnit\Framework\TestCase
 {
     /**
      * @return CardType

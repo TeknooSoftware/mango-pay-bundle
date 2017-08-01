@@ -37,7 +37,7 @@ use Teknoo\MangoPayBundle\DependencyInjection\TeknooMangoPayExtension;
  *
  * @covers \Teknoo\MangoPayBundle\DependencyInjection\TeknooMangoPayExtension
  */
-class TeknooMangoPayExtensionTest extends \PHPUnit_Framework_TestCase
+class TeknooMangoPayExtensionTest extends \PHPUnit\Framework\TestCase
 {
     /**
      * @return TeknooMangoPayExtension

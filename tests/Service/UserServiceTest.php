@@ -40,7 +40,7 @@ use Teknoo\MangoPayBundle\Transcriber\UserTranscriber;
  *
  * @covers \Teknoo\MangoPayBundle\Service\UserService
  */
-class UserServiceTest extends \PHPUnit_Framework_TestCase
+class UserServiceTest extends \PHPUnit\Framework\TestCase
 {
     /**
      * @var ApiUsers

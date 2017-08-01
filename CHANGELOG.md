@@ -1,5 +1,9 @@
 #Teknoo Software - Mango Pay Bundle - Change Log
 
+###[1.0.7] - 2017-08-01
+###Updated
+- Update dev libraries used for this project and use now PHPUnit 6.2 for tests.
+
 ###[1.0.6] - 2017-07-23
 ###Removed
 - Remove support of PHP 5.6, because Doctrine stop support PHP 5.x

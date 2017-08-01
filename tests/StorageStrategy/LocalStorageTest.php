@@ -37,7 +37,7 @@ use Teknoo\MangoPayBundle\StorageStrategy\LocalStorage;
  *
  * @covers \Teknoo\MangoPayBundle\StorageStrategy\LocalStorage
  */
-class LocalStorageTest extends \PHPUnit_Framework_TestCase
+class LocalStorageTest extends \PHPUnit\Framework\TestCase
 {
     /**
      * @return LocalStorage

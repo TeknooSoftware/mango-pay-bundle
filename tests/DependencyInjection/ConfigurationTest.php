@@ -36,7 +36,7 @@ use Teknoo\MangoPayBundle\DependencyInjection\Configuration;
  *
  * @covers \Teknoo\MangoPayBundle\DependencyInjection\Configuration
  */
-class ConfigurationTest extends \PHPUnit_Framework_TestCase
+class ConfigurationTest extends \PHPUnit\Framework\TestCase
 {
     /**
      * @return Configuration

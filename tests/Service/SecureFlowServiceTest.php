@@ -46,7 +46,7 @@ use Teknoo\MangoPayBundle\Service\SecureFlowService;
  *
  * @covers \Teknoo\MangoPayBundle\Service\SecureFlowService
  */
-class SecureFlowServiceTest extends \PHPUnit_Framework_TestCase
+class SecureFlowServiceTest extends \PHPUnit\Framework\TestCase
 {
     /**
      * @var Router

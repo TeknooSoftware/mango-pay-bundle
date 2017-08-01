@@ -39,7 +39,7 @@ use Teknoo\MangoPayBundle\Service\MangoApiService;
  *
  * @covers \Teknoo\MangoPayBundle\Service\MangoApiService
  */
-class MangoApiServiceTest extends \PHPUnit_Framework_TestCase
+class MangoApiServiceTest extends \PHPUnit\Framework\TestCase
 {
     /**
      * @var MangoPayApi

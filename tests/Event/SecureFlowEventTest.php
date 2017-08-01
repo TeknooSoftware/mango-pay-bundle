@@ -39,7 +39,7 @@ use Teknoo\MangoPayBundle\Event\SecureFlowEvent;
  *
  * @covers \Teknoo\MangoPayBundle\Event\SecureFlowEvent
  */
-class SecureFlowEventTest extends \PHPUnit_Framework_TestCase
+class SecureFlowEventTest extends \PHPUnit\Framework\TestCase
 {
     /**
      * @var SecureFlowSession

@@ -47,7 +47,7 @@ use Teknoo\MangoPayBundle\Service\Interfaces\StorageServiceInterface;
  *
  * @covers \Teknoo\MangoPayBundle\Service\CardRegistrationService
  */
-class CardRegistrationServiceTest extends \PHPUnit_Framework_TestCase
+class CardRegistrationServiceTest extends \PHPUnit\Framework\TestCase
 {
     /**
      * @var ApiCardRegistrations

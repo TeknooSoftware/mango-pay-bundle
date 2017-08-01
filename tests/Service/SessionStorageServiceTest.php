@@ -37,7 +37,7 @@ use Teknoo\MangoPayBundle\Service\SessionStorageService;
  *
  * @covers \Teknoo\MangoPayBundle\Service\SessionStorageService
  */
-class SessionStorageServiceTest extends \PHPUnit_Framework_TestCase
+class SessionStorageServiceTest extends \PHPUnit\Framework\TestCase
 {
     /**
      * @var SessionInterface
