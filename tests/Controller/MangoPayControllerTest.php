@@ -21,10 +21,15 @@
  */
 namespace Teknoo\MangoPayBundle\Tests\Controller;
 
+use PHPUnit\Framework\TestCase;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 use Symfony\Component\HttpFoundation\Response;
 use Teknoo\MangoPayBundle\Service\CardRegistrationService;
 use Teknoo\MangoPayBundle\Service\SecureFlowService;
+
+if (!class_exists('\PHPUnit_Framework_TestCase', false)) {
+    \class_alias(TestCase::class, '\PHPUnit_Framework_TestCase');
+}
 
 /**
  * Class MangoPayControllerTest.
