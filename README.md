@@ -64,6 +64,11 @@ This library requires :
     * Symfony 2.7+
     * Mango Pay API
 
+Testing
+-------
+To make the bundle testable without connecting to the official API simply create a service named `mangopay.sdk.http_client`.
+This client must implement `MangoPay\Libraries\HttpBase`.
+
 Credits
 -------
 Richard Déloge - <richarddeloge@gmail.com> - Lead developer.

@@ -34,6 +34,8 @@ services:
   #mango pay sdk instance
   mangopay.sdk.mango_pay_api.service:
     class: "%mangopay.sdk.mango_pay_api.class%"
+    calls:
+      - [setHttpClient, ['@?mangopay.sdk.http_client']]
 
   mangopay.sdk.api_user.service:
       class: "%mangopay.sdk.api_user.class%"
