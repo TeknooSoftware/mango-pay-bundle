@@ -206,4 +206,84 @@ class MangoApiService
     {
         return $this->api->Refunds;
     }
+
+    /**
+     * @return \MangoPay\ApiBankingAliases
+     */
+    public function getApiBankingAliases()
+    {
+        return $this->api->BankingAliases;
+    }
+
+    /**
+     * @return \MangoPay\ApiHooks
+     */
+    public function getApiHooks()
+    {
+        return $this->api->Hooks;
+    }
+
+    /**
+     * @return \MangoPay\ApiResponses
+     */
+    public function getApiResponses()
+    {
+        return $this->api->Responses;
+    }
+
+    /**
+     * @return \MangoPay\ApiKycDocuments
+     */
+    public function getApiKycDocuments()
+    {
+        return $this->api->KycDocuments;
+    }
+
+    /**
+     * @return \MangoPay\ApiClients
+     */
+    public function getApiClients()
+    {
+        return $this->api->Clients;
+    }
+
+    /**
+     * @return \MangoPay\ApiEvents
+     */
+    public function getApiEvents()
+    {
+        return $this->api->Events;
+    }
+
+    /**
+     * @return \MangoPay\ApiDisputes
+     */
+    public function getApiDisputes()
+    {
+        return $this->api->Disputes;
+    }
+
+    /**
+     * @return \MangoPay\ApiDisputeDocuments
+     */
+    public function getApiDisputeDocuments()
+    {
+        return $this->api->DisputeDocuments;
+    }
+
+    /**
+     * @return \MangoPay\ApiMandates
+     */
+    public function getApiMandates()
+    {
+        return $this->api->Mandates;
+    }
+
+    /**
+     * @return \MangoPay\ApiReports
+     */
+    public function getApiReports()
+    {
+        return $this->api->Reports;
+    }
 }

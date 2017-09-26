@@ -210,4 +210,94 @@ class MangoApiServiceTest extends \PHPUnit\Framework\TestCase
             $service->getApiRefunds()
         );
     }
+
+    public function testGetApiBankingAliases()
+    {
+        $service = $this->buildService('clientIdValue', 'clientPassPhraseValue', 'http://foo.bar.com', true);
+        self::assertSame(
+            $this->getMangoPayApiMock()->BankingAliases,
+            $service->getApiBankingAliases()
+        );
+    }
+
+    public function testGetApiHooks()
+    {
+        $service = $this->buildService('clientIdValue', 'clientPassPhraseValue', 'http://foo.bar.com', true);
+        self::assertSame(
+            $this->getMangoPayApiMock()->Hooks,
+            $service->getApiHooks()
+        );
+    }
+
+    public function testGetApiResponses()
+    {
+        $service = $this->buildService('clientIdValue', 'clientPassPhraseValue', 'http://foo.bar.com', true);
+        self::assertSame(
+            $this->getMangoPayApiMock()->Responses,
+            $service->getApiResponses()
+        );
+    }
+
+    public function testGetApiKycDocuments()
+    {
+        $service = $this->buildService('clientIdValue', 'clientPassPhraseValue', 'http://foo.bar.com', true);
+        self::assertSame(
+            $this->getMangoPayApiMock()->KycDocuments,
+            $service->getApiKycDocuments()
+        );
+    }
+
+    public function testGetApiClients()
+    {
+        $service = $this->buildService('clientIdValue', 'clientPassPhraseValue', 'http://foo.bar.com', true);
+        self::assertSame(
+            $this->getMangoPayApiMock()->Clients,
+            $service->getApiClients()
+        );
+    }
+
+    public function testGetApiEvents()
+    {
+        $service = $this->buildService('clientIdValue', 'clientPassPhraseValue', 'http://foo.bar.com', true);
+        self::assertSame(
+            $this->getMangoPayApiMock()->Events,
+            $service->getApiEvents()
+        );
+    }
+
+    public function testGetApiDisputes()
+    {
+        $service = $this->buildService('clientIdValue', 'clientPassPhraseValue', 'http://foo.bar.com', true);
+        self::assertSame(
+            $this->getMangoPayApiMock()->Disputes,
+            $service->getApiDisputes()
+        );
+    }
+
+    public function testGetApiDisputeDocuments()
+    {
+        $service = $this->buildService('clientIdValue', 'clientPassPhraseValue', 'http://foo.bar.com', true);
+        self::assertSame(
+            $this->getMangoPayApiMock()->DisputeDocuments,
+            $service->getApiDisputeDocuments()
+        );
+    }
+
+    public function testGetApiMandates()
+    {
+        $service = $this->buildService('clientIdValue', 'clientPassPhraseValue', 'http://foo.bar.com', true);
+        self::assertSame(
+            $this->getMangoPayApiMock()->Mandates,
+            $service->getApiMandates()
+        );
+    }
+
+    public function testGetApiReports()
+    {
+        $service = $this->buildService('clientIdValue', 'clientPassPhraseValue', 'http://foo.bar.com', true);
+        self::assertSame(
+            $this->getMangoPayApiMock()->Reports,
+            $service->getApiReports()
+        );
+    }
 }
