@@ -15,7 +15,8 @@ All API Endpoint client are available as services, they follow the official docu
     @mangopay.sdk.api_wallet.service
     @mangopay.sdk.api_pay_ins.service
     @mangopay.sdk.api_pay_outs.service
-    @mangopay.sdk.api_transfert.service:
+    @mangopay.sdk.api_transfert.service (deprecated in 1.1, replaced by @mangopay.sdk.api_transfers.service)
+    @mangopay.sdk.api_transfers.service
     @mangopay.sdk.api_cards.service
     @mangopay.sdk.api_card_registrations.service
     @mangopay.sdk.api_card_pre_authorizations.service

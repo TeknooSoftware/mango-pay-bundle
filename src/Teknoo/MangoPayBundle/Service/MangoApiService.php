@@ -35,6 +35,8 @@ use MangoPay\MangoPayApi;
  *
  * @license     http://teknoo.software/license/mit         MIT License
  * @author      Richard Déloge <richarddeloge@gmail.com>
+ *
+ * @SuppressWarnings(PHPMD.CouplingBetweenObjects)
  */
 class MangoApiService
 {
@@ -169,8 +171,18 @@ class MangoApiService
 
     /**
      * @return \MangoPay\ApiTransfers
+     * @deprecated Deprecated in 1.1, to be removed in 2.0
      */
     public function getApiTransferts()
+    {
+        @trigger_error('The ' . __METHOD__ . ' method has been deprecated in 1.1 and will be removed in 2.0.');
+        return $this->getApiTransfers();
+    }
+
+    /**
+     * @return \MangoPay\ApiTransfers
+     */
+    public function getApiTransfers()
     {
         return $this->api->Transfers;
     }

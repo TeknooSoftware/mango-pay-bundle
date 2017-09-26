@@ -18,7 +18,8 @@ parameters:
   mangopay.sdk.api_wallet.class: 'MangoPay\ApiWallets'
   mangopay.sdk.api_pay_ins.class: 'MangoPay\ApiPayIns'
   mangopay.sdk.api_pay_outs.class: 'MangoPay\ApiPayOuts'
-  mangopay.sdk.api_transfert.class: 'MangoPay\ApiTransfers'
+  mangopay.sdk.api_transfers.class: 'MangoPay\ApiTransfers'
+  mangopay.sdk.api_transfert.class: '%mangopay.sdk.api_transfers.class%'
   mangopay.sdk.api_cards.class: 'MangoPay\ApiCards'
   mangopay.sdk.api_card_registrations.class: 'MangoPay\ApiCardRegistrations'
   mangopay.sdk.api_card_pre_authorizations.class: 'MangoPay\ApiCardPreAuthorizations'
@@ -66,9 +67,13 @@ services:
     class: "%mangopay.sdk.api_pay_outs.class%"
     factory: ['@teknoo.mangopaybundle.service.mango_api', 'getApiPayOuts']
 
-  mangopay.sdk.api_transfert.service:
+  mangopay.sdk.api_transfers.service:
     class: "%mangopay.sdk.api_transfert.class%"
-    factory: ['@teknoo.mangopaybundle.service.mango_api', 'getApiTransferts']
+    factory: ['@teknoo.mangopaybundle.service.mango_api', 'getApiTransfers']
+
+  mangopay.sdk.api_transfert.service:
+    alias: 'mangopay.sdk.api_transfers.service'
+    deprecated: The "%service_id%" service is deprecated since 1.1 and will be removed in 2.0.
 
   mangopay.sdk.api_cards.service:
     class: "%mangopay.sdk.api_cards.class%"

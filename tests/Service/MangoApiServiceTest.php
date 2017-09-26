@@ -166,12 +166,12 @@ class MangoApiServiceTest extends \PHPUnit\Framework\TestCase
         );
     }
 
-    public function testGetApiTransferts()
+    public function testGetApiTransfers()
     {
         $service = $this->buildService('clientIdValue', 'clientPassPhraseValue', 'http://foo.bar.com', true);
         self::assertSame(
             $this->getMangoPayApiMock()->Transfers,
-            $service->getApiTransferts()
+            $service->getApiTransfers()
         );
     }
 
