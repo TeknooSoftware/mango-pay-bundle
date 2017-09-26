@@ -34,6 +34,10 @@ services:
   #mango pay sdk instance
   mangopay.sdk.mango_pay_api.service:
     class: "%mangopay.sdk.mango_pay_api.class%"
+    calls:
+      - [setLogger, ['@?logger']]
+    tags:
+      - { name: monolog.logger, channel: mangopay }
 
   mangopay.sdk.api_user.service:
     class: "%mangopay.sdk.api_user.class%"
