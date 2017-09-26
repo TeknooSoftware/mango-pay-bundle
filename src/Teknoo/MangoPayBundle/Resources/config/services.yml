@@ -36,49 +36,40 @@ services:
     class: "%mangopay.sdk.mango_pay_api.class%"
 
   mangopay.sdk.api_user.service:
-      class: "%mangopay.sdk.api_user.class%"
-      factory_service: 'teknoo.mangopaybundle.service.mango_api'
-      factory_method: 'getApiUsers'
+    class: "%mangopay.sdk.api_user.class%"
+    factory: ['@teknoo.mangopaybundle.service.mango_api', 'getApiUsers']
 
   mangopay.sdk.api_wallet.service:
-      class: "%mangopay.sdk.api_wallet.class%"
-      factory_service: 'teknoo.mangopaybundle.service.mango_api'
-      factory_method: 'getApiWallets'
+    class: "%mangopay.sdk.api_wallet.class%"
+    factory: ['@teknoo.mangopaybundle.service.mango_api', 'getApiWallets']
 
   mangopay.sdk.api_pay_ins.service:
-      class: "%mangopay.sdk.api_pay_ins.class%"
-      factory_service: 'teknoo.mangopaybundle.service.mango_api'
-      factory_method: 'getApiPayIns'
+    class: "%mangopay.sdk.api_pay_ins.class%"
+    factory: ['@teknoo.mangopaybundle.service.mango_api', 'getApiPayIns']
 
   mangopay.sdk.api_pay_outs.service:
-      class: "%mangopay.sdk.api_pay_outs.class%"
-      factory_service: 'teknoo.mangopaybundle.service.mango_api'
-      factory_method: 'getApiPayOuts'
+    class: "%mangopay.sdk.api_pay_outs.class%"
+    factory: ['@teknoo.mangopaybundle.service.mango_api', 'getApiPayOuts']
 
   mangopay.sdk.api_transfert.service:
-      class: "%mangopay.sdk.api_transfert.class%"
-      factory_service: 'teknoo.mangopaybundle.service.mango_api'
-      factory_method: 'getApiTransferts'
+    class: "%mangopay.sdk.api_transfert.class%"
+    factory: ['@teknoo.mangopaybundle.service.mango_api', 'getApiTransferts']
 
   mangopay.sdk.api_cards.service:
-      class: "%mangopay.sdk.api_cards.class%"
-      factory_service: 'teknoo.mangopaybundle.service.mango_api'
-      factory_method: 'getApiCards'
+    class: "%mangopay.sdk.api_cards.class%"
+    factory: ['@teknoo.mangopaybundle.service.mango_api', 'getApiCards']
 
   mangopay.sdk.api_card_registrations.service:
-      class: "%mangopay.sdk.api_card_registrations.class%"
-      factory_service: 'teknoo.mangopaybundle.service.mango_api'
-      factory_method: 'getApiCardRegistrations'
+    class: "%mangopay.sdk.api_card_registrations.class%"
+    factory: ['@teknoo.mangopaybundle.service.mango_api', 'getApiCardRegistrations']
 
   mangopay.sdk.api_card_pre_authorizations.service:
-      class: "%mangopay.sdk.api_card_pre_authorizations.class%"
-      factory_service: 'teknoo.mangopaybundle.service.mango_api'
-      factory_method: 'getApiCardPreAuthorizations'
+    class: "%mangopay.sdk.api_card_pre_authorizations.class%"
+    factory: ['@teknoo.mangopaybundle.service.mango_api', 'getApiCardPreAuthorizations']
 
   mangopay.sdk.api_refunds.service:
-      class: "%mangopay.sdk.api_refunds.class%"
-      factory_service: 'teknoo.mangopaybundle.service.mango_api'
-      factory_method: 'getApiRefunds'
+    class: "%mangopay.sdk.api_refunds.class%"
+    factory: ['@teknoo.mangopaybundle.service.mango_api', 'getApiRefunds']
 
   #bundle services
   teknoo.mangopaybundle.transcriber.users:
