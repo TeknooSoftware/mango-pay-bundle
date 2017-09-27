@@ -18,11 +18,22 @@ parameters:
   mangopay.sdk.api_wallet.class: 'MangoPay\ApiWallets'
   mangopay.sdk.api_pay_ins.class: 'MangoPay\ApiPayIns'
   mangopay.sdk.api_pay_outs.class: 'MangoPay\ApiPayOuts'
-  mangopay.sdk.api_transfert.class: 'MangoPay\ApiTransfers'
+  mangopay.sdk.api_transfers.class: 'MangoPay\ApiTransfers'
+  mangopay.sdk.api_transfert.class: '%mangopay.sdk.api_transfers.class%'
   mangopay.sdk.api_cards.class: 'MangoPay\ApiCards'
   mangopay.sdk.api_card_registrations.class: 'MangoPay\ApiCardRegistrations'
   mangopay.sdk.api_card_pre_authorizations.class: 'MangoPay\ApiCardPreAuthorizations'
   mangopay.sdk.api_refunds.class: 'MangoPay\ApiRefunds'
+  mangopay.sdk.api_banking_aliases.class: 'MangoPay\ApiBankingAliases'
+  mangopay.sdk.api_hooks.class: 'MangoPay\ApiHooks'
+  mangopay.sdk.api_responses.class: 'MangoPay\ApiResponses'
+  mangopay.sdk.api_kyc_documents.class: 'MangoPay\ApiKycDocuments'
+  mangopay.sdk.api_clients.class: 'MangoPay\ApiClients'
+  mangopay.sdk.api_events.class: 'MangoPay\ApiEvents'
+  mangopay.sdk.api_disputes.class: 'MangoPay\ApiDisputes'
+  mangopay.sdk.api_dispute_documents.class: 'MangoPay\ApiDisputeDocuments'
+  mangopay.sdk.api_mandates.class: 'MangoPay\ApiMandates'
+  mangopay.sdk.api_reports.class: 'MangoPay\ApiReports'
 
   #Parameters,
   #routes names for
@@ -56,9 +67,13 @@ services:
     class: "%mangopay.sdk.api_pay_outs.class%"
     factory: ['@teknoo.mangopaybundle.service.mango_api', 'getApiPayOuts']
 
-  mangopay.sdk.api_transfert.service:
+  mangopay.sdk.api_transfers.service:
     class: "%mangopay.sdk.api_transfert.class%"
-    factory: ['@teknoo.mangopaybundle.service.mango_api', 'getApiTransferts']
+    factory: ['@teknoo.mangopaybundle.service.mango_api', 'getApiTransfers']
+
+  mangopay.sdk.api_transfert.service:
+    alias: 'mangopay.sdk.api_transfers.service'
+    deprecated: The "%service_id%" service is deprecated since 1.1 and will be removed in 2.0.
 
   mangopay.sdk.api_cards.service:
     class: "%mangopay.sdk.api_cards.class%"
@@ -75,6 +90,42 @@ services:
   mangopay.sdk.api_refunds.service:
     class: "%mangopay.sdk.api_refunds.class%"
     factory: ['@teknoo.mangopaybundle.service.mango_api', 'getApiRefunds']
+
+  mangopay.sdk.api_banking_aliases.service:
+    class: "%mangopay.sdk.api_banking_aliases.class%"
+    factory: ['@teknoo.mangopaybundle.service.mango_api', 'getApiBankingAliases']
+
+  mangopay.sdk.api_hooks.service:
+    class: "%mangopay.sdk.api_hooks.class%"
+    factory: ['@teknoo.mangopaybundle.service.mango_api', 'getApiHooks']
+
+  mangopay.sdk.api_responses.service:
+    class: "%mangopay.sdk.api_responses.class%"
+    factory: ['@teknoo.mangopaybundle.service.mango_api', 'getApiResponses']
+
+  mangopay.sdk.api_kyc_documents.service:
+    class: "%mangopay.sdk.api_kyc_documents.class%"
+    factory: ['@teknoo.mangopaybundle.service.mango_api', 'getApiKycDocuments']
+
+  mangopay.sdk.api_clients.service:
+    class: "%mangopay.sdk.api_clients.class%"
+    factory: ['@teknoo.mangopaybundle.service.mango_api', 'getApiClients']
+
+  mangopay.sdk.api_disputes.service:
+    class: "%mangopay.sdk.api_disputes.class%"
+    factory: ['@teknoo.mangopaybundle.service.mango_api', 'getApiDisputes']
+
+  mangopay.sdk.api_dispute_documents.service:
+    class: "%mangopay.sdk.api_dispute_documents.class%"
+    factory: ['@teknoo.mangopaybundle.service.mango_api', 'getApiDisputeDocuments']
+
+  mangopay.sdk.api_mandates.service:
+    class: "%mangopay.sdk.api_mandates.class%"
+    factory: ['@teknoo.mangopaybundle.service.mango_api', 'getApiMandates']
+
+  mangopay.sdk.api_reports.service:
+    class: "%mangopay.sdk.api_reports.class%"
+    factory: ['@teknoo.mangopaybundle.service.mango_api', 'getApiReports']
 
   #bundle services
   teknoo.mangopaybundle.transcriber.users:
