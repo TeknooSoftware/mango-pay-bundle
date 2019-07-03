@@ -22,6 +22,9 @@
 
 namespace Teknoo\MangoPayBundle\Service;
 
+use MangoPay\ApiBankAccounts;
+use MangoPay\ApiRepudiations;
+use MangoPay\ApiUboDeclarations;
 use MangoPay\Libraries\IStorageStrategy;
 use MangoPay\MangoPayApi;
 
@@ -225,6 +228,21 @@ class MangoApiService
     public function getApiBankingAliases()
     {
         return $this->api->BankingAliases;
+    }
+
+    public function getApiUboDeclarations(): ApiUboDeclarations
+    {
+        return $this->api->UboDeclarations;
+    }
+
+    public function getApiBankAccounts(): ApiBankAccounts
+    {
+        return $this->api->BankAccounts;
+    }
+
+    public function getApiRepudations(): ApiRepudiations
+    {
+        return $this->api->Repudiations;
     }
 
     /**

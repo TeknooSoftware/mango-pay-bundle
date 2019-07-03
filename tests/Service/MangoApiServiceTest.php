@@ -300,4 +300,31 @@ class MangoApiServiceTest extends \PHPUnit\Framework\TestCase
             $service->getApiReports()
         );
     }
+
+    public function testGetApiUboDeclarations()
+    {
+        $service = $this->buildService('clientIdValue', 'clientPassPhraseValue', 'http://foo.bar.com', true);
+        self::assertSame(
+            $this->getMangoPayApiMock()->UboDeclarations,
+            $service->getApiUboDeclarations()
+        );
+    }
+
+    public function testGetApiBankAccounts()
+    {
+        $service = $this->buildService('clientIdValue', 'clientPassPhraseValue', 'http://foo.bar.com', true);
+        self::assertSame(
+            $this->getMangoPayApiMock()->BankAccounts,
+            $service->getApiBankAccounts()
+        );
+    }
+
+    public function testGetApiRepudations()
+    {
+        $service = $this->buildService('clientIdValue', 'clientPassPhraseValue', 'http://foo.bar.com', true);
+        self::assertSame(
+            $this->getMangoPayApiMock()->Repudiations,
+            $service->getApiRepudations()
+        );
+    }
 }
