@@ -25,6 +25,9 @@ parameters:
   mangopay.sdk.api_card_pre_authorizations.class: 'MangoPay\ApiCardPreAuthorizations'
   mangopay.sdk.api_refunds.class: 'MangoPay\ApiRefunds'
   mangopay.sdk.api_banking_aliases.class: 'MangoPay\ApiBankingAliases'
+  mangopay.sdk.api_ubo_declarations.class: 'MangoPay\ApiUboDeclarations'
+  mangopay.sdk.api_bank_accounts.class: 'MangoPay\ApiBankAccounts'
+  mangopay.sdk.api_repudations.class: 'MangoPay\ApiRepudiations'
   mangopay.sdk.api_hooks.class: 'MangoPay\ApiHooks'
   mangopay.sdk.api_responses.class: 'MangoPay\ApiResponses'
   mangopay.sdk.api_kyc_documents.class: 'MangoPay\ApiKycDocuments'
@@ -94,6 +97,18 @@ services:
   mangopay.sdk.api_banking_aliases.service:
     class: "%mangopay.sdk.api_banking_aliases.class%"
     factory: ['@teknoo.mangopaybundle.service.mango_api', 'getApiBankingAliases']
+
+  mangopay.sdk.api_ubo_declarations.service:
+    class: "%mangopay.sdk.api_ubo_declarations.class%"
+    factory: ['@teknoo.mangopaybundle.service.mango_api', 'getApiUboDeclarations']
+
+  mangopay.sdk.api_bank_accounts.service:
+    class: "%mangopay.sdk.api_bank_accounts.class%"
+    factory: ['@teknoo.mangopaybundle.service.mango_api', 'getApiBankAccounts']
+
+  mangopay.sdk.api_repudations.service:
+    class: "%mangopay.sdk.api_repudations.class%"
+    factory: ['@teknoo.mangopaybundle.service.mango_api', 'getApiRepudations']
 
   mangopay.sdk.api_hooks.service:
     class: "%mangopay.sdk.api_hooks.class%"

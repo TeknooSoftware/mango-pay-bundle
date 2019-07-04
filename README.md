@@ -22,6 +22,9 @@ All API Endpoint client are available as services, they follow the official docu
     @mangopay.sdk.api_card_pre_authorizations.service
     @mangopay.sdk.api_refunds.service
     @mangopay.sdk.api_banking_aliases
+    @mangopay.sdk.api_ubo_declarations.service
+    @mangopay.sdk.api_bank_accounts.service
+    @mangopay.sdk.api_repudations.service
     @mangopay.sdk.api_hooks
     @mangopay.sdk.api_responses
     @mangopay.sdk.api_kyc_documents
