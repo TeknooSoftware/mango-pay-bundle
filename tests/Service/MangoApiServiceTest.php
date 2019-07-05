@@ -110,6 +110,15 @@ class MangoApiServiceTest extends \PHPUnit\Framework\TestCase
         $api->OAuthTokenManager->StoreToken($tokenMock);
     }
 
+    public function testGetApi()
+    {
+        $service = $this->buildService('clientIdValue', 'clientPassPhraseValue', 'http://foo.bar.com', true);
+        self::assertSame(
+            $this->getMangoPayApiMock(),
+            $service->getApi()
+        );
+    }
+
     public function testGetClientId()
     {
         $service = $this->buildService('clientIdValue', 'clientPassPhraseValue', 'http://foo.bar.com', true);

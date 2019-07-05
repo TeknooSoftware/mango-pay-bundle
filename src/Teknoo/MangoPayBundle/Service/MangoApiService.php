@@ -116,6 +116,11 @@ class MangoApiService
         return $this;
     }
 
+    public function getApi(): MangoPayApi
+    {
+        return $this->api;
+    }
+
     /**
      * @return string
      */
