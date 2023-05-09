@@ -1,8 +1,7 @@
 Teknoo Software - Mango Pay bundle
 ===========================
 
-**Warning, Unmaintened and archived bundle. If your are interested by a updated version, please contact us at contact@teknoo.software . 
-**
+**Warning, Unmaintened and archived bundle. If your are interested by a updated version, please contact us at contact@teknoo.software**
 
 Bundle to import the MangoPay official PHP client into Symfony 2.7+ and use it into your
 Symfony project
